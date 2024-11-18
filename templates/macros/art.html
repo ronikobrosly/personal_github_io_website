@@ -1,0 +1,121 @@
+{% macro render_meta_tags(post) %}
+<meta property="og:title" content="{{ post.title }}">
+<meta property='og:url' content='http://ronikobrosly.github.io/art/{{ post.path }}' />
+{% endmacro %}
+
+{% macro render_art_header(post, from_index=false) %}
+<!-- Set title style -->
+<span name="title" id="title">{{ post.title }}</span>
+{% endmacro %}
+
+{% macro render_author_tags(post) %}
+<!-- Append author -->
+<small>
+  <p>
+    written by
+    {% if post.twitter_handle %}
+    <a class="author" href="https://twitter.com/{{ post.twitter_handle}}">{{ post.author or post.twitter_handle }}</a>
+    {% else %}
+    {{ post.author }}
+    {% endif %}
+    on
+    <span id="pub_date" name="pub_date">{{ post.pub_date }}</span>
+
+    {% if post.tags %}
+    | tags:
+    <!-- Append tags after author -->
+    {% for t in post.tags -%}
+    <span class="boxed" id="tags" name="tags">
+      <a class="tags" href="{{ ('/art/tag/' ~ t.lower() ~ '/')|url }}">
+        {{ t }}
+      </a>
+    </span>
+    {% endfor %}
+  </p>
+  {% endif %}
+</small>
+{% endmacro %}
+
+{% macro render_art_post(post, from_index=false) %}
+
+<div class="terminal-card">
+  <header id="post_title" name="post_title">{{ render_art_header(post, from_index) }}</header>
+  <div class="card-body">
+    {{ render_author_tags(post) }}
+    <hr>
+    {% if post.attachments.get("logo.webp") %}
+    {% set img = post.attachments.get("logo.webp") %}
+    <img src="{{ img|url }}" style="padding: 10px;" >
+    {% endif %}
+
+    <span id="post_body" name="post_body">
+      {{ post.body }}
+    </span>
+
+    {% set slug = post._slug.split("/")[-1] %}
+    {% set date_str = post.pub_date | string %}
+    {% set year = date_str.split("-")[0] %}
+    {% set month = date_str.split("-")[1] %}
+    {% set day = date_str.split("-") [2] %}
+
+  </div>
+
+</div>
+
+{% endmacro %}
+
+<!-- Start reading time calculation macro -->
+{% macro render_reading_time(post) %}
+{% set post_length = post.body|striptags|wordcount %}
+{% set time_unit = "minutes" %}
+
+{% set reading_time = post_length // 200 + 1 %}
+
+{% if reading_time == 1 %}
+{% set time_unit = "minute" %}
+{% endif %}
+
+({{ post_length }} words, approximately {{ reading_time }} {{ time_unit }} reading time)
+{% endmacro %}
+<!-- End reading time calculation macro -->
+
+{% macro render_art_card(post) %}
+<div class="terminal-card">
+  <header>
+    <a href="{{ post|url }}" style="color: white">{{ render_art_header(post, from_index=True) }}</a>
+  </header>
+  <div class="card-body art-card-container">
+    <div>
+      {{ render_author_tags(post) }}
+
+      {% if post.attachments.get("logo.webp") %}
+      {% set img = post.attachments.get("logo.webp") %}
+      <a href="{{ post|url }}" style="text-decoration: none;">
+        <img src="{{ img|url }}" >
+      </a>
+      {% endif %}
+
+      <div class="art-card-right">
+        {% if post.summary %}
+        <span name="post_summary" id="post_summary">
+          <p class="card-text">{{ post.summary }}</p>
+        </span>
+        <small>
+          <a href="{{ post|url }}">Read on...</a>
+          {{ render_reading_time(post) }}
+        </small>
+        {% else %}
+        <div>
+          <p class="card-text">{{ post.body.html|escape()|truncate(255, False) }}
+            <a href="{{ post|url }}">(read more)</a>
+          </p>
+          <small>
+            {{ render_reading_time(post) }}
+          </small>
+        </div>
+        {% endif %}
+      </div>
+    </div>
+  </div>
+</div>
+{% endmacro %}

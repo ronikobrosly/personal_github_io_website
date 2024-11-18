@@ -1,0 +1,18 @@
+{% extends "layout.html" %}
+{% from "macros/art.html" import render_art_post, render_meta_tags %}
+
+{% block metatags %}
+{{ render_meta_tags(this) }}
+{% endblock %}
+
+{% block highlighting %}
+<!-- Syntax Highlighter. Use pygments. -->
+<link rel="stylesheet" href="{{ get_pygments_stylesheet()|url }}">
+{% endblock %}
+
+{% block title %}{{ this.title }}{% endblock %}
+
+{% block body %}
+{{ render_art_post(this) }}
+
+{% endblock %}
