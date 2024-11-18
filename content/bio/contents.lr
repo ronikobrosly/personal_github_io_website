@@ -6,41 +6,16 @@ body:
 
 ## Professional Bio
 
-<img class="headshot" src="./headshot.webp" style="border-radius: 50%; width: 50%; max-width: 200px; margin-left: auto; margin-right: 20px; float: left">
+<img class="headshot" src="./profile_pic.jpg" style="border-radius: 50%; width: 50%; max-width: 200px; margin-left: auto; margin-right: 20px; float: left">
 
-As Senior Principal Data Scientist at [Moderna](moderna)
-Eric leads the Data Science and Artificial Intelligence (Research) team
-to accelerate science to the speed of thought.
-Prior to Moderna,
-he was at the [Novartis Institutes for Biomedical Research][nibr]
-conducting biomedical data science research
-with a focus on using Bayesian statistical methods
-in the service of discovering medicines for patients.
-Prior to Novartis, he was an [Insight Health Data Fellow][insight]
-in the summer of 2017
-and defended his doctoral [thesis]
-in the [Department of Biological Engineering][be]
-at [MIT][mit] in the spring of 2017.
+Before working in the tech industry, I spent several years in academia trying to better understand the complicated relationships between environmental exposures, stress, and population health.
 
-[moderna]: https://www.modernatx.com
-[nibr]: https://www.novartis.com/our-science/novartis-institutes-biomedical-research
-[insight]: https://www.insighthealthdata.com/
-[thesis]: https://ronikobrosly.github.io/thesis
-[be]: https://be.mit.edu/
-[mit]: https://web.mit.edu/
+Outside of my work, I enjoy bicycling, digital art and art generally (that's a self-portrait to the right), climbing, photography, cooking, longboarding, music collecting, philosophy, psychology, traveling, and volunteering. I love talking to people who are passionate about "ideas", if that makes sense.
 
-Eric is also an open-source software developer
-and has led the development of [`pyjanitor`],
-a clean API for cleaning data in Python,
-and [`nxviz`], a visualization package for NetworkX.
-He is also on the core developer team of NetworkX and PyMC.
-In addition, he gives back to the community
-through [code contributions](/open-source),
-[blogging](/blog),
-[teaching](/teaching),
-and [writing](/books).
+Not satisfied? Here are some random fun facts about me:
 
-[`pyjanitor`]: https://github.com/ericmjl/pyjanitor
-[`nxviz`]: https://github.com/ericmjl/nxviz
-
-His personal life motto is found in the Gospel of Luke 12:48.
+* I make a very good scrambled eggs and hash brown breakfast. I mean really, really good.
+* I'm confident I'm the only person on earth with the name Roni Kobrosly (one of the perks of having a bicultural background).
+* My all-time favorite book is Don DeLillo's White Noise.
+* I have a well-seasoned wok that I'm obsessed with.
+* I'm a [skeptic](https://en.wikipedia.org/wiki/Skepticism).

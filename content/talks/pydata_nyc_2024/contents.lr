@@ -1,0 +1,19 @@
+title: Holistic root cause analysis of software breakages through structural causal modeling @ PyData NYC 2024 (video still to be uploaded)
+
+---
+body:
+
+#### youtube ####
+url: https://www.youtube.com/@PyDataTV/videos
+#### slides ####
+url: https://docs.google.com/presentation/d/1j5hoaayuPku2HDejuQaXnrq7sZA10IUZFp8jWPFLRoM/edit?usp=sharing
+#### github ####
+url: #
+---
+category: Work
+---
+lead: Yes
+---
+summary: We discuss a causal framework for the identifying root cause of cascasing failures in a system of connected microservices.
+---
+visible: Visible

@@ -11,11 +11,6 @@
             "icon": "fas fa-pen"
         },
         {
-            "title": "Books",
-            "href": "/books",
-            "icon": "fa-book"
-        },
-        {
             "title": "Open Source",
             "href": "/open-source",
             "icon": "fa-code"
@@ -31,9 +26,9 @@
             "icon": "fa-microphone"
         },
         {
-            "title": "Teaching",
-            "href": "/teaching",
-            "icon": "fa-university"
+            "title": "Art",
+            "href": "/art",
+            "icon": "fa-briefcase"
         },
         {
             "title": "Bio",
@@ -49,19 +44,13 @@
         },
         {
             "title": "LinkedIn",
-            "href": "https://www.linkedin.com/in/ericmjl",
+            "href": "https://www.linkedin.com/in/ronikobrosly",
             "icon": "fab fa-linkedin"
         },
         {
-            "title": "Twitter",
-            "href": "http://twitter.com/ericmjl",
-            "icon": "fab fa-twitter"
-        },
-        {
-            "title": "Octodon",
-            "href": "https://octodon.social/@ericmjl",
-            "icon": "fab fa-mastodon",
-            "rel": "me"
+            "title": "Bluesky",
+            "href": "https://bsky.app/profile/slykoby.bsky.social",
+            "icon": "fab fa-bluesky"
         },
         {
             "title": "GitHub",
@@ -69,19 +58,9 @@
             "icon": "fab fa-github"
         },
         {
-            "title": "Stack Overflow",
-            "href": "http://stackoverflow.com/users/1274908/ericmjl",
-            "icon": "fab fa-stack-overflow"
-        },
-        {
             "title": "Contact Me",
-            "href": "http://koalamail.ericmjl.com/send/ericmjl",
+            "href": "https://mail.google.com/mail/?view=cm&fs=1&to=roni.kobrosly@gmail.com&su=Hi! Reaching out from your personal website...&body=blah blah blah",
             "icon": "far fa-envelope"
-        },
-        {
-            "title": "Blog RSS",
-            "href": "https://ronikobrosly.github.io/blog.xml",
-            "icon": "fas fa-rss"
         }
     ]
 }

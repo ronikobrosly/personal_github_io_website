@@ -42,7 +42,7 @@ def compose_patreon_post(text, url):
     Ensure that there is a placeholder for me to paste in the URL,
     which reads as "Please find the preview [here](url goes here)
     before it goes live on my blog."
-    Sign off with "Cheers,\nEric".
+    Sign off with "Cheers,\nRoni".
     """
 
 

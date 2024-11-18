@@ -1,0 +1,18 @@
+title: Introduction to Causal Inference @ PyData NYC 2022
+---
+body:
+
+#### youtube ####
+url: https://www.youtube.com/watch?v=fjaFOYQTxVQ
+#### slides ####
+url: https://docs.google.com/presentation/d/1Gijn05cPROfifXk2LLsjOYZEg5OIXg98nttRMjh-Vb8/edit?usp=sharing
+#### github ####
+url: https://github.com/ronikobrosly/pydata_nyc_2022
+---
+category: Work
+---
+lead: Yes
+---
+summary: In this talk I give a gentle introduction to causal inference / how to look at data through a causal lens.
+---
+visible: Visible
