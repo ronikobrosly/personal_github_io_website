@@ -58,30 +58,6 @@
     {% set month = date_str.split("-")[1] %}
     {% set day = date_str.split("-") [2] %}
 
-    <hr>
-
-    <i>Cite this blog post:</i>
-    <div class="hll">
-    <pre>
-<span><span style="color: darkblue; font-weight: bold">@article</span>{
-    <span style="color: black; font-weight: bold">{{ post.twitter_handle }}-{{ year }}-{{ slug.split("-")[0] }}-{{ slug.split("-")[-1] }}</span>,
-    <span style="color: green; font-weight:bold">author</span> = <span style="color: maroon">{{'{'}}{{post.author}}{{'}'}}</span>,
-    <span style="color: green; font-weight:bold">title</span> = <span style="color: maroon">{{'{'}}{{ post.title }}{{'}'}}</span>,
-    <span style="color: green; font-weight:bold">year</span> = <span style="color: maroon">{{'{'}}{{ year }}{{'}'}}</span>,
-    <span style="color: green; font-weight:bold">month</span> = <span style="color: maroon">{{'{'}}{{ month }}{{'}'}}</span>,
-    <span style="color: green; font-weight:bold">day</span> = <span style="color: maroon">{{'{'}}{{ day }}{{'}'}}</span>,
-    <span style="color: green; font-weight:bold">howpublished</span> = <span style="color: maroon">{\url{https://ronikobrosly.github.io}}</span>,
-    <span style="color: green; font-weight:bold">journal</span> = <span style="color: maroon">{Roni Kobrosly's Blog}</span>,
-    <span style="color: green; font-weight:bold">url</span> = <span style="color: maroon">{https://ronikobrosly.github.io/blog/{{ post._slug }}{{'}'}}</span>,
-}
-  </span></pre>
-    </div>
-    <hr>
-    <p>
-      <i>I send out a newsletter with tips and tools
-        for data scientists. Come check it out at
-        <a href="https://dspn.substack.com">Substack</a>.</i>
-    </p>
   </div>
 
 </div>
