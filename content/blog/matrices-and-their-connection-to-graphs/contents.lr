@@ -16,8 +16,8 @@ Nodes are entities in a graph, and edges are their relationships.
 One anchoring example you can use throughout this blog post is a social network -
 people are nodes, and their connections are edges.
 In "Network Analysis Made Simple",
-we go much deeper into [particular examples](https://ericmjl.github.io/Network-Analysis-Made-Simple/01-introduction/01-graphs/)
-and [the specific NetworkX implementation](https://ericmjl.github.io/Network-Analysis-Made-Simple/01-introduction/02-networkx-intro/).
+we go much deeper into [particular examples](https://ronikobrosly.github.io/Network-Analysis-Made-Simple/01-introduction/01-graphs/)
+and [the specific NetworkX implementation](https://ronikobrosly.github.io/Network-Analysis-Made-Simple/01-introduction/02-networkx-intro/).
 
 As it turns out, you can represent graphs as matrices!
 Let's construct a minimal complex example to illustrate the point.
@@ -128,9 +128,9 @@ because being able to do so gives you access to the necessary programming langua
 that can make your life a lot easier.
 I [know this from personal experience][graph]!
 
-[graph]: https://ericmjl.github.io/blog/2019/6/15/graphs-and-matrices/
+[graph]: https://ronikobrosly.github.io/blog/2019/6/15/graphs-and-matrices/
 
-I will be at ODSC East 2022 teaching [Network Analysis Made Simple](https://ericmjl.github.io/Network-Analysis-Made-Simple/).
+I will be at ODSC East 2022 teaching [Network Analysis Made Simple](https://ronikobrosly.github.io/Network-Analysis-Made-Simple/).
 There, we will learn more cool stuff about graphs,
 their key underlying concepts,
 and awesome connections to other topics through this tutorial.
@@ -141,7 +141,7 @@ pub_date: 2022-04-02
 ---
 summary:
 
-I will be at ODSC East 2022 teaching [Network Analysis Made Simple](https://ericmjl.github.io/Network-Analysis-Made-Simple/).
+I will be at ODSC East 2022 teaching [Network Analysis Made Simple](https://ronikobrosly.github.io/Network-Analysis-Made-Simple/).
 We will learn more cool stuff about graphs,
 their key underlying concepts,
 and awesome connections to other topics through this tutorial.

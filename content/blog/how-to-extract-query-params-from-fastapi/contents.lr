@@ -11,12 +11,12 @@ This was within the context of a blog writing assistant that I was making. I use
 What intrigued me was that the example used a GET request to the API endpoint. This meant that I would get a URL that looked like this:
 
 ```text
-http://localhost:8732/get-latest-blog-posts?base_url=https%3A%2F%2Fericmjl.github.io%2Fblog%2F
+http://localhost:8732/get-latest-blog-posts?base_url=https%3A%2F%2Fronikobrosly.github.io%2Fblog%2F
 ```
 
 There were two problems that I didn't know how to solve at first.
 
-First, how do I access the key-value pair `base_url=https%3A%2F%2Fericmjl.github.io%2Fblog%2F` within Python?
+First, how do I access the key-value pair `base_url=https%3A%2F%2Fronikobrosly.github.io%2Fblog%2F` within Python?
 
 Second, given that I knew how to access the key `base_url`, how do I get rid of those `%3A`s and `%2F`s?
 

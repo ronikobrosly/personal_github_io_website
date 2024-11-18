@@ -57,7 +57,7 @@ to focus on thinking deeper and executing excellently on challenging and fun pro
 
 Pair coding is another strategy that I have used to keep my coding muscles warm.
 I remember a recent pair coding session where my teammate Marcus and I
-were doing some [defensive exploratory data analysis](https://ericmjl.github.io/blog/2024/1/28/exploratory-data-analysis-isnt-open-ended/).
+were doing some [defensive exploratory data analysis](https://ronikobrosly.github.io/blog/2024/1/28/exploratory-data-analysis-isnt-open-ended/).
 For two of the sessions we did, we switched roles multiple times based on where we were in our notebook --
 him taking over when it was imaging-related code and me taking over
 when we hit the need to write `pandas` and `matplotlib` code.

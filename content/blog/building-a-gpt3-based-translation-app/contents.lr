@@ -282,7 +282,7 @@ and deployed the app from within a  Docker container.
 (I referenced [my old essay on deploying static sites and Python apps][essay];
 writing about stuff one builds is an excellent way of recording knowledge!)
 
-[essay]: https://ericmjl.github.io/essays-on-data-science/miscellaneous/static-sites-on-dokku/
+[essay]: https://ronikobrosly.github.io/essays-on-data-science/miscellaneous/static-sites-on-dokku/
 
 The final result is an app that looks like this:
 

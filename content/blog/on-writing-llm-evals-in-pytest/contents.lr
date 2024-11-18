@@ -8,7 +8,7 @@ This long weekend, I tried my hand at writing evaluations for my LLM doc writing
 
 Evals (short for evaluations) check that an LLM system is doing what we want. In the vast majority of applications I've seen, human checks are the most important, but, with a little critical thought, other validity checks on an LLM system can be designed too!
 
-Continuing what I was building [in my last post](https://ericmjl.github.io/blog/2024/8/31/llamabot-now-has-structuredbot/), I wanted to check that my prompts for doc checking "worked" across different LLMs. If I were to do this manually, it would be challenging to stay disciplined, especially since I experienced [criteria drift](https://twitter.com/sh_reya/status/1782425962246033436) while observing the behaviour of my doc writing system. Using automated software testing systems gives me a more structured and disciplined approach to writing LLM evals.
+Continuing what I was building [in my last post](https://ronikobrosly.github.io/blog/2024/8/31/llamabot-now-has-structuredbot/), I wanted to check that my prompts for doc checking "worked" across different LLMs. If I were to do this manually, it would be challenging to stay disciplined, especially since I experienced [criteria drift](https://twitter.com/sh_reya/status/1782425962246033436) while observing the behaviour of my doc writing system. Using automated software testing systems gives me a more structured and disciplined approach to writing LLM evals.
 
 ## Implementing evals in pytest
 

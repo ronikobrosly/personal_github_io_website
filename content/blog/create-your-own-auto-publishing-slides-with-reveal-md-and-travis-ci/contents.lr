@@ -50,7 +50,7 @@ conda activate my_talk
 npm install -g reveal-md
 ```
 
-To learn more about `conda` hacks that can improve your efficiency, I [have a blog post](https://ericmjl.github.io/blog/2018/12/25/conda-hacks-for-data-science-efficiency/) that you can reference.
+To learn more about `conda` hacks that can improve your efficiency, I [have a blog post](https://ronikobrosly.github.io/blog/2018/12/25/conda-hacks-for-data-science-efficiency/) that you can reference.
 
 ### Write your slides
 
@@ -109,7 +109,7 @@ If you need fancier things, you can weave in HTML at your own convenience. For e
 
 ### Get Travis CI setup
 
-You’ll now want to create a `.travis.yml`, which commands Travis to do things. It’s generally nothing more than a collection of bash commands that are executed in order. An example Travis configuration file from my [data science testing talk](https://ericmjl.github.io/testing-for-data-scientists) looks like this:
+You’ll now want to create a `.travis.yml`, which commands Travis to do things. It’s generally nothing more than a collection of bash commands that are executed in order. An example Travis configuration file from my [data science testing talk](https://ronikobrosly.github.io/testing-for-data-scientists) looks like this:
 
 ```yaml
 language: python

@@ -4,7 +4,7 @@ author: Eric J. Ma
 ---
 body:
 
-If you've been following the [LlamaBot](https://github.com/ericmjl/llamabot) project, you know it's my pet Pythonic project to interface with Large Language Models (LLMs). I've had fun building some cool stuff, like [GitBot](https://ericmjl.github.io/gitbot/), a chatbot for your Zotero library, and even a blogging assistant (more on that later, promise!).
+If you've been following the [LlamaBot](https://github.com/ericmjl/llamabot) project, you know it's my pet Pythonic project to interface with Large Language Models (LLMs). I've had fun building some cool stuff, like [GitBot](https://ronikobrosly.github.io/gitbot/), a chatbot for your Zotero library, and even a blogging assistant (more on that later, promise!).
 
 However, there's been one area I've shied away from until now: using local LLMs. The setup could be daunting, but I finally found a way to simplify it with [Ollama](https://ollama.ai/).
 

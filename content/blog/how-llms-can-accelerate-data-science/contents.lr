@@ -4,7 +4,7 @@ author: Eric J. Ma
 ---
 body:
 
-I recently delivered a talk at the BioIT World conference in 2024. The slides can be found [online here](https://ericmjl.github.io/how-llms-can-accelerate-data-science/#/). This post is a written version of that same talk. (As Joyce, the moderator, alluded to afterwards, this talk probably could have been titled "Prompt Engineering for Data Scientist Efficiency".)
+I recently delivered a talk at the BioIT World conference in 2024. The slides can be found [online here](https://ronikobrosly.github.io/how-llms-can-accelerate-data-science/#/). This post is a written version of that same talk. (As Joyce, the moderator, alluded to afterwards, this talk probably could have been titled "Prompt Engineering for Data Scientist Efficiency".)
 
 ## Two threads
 
@@ -16,7 +16,7 @@ The first is that **LLMs are incredibly empowering as a tool**. Moderna, where I
 
 ### Data science involves writing software
 
-The second thread is that **data science necessarily involves writing software**. This argument starts with Hadley Wickham's talk, "[You can't do data science in a GUI](https://www.youtube.com/watch?v=cpbtcsGE0OA)." The crux of the argument is that GUIs are too restrictive for the complexity of problems that data scientists need to solve. As such, programming skills are necessary to wrangle that level of complexity. The corollary is that if we coded in a programming language without getting organized like a software developer, our codebase would rapidly become chaotic. As such, [software development skills are necessary and can be developed](https://ericmjl.github.io/blog/2024/4/5/how-to-grow-software-development-skills-in-a-data-science-team/). (This skill is trainable, motivating why I created the [Data Science Bootstrap Notes](https://ericmjl.github.io/data-science-bootstrap-notes/get-bootstrapped-on-your-data-science-projects/).)
+The second thread is that **data science necessarily involves writing software**. This argument starts with Hadley Wickham's talk, "[You can't do data science in a GUI](https://www.youtube.com/watch?v=cpbtcsGE0OA)." The crux of the argument is that GUIs are too restrictive for the complexity of problems that data scientists need to solve. As such, programming skills are necessary to wrangle that level of complexity. The corollary is that if we coded in a programming language without getting organized like a software developer, our codebase would rapidly become chaotic. As such, [software development skills are necessary and can be developed](https://ronikobrosly.github.io/blog/2024/4/5/how-to-grow-software-development-skills-in-a-data-science-team/). (This skill is trainable, motivating why I created the [Data Science Bootstrap Notes](https://ronikobrosly.github.io/data-science-bootstrap-notes/get-bootstrapped-on-your-data-science-projects/).)
 
 ### Recap
 

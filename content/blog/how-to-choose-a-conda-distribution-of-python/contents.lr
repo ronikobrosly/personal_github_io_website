@@ -4,7 +4,7 @@ author: Eric J. Ma
 ---
 body:
 
-_Note: This is an excerpt from my Data Science Bootstrap Notes, which is freely available online [here](https://ericmjl.github.io/data-science-bootstrap-notes/get-bootstrapped-on-your-data-science-projects/). If you find the notes useful and wish to support my work, please consider either purchasing a digital copy on [LeanPub](https://leanpub.com/dsbootstrap) or sending coffee money via [GitHub Sponsor](https://github.com/ericmjl) or [Patreon](https://www.patreon.com/ericmjl)._
+_Note: This is an excerpt from my Data Science Bootstrap Notes, which is freely available online [here](https://ronikobrosly.github.io/data-science-bootstrap-notes/get-bootstrapped-on-your-data-science-projects/). If you find the notes useful and wish to support my work, please consider either purchasing a digital copy on [LeanPub](https://leanpub.com/dsbootstrap) or sending coffee money via [GitHub Sponsor](https://github.com/ericmjl) or [Patreon](https://www.patreon.com/ericmjl)._
 
 If you're a `conda` user, you may have heard of the Anaconda distribution of Python.
 In this set of notes, however, I've also referenced the Miniforge distribution of Python.

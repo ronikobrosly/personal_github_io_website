@@ -4,7 +4,7 @@ author: Eric J. Ma
 ---
 body:
 
-Zephyr, a new LLM by the HuggingFace H4 team, has been making the rounds as being super competitive with GPT3.5. I thought I'd take it for a drive and decided to benchmark Zephyr on a thing I've been building, [GitBot](https://ericmjl.github.io/gitbot), but with a twist: I decided to benchmark it against GPT4 instead of 3.5. Here's what I did.
+Zephyr, a new LLM by the HuggingFace H4 team, has been making the rounds as being super competitive with GPT3.5. I thought I'd take it for a drive and decided to benchmark Zephyr on a thing I've been building, [GitBot](https://ronikobrosly.github.io/gitbot), but with a twist: I decided to benchmark it against GPT4 instead of 3.5. Here's what I did.
 
 ## Benchmarking Setup
 

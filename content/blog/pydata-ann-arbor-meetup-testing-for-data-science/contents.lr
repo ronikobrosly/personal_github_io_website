@@ -8,7 +8,7 @@ I had the privilege of being invited to deliver a talk at the PyData Ann Arbor m
 
 ## The Talk
 
-The talk I delivered was on testing for data scientists. ([Slides are available here](https://ericmjl.github.io/testing-for-data-scientists/)), and the [YouTube video is up too](https://www.youtube.com/watch?time_continue=632&v=5RKuHvZERLY&feature=emb_logo). The topic stemmed from a long-standing problem that I had seen: untested code that I depended on slowing later analyses down because I did not have the confidence that it would behave correctly outside of the original situations I used it in.
+The talk I delivered was on testing for data scientists. ([Slides are available here](https://ronikobrosly.github.io/testing-for-data-scientists/)), and the [YouTube video is up too](https://www.youtube.com/watch?time_continue=632&v=5RKuHvZERLY&feature=emb_logo). The topic stemmed from a long-standing problem that I had seen: untested code that I depended on slowing later analyses down because I did not have the confidence that it would behave correctly outside of the original situations I used it in.
 
 To communicate this point, I used two examples from work I had done before: one being the use of an automagic testing system, Hypothesis, to ferret out bugs in my code for me, and the other being the use of tests on our data schema to make the creation and caching of views robust and dependable.
 

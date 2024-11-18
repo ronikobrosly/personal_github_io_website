@@ -153,7 +153,7 @@ Well, around 2019 was when the UniRep authors first put on the UniRep paper Bior
 My colleague Arkadij (intern at the time) quickly dug into it,
 replicating some of the results in the paper and extending it in other useful ways.
 Together,
-we [reimplemented the entire model in JAX directly](https://ericmjl.github.io/blog/2020/2/13/one-weird-trick-to-speed-up-your-tensorflow-model-100x/).
+we [reimplemented the entire model in JAX directly](https://ronikobrosly.github.io/blog/2020/2/13/one-weird-trick-to-speed-up-your-tensorflow-model-100x/).
 That, plus user-friendly improvements to the model API,
 made it an easy-to-use tool for us to obtain
 a numerical descriptor set for our proteins.

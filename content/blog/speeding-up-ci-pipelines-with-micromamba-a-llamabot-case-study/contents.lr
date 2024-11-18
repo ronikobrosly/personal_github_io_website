@@ -4,7 +4,7 @@ author: Eric J. Ma
 ---
 body:
 
-Nobody likes waiting around for continuous integration (CI) pipelines to finish. I'm sure many of you can relate to the frustration of slow build times. In my recent post, [How to choose a (conda) distribution of Python](https://ericmjl.github.io/blog/2023/10/7/how-to-choose-a-conda-distribution-of-python/), I touched upon Python distributions. However, a comment on LinkedIn by Wade Rosko, referencing Hugo Shi's post about [speeding up a Saturn Cloud CI job with micromamba](https://www.linkedin.com/posts/hugo-shi_github-mamba-orgsetup-micromamba-github-activity-7127750718760914944-Vyzs/), got me thinking. They achieved a 40X speedup! This was something I had to try.
+Nobody likes waiting around for continuous integration (CI) pipelines to finish. I'm sure many of you can relate to the frustration of slow build times. In my recent post, [How to choose a (conda) distribution of Python](https://ronikobrosly.github.io/blog/2023/10/7/how-to-choose-a-conda-distribution-of-python/), I touched upon Python distributions. However, a comment on LinkedIn by Wade Rosko, referencing Hugo Shi's post about [speeding up a Saturn Cloud CI job with micromamba](https://www.linkedin.com/posts/hugo-shi_github-mamba-orgsetup-micromamba-github-activity-7127750718760914944-Vyzs/), got me thinking. They achieved a 40X speedup! This was something I had to try.
 
 ## The Experiment
 

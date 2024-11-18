@@ -684,7 +684,7 @@ These utility apps will likely serve niche-specific but often-repeated use cases
 and may serve as the basis of larger applications that get developed.
 For example, we'll probably see built apps that let users ad-lib a templated prompt.
 We'll see things like LLMs being the role of data engineer
-(e.g. [structuring data from unstructured text](https://ericmjl.github.io/blog/2023/2/5/building-a-gpt3-based-translation-app/))
+(e.g. [structuring data from unstructured text](https://ronikobrosly.github.io/blog/2023/2/5/building-a-gpt3-based-translation-app/))
 and domain-specific idea generators prompted by domain experts or domain needs (as we saw here),
 
 The short answer is that we'll see more customization to local contexts,

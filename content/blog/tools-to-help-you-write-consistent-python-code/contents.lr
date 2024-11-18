@@ -201,7 +201,7 @@ such as hard-coded lists that are unavoidably long.
 unintended consequences for readability!
 
 Instead, do the right thing:
-[Refactor your code!](https://ericmjl.github.io/essays-on-data-science/software-skills/refactoring/)!
+[Refactor your code!](https://ronikobrosly.github.io/essays-on-data-science/software-skills/refactoring/)!
 To learn how to break out custom code,
 [check out this very well-written blog post](https://godatadriven.com/blog/write-less-terrible-code-with-jupyter-notebook/)!
 
@@ -217,7 +217,7 @@ and can start checking your code style!
 
 (Not using environments?
 I won't judge you 😅, but I would _strongly encourage_ that you do so!
-[Here's some tips to help](https://ericmjl.github.io/blog/2018/12/25/conda-hacks-for-data-science-efficiency/).)
+[Here's some tips to help](https://ronikobrosly.github.io/blog/2018/12/25/conda-hacks-for-data-science-efficiency/).)
 
 ## Conclusions
 
@@ -233,7 +233,7 @@ Have fun writing clean code!
 ---
 pub_date: 2020-09-30
 ---
-summary: How do you write clean Python code in the year 2020? Check out this latest essay I wrote. Cross-posted from my [essays collection](http://ericmjl.github.io/essays-on-data-science/).
+summary: How do you write clean Python code in the year 2020? Check out this latest essay I wrote. Cross-posted from my [essays collection](http://ronikobrosly.github.io/essays-on-data-science/).
 ---
 tags:
 

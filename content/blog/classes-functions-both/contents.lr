@@ -6,7 +6,7 @@ body:
 
 Should I adopt a class- or function-based programming style as a data scientist?
 
-Recently, one of my colleagues asked me this question, and his question reminded me that I get asked this question pretty often. Additionally, I've written [one take on this question before, too](https://ericmjl.github.io/blog/2022/4/1/functional-over-object-oriented-style-for-pipeline-esque-code/). But with the benefit of additional years of experience from that previous post, I figured it'd be good to do another take.
+Recently, one of my colleagues asked me this question, and his question reminded me that I get asked this question pretty often. Additionally, I've written [one take on this question before, too](https://ronikobrosly.github.io/blog/2022/4/1/functional-over-object-oriented-style-for-pipeline-esque-code/). But with the benefit of additional years of experience from that previous post, I figured it'd be good to do another take.
 
 So here it is:
 
@@ -75,7 +75,7 @@ class DataProcessor:
 
 I struggled hard to write that example because it contains so many anti-patterns that I would avoid, to begin with:
 We lack a single location where class attributes are defined, making it difficult to reason about what class attributes _should_ exist.
-`process`, a higher-order function, is at the same indentation level as `read`. This organization makes it difficult to reason whether `read` or `process` should have precedence when reading the code; indeed, as mentioned in [my other blog post](https://ericmjl.github.io/blog/2022/4/1/functional-over-object-oriented-style-for-pipeline-esque-code/), one could (in theory) call any of the class methods in any order, only to be frustrated because we did not set a class attribute.
+`process`, a higher-order function, is at the same indentation level as `read`. This organization makes it difficult to reason whether `read` or `process` should have precedence when reading the code; indeed, as mentioned in [my other blog post](https://ronikobrosly.github.io/blog/2022/4/1/functional-over-object-oriented-style-for-pipeline-esque-code/), one could (in theory) call any of the class methods in any order, only to be frustrated because we did not set a class attribute.
 We cannot easily read off the flow of information within the `process` class method, as there are no return values here.
 The critical overarching problem here is using state where state is not warranted.
 

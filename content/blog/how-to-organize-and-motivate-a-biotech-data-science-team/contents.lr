@@ -4,7 +4,7 @@ author: Eric J. Ma
 ---
 body:
 
-How can we organize a team of data scientists for maximum impact, and how do we keep them motivated? There are many factors [which I have discussed before](https://ericmjl.github.io/blog/2024/2/7/success-factors-for-data-science-teams-in-biotech/), but in this blog post, I would like to home in on the activities that a data science team engages in. How do we organize the team's activities? And how do we keep the team motivated?
+How can we organize a team of data scientists for maximum impact, and how do we keep them motivated? There are many factors [which I have discussed before](https://ronikobrosly.github.io/blog/2024/2/7/success-factors-for-data-science-teams-in-biotech/), but in this blog post, I would like to home in on the activities that a data science team engages in. How do we organize the team's activities? And how do we keep the team motivated?
 
 ## Organization
 
@@ -18,7 +18,7 @@ Let's answer the first question, "**How do we organize the team's activities?**"
 - Microbial ensembles
 - Gene editing
 
-At the same time, there may be a secondary axis of organization, which is methodological in nature. These are primarily organized by the entity delivered to the group(s) that the DS team serves. For example, a lead optimization team looking to accelerate its pace will want delivered libraries of small molecules to increase their odds of finding a good hit. Another team looking to do image quantification may ask for a computer vision model that helps them perform segmentation and geometric + intensity quantification, with a PDF report and charts returned as output. Yet another team may look for a custom algorithm that enables them to [automatically design chromatography gradients using Bayesian optimization](https://www.sciencedirect.com/science/article/pii/S0003267023000107), with the output being a gradient list created by a machine to maximize separation. With this framing, we are decidedly in the [product-oriented (rather than service-oriented) camp](https://ericmjl.github.io/blog/2023/8/28/service-vs-product-oriented-data-science/). As such, we can see a secondary organizational axis emerging, which might look like:
+At the same time, there may be a secondary axis of organization, which is methodological in nature. These are primarily organized by the entity delivered to the group(s) that the DS team serves. For example, a lead optimization team looking to accelerate its pace will want delivered libraries of small molecules to increase their odds of finding a good hit. Another team looking to do image quantification may ask for a computer vision model that helps them perform segmentation and geometric + intensity quantification, with a PDF report and charts returned as output. Yet another team may look for a custom algorithm that enables them to [automatically design chromatography gradients using Bayesian optimization](https://www.sciencedirect.com/science/article/pii/S0003267023000107), with the output being a gradient list created by a machine to maximize separation. With this framing, we are decidedly in the [product-oriented (rather than service-oriented) camp](https://ronikobrosly.github.io/blog/2023/8/28/service-vs-product-oriented-data-science/). As such, we can see a secondary organizational axis emerging, which might look like:
 
 - Machine-designed libraries (including AI-designed ones)
 - Computer vision

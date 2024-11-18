@@ -27,7 +27,7 @@ So I decided to give it a shot.
 That afternoon, I put in a [pull request](https://github.com/pyscript/pyscript/pull/74/files)
 to the `pyscript` examples gallery.
 It was one describing how to do message passing on graphs,
-a point that left many of my [Network Analysis Made Simple tutorial](https://ericmjl.github.io/Network-Analysis-Made-Simple/) participants mindblown.
+a point that left many of my [Network Analysis Made Simple tutorial](https://ronikobrosly.github.io/Network-Analysis-Made-Simple/) participants mindblown.
 I'm replicating the example below, with a few prose enhancements.
 
 ## Message Passing and Linear Algebra: A Demo

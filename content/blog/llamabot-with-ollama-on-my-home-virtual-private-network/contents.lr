@@ -30,7 +30,7 @@ Doing so allowed me to verify that Ollama was installed correctly.
 
 ## Configure Ollama for network access
 
-By default, the Ollama web server runs on 127.0.0.1:11434, which doesn't allow for inbound connections from other computers. To change that behaviour, we must change the `OLLAMA_HOST` [environment variable](https://ericmjl.github.io/essays-on-data-science/software-skills/environment-variables/) to `0.0.0.0`. I followed the instructions in [Ollama's documentation](https://ericmjl.github.io/essays-on-data-science/software-skills/environment-variables/). To start, we edit the `systemd` service:
+By default, the Ollama web server runs on 127.0.0.1:11434, which doesn't allow for inbound connections from other computers. To change that behaviour, we must change the `OLLAMA_HOST` [environment variable](https://ronikobrosly.github.io/essays-on-data-science/software-skills/environment-variables/) to `0.0.0.0`. I followed the instructions in [Ollama's documentation](https://ronikobrosly.github.io/essays-on-data-science/software-skills/environment-variables/). To start, we edit the `systemd` service:
 
 ```bash
 systemctl edit ollama.service

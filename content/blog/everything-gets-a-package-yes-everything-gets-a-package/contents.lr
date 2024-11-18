@@ -13,7 +13,7 @@ and some new tooling that I've been working on
 to make it *easy* to achieve the same goals as I have.
 
 [pds]: https://www.ethanrosenthal.com/2022/02/01/everything-gets-a-package/
-[kb]: https://ericmjl.github.io/data-science-bootstrap-notes/get-bootstrapped-on-your-data-science-projects/
+[kb]: https://ronikobrosly.github.io/data-science-bootstrap-notes/get-bootstrapped-on-your-data-science-projects/
 
 ## But why all the trouble?
 
@@ -167,7 +167,7 @@ and there is a single source of truth for everything.
 [I detail more in my Data Science Bootstrap Notes page
 on the rule of one-to-one][one].
 
-[one]: https://ericmjl.github.io/data-science-bootstrap-notes/follow-the-rule-of-one-to-one-in-managing-your-projects/
+[one]: https://ronikobrosly.github.io/data-science-bootstrap-notes/follow-the-rule-of-one-to-one-in-managing-your-projects/
 
 ### Commit code often
 
@@ -264,9 +264,9 @@ Below are some of my own notes taken over time.
   [I wrote about how to get set up on my DS Bootstrap Notes.][pre-commit]
 
 [pyds-cli]: https://github.com/ericmjl/pyds-cli
-[conda]: https://ericmjl.github.io/blog/2018/12/25/conda-hacks-for-data-science-efficiency/
-[alias]: https://ericmjl.github.io/data-science-bootstrap-notes/create-shell-command-aliases-for-your-commonly-used-commands/
-[pre-commit]: https://ericmjl.github.io/data-science-bootstrap-notes/set-up-pre-commit-hooks-to-automate-checks-before-making-git-commits/
+[conda]: https://ronikobrosly.github.io/blog/2018/12/25/conda-hacks-for-data-science-efficiency/
+[alias]: https://ronikobrosly.github.io/data-science-bootstrap-notes/create-shell-command-aliases-for-your-commonly-used-commands/
+[pre-commit]: https://ronikobrosly.github.io/data-science-bootstrap-notes/set-up-pre-commit-hooks-to-automate-checks-before-making-git-commits/
 
 ## Summary
 

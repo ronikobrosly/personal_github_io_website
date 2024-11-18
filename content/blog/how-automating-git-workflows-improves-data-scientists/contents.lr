@@ -42,7 +42,7 @@ I think data scientists don't take advantage of commit logs as much as we possib
 
 ----
 
-If you're interested in trying out a service I've built that will automatically compose commit messages on every commit, please check out [GitBot](https://ericmjl.github.io/gitbot)!
+If you're interested in trying out a service I've built that will automatically compose commit messages on every commit, please check out [GitBot](https://ronikobrosly.github.io/gitbot)!
 ---
 pub_date: 2023-09-30
 ---

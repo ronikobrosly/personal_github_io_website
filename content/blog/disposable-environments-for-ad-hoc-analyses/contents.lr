@@ -267,7 +267,7 @@ Underneath the hood,
 `juv` is doing most of the magic of adding dependencies,
 but `pyds-cli` simply composes in the ability to read from `pyproject.toml`.
 In a world where company-specific tooling were built,
-such tooling might also include [automatically configuring keyrings for authentication on every call](https://ericmjl.github.io/blog/2024/9/19/how-to-set-up-pixi-with-codeartifacts/).
+such tooling might also include [automatically configuring keyrings for authentication on every call](https://ronikobrosly.github.io/blog/2024/9/19/how-to-set-up-pixi-with-codeartifacts/).
 
 All in all,
 I very much like the idea of _configurable and disposable_ (but nonetheless configurable) environments.

@@ -16,7 +16,7 @@ After seeing the following tweet from Michael Betancourt...
 
 ...I realized that the only reason why [Markov Models and their variants][hmm] clicked for me was thinking through the data generating process. The only reason why hierarchical models clicked for me was stepping through the data generating process on a real problem and linking them to statistical parameters. Without thinking through the data generating process, none of those models made any sense.
 
-[hmm]: https://ericmjl.github.io/essays-on-data-science/machine-learning/markov-models/
+[hmm]: https://ronikobrosly.github.io/essays-on-data-science/machine-learning/markov-models/
 
 In some sense, thinking through the data generating process is _an extremely natural thing to do_. It's like telling a story about how our data came into being, and we know that telling stories is _exactly_ what humans are great at. Storytelling helps us reason about the world. There should be no reason why we don't use statistical storytelling to reason about our problems.
 

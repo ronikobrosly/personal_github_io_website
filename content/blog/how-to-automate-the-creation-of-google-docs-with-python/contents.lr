@@ -86,7 +86,7 @@ When working with a deployed API, application, or other services,
 I habitually stick to [the 12 Factor App patterns](https://12factor.net).
 These are battle-tested patterns that enable secure app/service deployments.
 The third principle listed in the 12 Factor document is
-to store configuration in the environment as [environment variables](https://ericmjl.github.io/essays-on-data-science/software-skills/environment-variables/).
+to store configuration in the environment as [environment variables](https://ronikobrosly.github.io/essays-on-data-science/software-skills/environment-variables/).
 This includes credentials (a.k.a. "secrets" in techno-lingo).
 
 However, Google just provided me with a JSON file for authentication;

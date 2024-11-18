@@ -12,7 +12,7 @@ body:
 
 LlamaBot is a Pythonic interface to LLMs that I built out
 with input from friends and colleagues.
-(I previously announced that I was working on it [in a previous blog post](https://ericmjl.github.io/blog/2023/6/20/automatically-write-awesome-commit-messages/).)
+(I previously announced that I was working on it [in a previous blog post](https://ronikobrosly.github.io/blog/2023/6/20/automatically-write-awesome-commit-messages/).)
 Within the project, I also decided to build some LLM-based apps
 that I felt would be useful for myself.
 To pace myself, I set some milestones for myself

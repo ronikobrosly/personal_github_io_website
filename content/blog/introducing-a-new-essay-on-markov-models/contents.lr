@@ -25,8 +25,8 @@ That second difficulty, though, stuck with me.
 Since I couldn't find a satisfactory explainer on Markov models for programmers,
 I decided I'd write one.
 
-The result is the [latest essay](https://ericmjl.github.io/essays-on-data-science/machine-learning/markov-models/) on Markov models,
-which I have just posted to my [Essays collection](https://ericmjl.github.io/essays-on-data-science/).
+The result is the [latest essay](https://ronikobrosly.github.io/essays-on-data-science/machine-learning/markov-models/) on Markov models,
+which I have just posted to my [Essays collection](https://ronikobrosly.github.io/essays-on-data-science/).
 This is a culmination of two days of continuous writing
 plus two weeks of review by gracious colleagues and collaborators
 who have generously given their time to help me improve it.
@@ -44,7 +44,7 @@ please consider pledging me a cup of coffee on [Patreon](https://www.patreon.com
 ---
 pub_date: 2020-04-12
 ---
-summary: Here's the motivation behind my [latest essay](https://ericmjl.github.io/essays-on-data-science/machine-learning/markov-models/) explaining Markov models and their variants, as well as how to perform Bayesian inference on them.
+summary: Here's the motivation behind my [latest essay](https://ronikobrosly.github.io/essays-on-data-science/machine-learning/markov-models/) explaining Markov models and their variants, as well as how to perform Bayesian inference on them.
 ---
 tags:
 

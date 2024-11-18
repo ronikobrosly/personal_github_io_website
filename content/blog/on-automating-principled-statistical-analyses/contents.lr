@@ -20,7 +20,7 @@ There’s always this "smell test" that we can do. **The "likelihood smell test"
 
 In conclusion, automating a principled statistical analysis is fine, as long as the data generating process is more or less constant. Reaching for a canned test by default is not.
 
-And friends, if you write an automated pipeline, don’t forget to [write tests](https://ericmjl.github.io/essays-on-data-science/software-skills/testing/)!
+And friends, if you write an automated pipeline, don’t forget to [write tests](https://ronikobrosly.github.io/essays-on-data-science/software-skills/testing/)!
 ---
 pub_date: 2020-01-02
 ---

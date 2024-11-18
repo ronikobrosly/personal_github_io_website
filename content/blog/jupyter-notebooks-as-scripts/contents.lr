@@ -78,7 +78,7 @@ For the [Network Analysis Made Simple](https://github.com/ericmjl/Network-Analys
 tutorial series that my co-author Mridul and I teach,
 I recently spent a bit of time figuring out
 how to convert our collection of Jupyter notebooks and markdown files,
-which get rendered in our [official tutorial website](https://ericmjl.github.io/Network-Analysis-Made-Simple)
+which get rendered in our [official tutorial website](https://ronikobrosly.github.io/Network-Analysis-Made-Simple)
 as a [`mkdocs`](https://www.mkdocs.org) site
 with a beautiful and functional [`mkdocs-material`](https://squidfunk.github.io/mkdocs-material/) theme,
 into leanpub-flavoured markdown

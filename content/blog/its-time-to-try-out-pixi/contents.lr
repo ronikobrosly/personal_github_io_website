@@ -124,7 +124,7 @@ curl -fsSL https://pixi.sh/install.sh | bash
 ```
 
 This sets up `pixi` within your home directory
-and adds the `pixi` path to your [PATH environment variable](https://ericmjl.github.io/essays-on-data-science/software-skills/environment-variables/).
+and adds the `pixi` path to your [PATH environment variable](https://ronikobrosly.github.io/essays-on-data-science/software-skills/environment-variables/).
 
 I also recommend getting set up with autocompletion for your shell.
 Once again, official instructions are [here](https://pixi.sh/latest/#autocompletion),
@@ -313,7 +313,7 @@ Though for the sake of simplicity for now,
 let's assume that a global Python installation doesn't exist.)
 But _after_ running `pixi shell`, I can --
 because the `/Users/ericmjl/github/incubator/pixi-cuda-environment/.pixi/envs/default/bin/python` path
-is now set on my [`PATH` environment variable](https://ericmjl.github.io/essays-on-data-science/software-skills/environment-variables/).
+is now set on my [`PATH` environment variable](https://ronikobrosly.github.io/essays-on-data-science/software-skills/environment-variables/).
 
 ### Adding CUDA dependencies
 

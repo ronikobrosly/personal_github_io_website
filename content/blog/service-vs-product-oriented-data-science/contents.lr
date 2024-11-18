@@ -80,7 +80,7 @@ modifications are needed.
 Here,
 a product-oriented service posture (yes, I did chain those four words together) can be beneficial.
 With simple and good software engineering practices,
-[which necessarily means thinking clearly about our work](https://ericmjl.github.io/blog/2020/8/21/software-engineering-as-a-research-practice/index.html),
+[which necessarily means thinking clearly about our work](https://ronikobrosly.github.io/blog/2020/8/21/software-engineering-as-a-research-practice/index.html),
 we can make routine things easy while incorporating the new and varied things modularly.
 
 On the other hand,
@@ -110,7 +110,7 @@ I think a mindset shift is necessary.
 Rather than being mere _consumers_ of tooling,
 one needs to become a _maker_ of tools as well.
 Being able to make tools for oneself is a data science superpower that will differentiate one from the pack.
-This is in-line with [knowing every last detail of your computational stack](https://ericmjl.github.io/data-science-bootstrap-notes/data-scientists-should-strive-to-know-every-last-detail-about-their-compute-stack/),
+This is in-line with [knowing every last detail of your computational stack](https://ronikobrosly.github.io/data-science-bootstrap-notes/data-scientists-should-strive-to-know-every-last-detail-about-their-compute-stack/),
 and being able to build parts of that stack yourself will give you much more agency and freedom.
 
 For a team lead, one needs to make time and space for your teammates to be able to build stuff -

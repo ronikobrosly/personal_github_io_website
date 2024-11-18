@@ -4,7 +4,7 @@ author: Eric J. Ma
 ---
 body:
 
-**This is part 3 of my three-part series on protein language models, focused on evaluations of PLMs. The previous two parts were focused on defining what a PLM is ([part 1](https://ericmjl.github.io/blog/2024/7/26/a-survey-of-how-to-use-protein-language-models-for-protein-design-part-1/)) and outlining how they are trained ([part 2](https://ericmjl.github.io/blog/2024/8/2/a-survey-of-how-to-use-protein-language-models-for-protein-design-part-2/)).**
+**This is part 3 of my three-part series on protein language models, focused on evaluations of PLMs. The previous two parts were focused on defining what a PLM is ([part 1](https://ronikobrosly.github.io/blog/2024/7/26/a-survey-of-how-to-use-protein-language-models-for-protein-design-part-1/)) and outlining how they are trained ([part 2](https://ronikobrosly.github.io/blog/2024/8/2/a-survey-of-how-to-use-protein-language-models-for-protein-design-part-2/)).**
 
 ## Evals, evals, evals
 
@@ -12,9 +12,9 @@ Once we have a trained protein language model, sequence generation becomes the e
 
 The answer lies in evals. Evals are the "hot new thing" in the LLM world, but there isn't anything new under the sun here for those of us in the protein engineering world. There have been probabilistic models of protein sequences since bioinformatics became a thing (which precedes the LLM world by at least two decades), and evals of such models involved a rich suite of bioinformatics tooling: multiple sequence alignments, secondary structure prediction, motif and protein domain detection, and more that have been developed over the years. (It certainly helps that there have been decades of bioinformatics research into discovering emergent patterns within related biological sequences.) These are all tools that can be directly applied to evaluating generated protein sequences as well.
 
-In my [paper review of Profluent's preprint](https://ericmjl.github.io/blog/2024/5/12/paper-review-design-of-highly-functional-genome-editors-by-modeling-the-universe-of-crispr-cas-sequences/), I discussed using domain detection as a filter for sequences. I think this is a great illustrative example, so I'll re-hash it here (with minor edits to the original text for grammatical correctness).
+In my [paper review of Profluent's preprint](https://ronikobrosly.github.io/blog/2024/5/12/paper-review-design-of-highly-functional-genome-editors-by-modeling-the-universe-of-crispr-cas-sequences/), I discussed using domain detection as a filter for sequences. I think this is a great illustrative example, so I'll re-hash it here (with minor edits to the original text for grammatical correctness).
 
-![](https://ericmjl.github.io/blog/2024/5/12/paper-review-design-of-highly-functional-genome-editors-by-modeling-the-universe-of-crispr-cas-sequences/domain_map.webp)
+![](https://ronikobrosly.github.io/blog/2024/5/12/paper-review-design-of-highly-functional-genome-editors-by-modeling-the-universe-of-crispr-cas-sequences/domain_map.webp)
 
 > If we assume that each of the sequences above was generated from a language model, and the three coloured domains were present in a naturally occurring and functional variant of the protein, then we may deduce that of the five sequences generated above, only sequence 2, which has a missing domain, may be non-functional. (There are more nuanced situations, though, such domains being unnecessary for function.) Overall, I like this idea as a sanity check on generated sequences, as a ton of prior biological knowledge is encoded in such a check.
 

@@ -96,7 +96,7 @@ then our data science work should result in reusable tools that others make.
 This often takes the form of a Python package.
 Even if our work doesn't _currently_ have the need to build such a tool,
 we give ourselves the _optionality_ to quickly build it out in the future,
-as long as we [adopt a standard project structure that is inherently a Python package](https://ericmjl.github.io/data-science-bootstrap-notes/get-prepped-per-project/).
+as long as we [adopt a standard project structure that is inherently a Python package](https://ronikobrosly.github.io/data-science-bootstrap-notes/get-prepped-per-project/).
 
 ## Bonus: Then what about `environment.yml`?
 

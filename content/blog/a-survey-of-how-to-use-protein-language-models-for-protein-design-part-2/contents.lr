@@ -6,7 +6,7 @@ body:
 
 **This is part 2 of my series on protein language models.
 If you're looking for part 1,
-please find it [here](https://ericmjl.github.io/blog/2024/7/26/a-survey-of-how-to-use-protein-language-models-for-protein-design-part-1/).**
+please find it [here](https://ronikobrosly.github.io/blog/2024/7/26/a-survey-of-how-to-use-protein-language-models-for-protein-design-part-1/).**
 
 ## How exactly are protein language models trained?
 
@@ -140,7 +140,7 @@ To the best of my knowledge, no theory dictates what ought to be the best hyperp
 
 I don't think the answers to these questions are well-known. My only guide is to (a) train the model in the way it's intended to be used and (b) ensure that its intended use is also in line with the goals of the protein engineering campaign.
 
-Up next is [part 3](https://ericmjl.github.io/blog/2024/8/9/a-survey-of-how-to-use-protein-language-models-for-protein-design-part-3/) of this series, in which we discuss how we can evaluate generated sequences from protein language models, and how to work with wet lab teams.
+Up next is [part 3](https://ronikobrosly.github.io/blog/2024/8/9/a-survey-of-how-to-use-protein-language-models-for-protein-design-part-3/) of this series, in which we discuss how we can evaluate generated sequences from protein language models, and how to work with wet lab teams.
 ---
 pub_date: 2024-08-02
 ---

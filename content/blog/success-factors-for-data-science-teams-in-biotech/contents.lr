@@ -9,7 +9,7 @@ The track that I spoke in was the Data Science and Artificial Intelligence track
 I'd like to share the contents of that talk here,
 while also fleshing out additional content that I didn't put in there.
 
-First off, the slides can be found [on GitHub pages](https://ericmjl.github.io/ds-team-success-factors/).
+First off, the slides can be found [on GitHub pages](https://ronikobrosly.github.io/ds-team-success-factors/).
 
 I wanted to answer two key questions with this talk:
 
@@ -106,7 +106,7 @@ In fact, one may conceive of them as a pyramid:
 The bottom three are technical foundations that form the base of credibility for our work.
 The top three are boosters for our credibility in our colleagues' eyes.
 And _credibility_ is what I'm optimizing for with this criteria.
-I've written about these criteria before in the essay, ["Hiring and Interviewing Data Scientists"](https://ericmjl.github.io/essays-on-data-science/people-skills/hiring/),
+I've written about these criteria before in the essay, ["Hiring and Interviewing Data Scientists"](https://ronikobrosly.github.io/essays-on-data-science/people-skills/hiring/),
 but I'll dive into what I mentioned at the talk.
 
 ### Modelling Skills
@@ -141,7 +141,7 @@ that are also end-user accessible in a point-and-click fashion (e.g.
 FastAPI documentation, or at Moderna, our awesome Compute system).
 User interfaces, then are what a product + engineering team can focus and specialize on later.
 
-Secondly, I've argued before that [software development skills are a research practice](https://ericmjl.github.io/blog//2020/8/21/software-engineering-as-a-research-practice/index.html).
+Secondly, I've argued before that [software development skills are a research practice](https://ronikobrosly.github.io/blog//2020/8/21/software-engineering-as-a-research-practice/index.html).
 Building a software product while embarking on a project forces clarity on our knowledge in that domain.
 
 Finally, having good software development skills ensures that the work products we build.

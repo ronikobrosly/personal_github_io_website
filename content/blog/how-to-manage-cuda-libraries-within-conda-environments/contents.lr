@@ -22,7 +22,7 @@ The local installation version must be no lower than 8900..(Set TF_CPP_MIN_LOG_L
 
 And then you may have sat there scratching your head wondering, "but wait, I swear that I have the latest CUDA drivers, CUDA libraries, and cuDNN! Why is CUDA so hard?!"
 
-Well, now, there's a way out! As it turns out, _independent of your system-level CUDA installation_, if you're using Conda environments, you actually can manage your own environment-level CUDA installation! And as it turns out, this is mostly a matter of setting [environment variables](https://ericmjl.github.io/essays-on-data-science/software-skills/environment-variables/) correctly.
+Well, now, there's a way out! As it turns out, _independent of your system-level CUDA installation_, if you're using Conda environments, you actually can manage your own environment-level CUDA installation! And as it turns out, this is mostly a matter of setting [environment variables](https://ronikobrosly.github.io/essays-on-data-science/software-skills/environment-variables/) correctly.
 
 ## Step 1: Ensure that the CUDA metapackage is available in your `environment.yml` file
 

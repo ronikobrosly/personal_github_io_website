@@ -4,7 +4,7 @@ author: Eric J. Ma
 ---
 body:
 
-_Note: this blog post is cross-posted on my personal [essay collection on the practice of data science](https://ericmjl.github.io/essays-on-data-science/machine-learning/reimplementing-models/)._
+_Note: this blog post is cross-posted on my personal [essay collection on the practice of data science](https://ronikobrosly.github.io/essays-on-data-science/machine-learning/reimplementing-models/)._
 
 At work, most deep learners I have encountered
 have a tendency to take deep learning models

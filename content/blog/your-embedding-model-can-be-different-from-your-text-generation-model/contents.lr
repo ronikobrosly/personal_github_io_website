@@ -30,7 +30,7 @@ A detailed comparison is likely the topic of a different blog post. However, aft
 
 ## LlamaBot encodes this knowledge.
 
-Speaking of [LlamaBot](https://ericmjl.github.io/llamabot/), I updated it to reflect this new knowledge. In doing so, we can now freely compose embeddings from various models with text generation performed by other models. Come check it out!
+Speaking of [LlamaBot](https://ronikobrosly.github.io/llamabot/), I updated it to reflect this new knowledge. In doing so, we can now freely compose embeddings from various models with text generation performed by other models. Come check it out!
 ---
 pub_date: 2024-01-15
 ---

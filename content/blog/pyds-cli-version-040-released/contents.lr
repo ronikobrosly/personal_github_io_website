@@ -6,7 +6,7 @@ body:
 
 I have released a new version of [`pyds-cli`](https://github.com/ericmjl/pyds-cli), and I wanted to share what's new there!
 
-Following on the heels of my [last blog post](https://ericmjl.github.io/blog/2024/4/5/how-to-grow-software-development-skills-in-a-data-science-team/), I decided to update `pyds-cli` to include the following upgrades:
+Following on the heels of my [last blog post](https://ronikobrosly.github.io/blog/2024/4/5/how-to-grow-software-development-skills-in-a-data-science-team/), I decided to update `pyds-cli` to include the following upgrades:
 
 1. The package now uses `cookiecutter` templates to scaffold a repo.
 2. Included in the package is a new `talks` initializer that scaffolds out a talk based on the use of `reveal-md`.
@@ -58,7 +58,7 @@ drwxr-xr-x     - ericmjl  7 Apr 12:14   -- └── {{ cookiecutter.__module_na
 
 An additional benefit of using `cookiecutter` is the simplification of the CLI! Because `cookiecutter` comes with its own tools to prompt users for information, I could remove a lot of CLI code that was concerned with the same task.
 
-(If you're wondering why there are so many files inside a repo, it follows the core idea of treating data science projects as software. You can read more about it [on my previous blog post](https://ericmjl.github.io/blog/2024/4/5/how-to-grow-software-development-skills-in-a-data-science-team/).)
+(If you're wondering why there are so many files inside a repo, it follows the core idea of treating data science projects as software. You can read more about it [on my previous blog post](https://ronikobrosly.github.io/blog/2024/4/5/how-to-grow-software-development-skills-in-a-data-science-team/).)
 
 ## Talks Templating
 

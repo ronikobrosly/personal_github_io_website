@@ -15,11 +15,11 @@ is the long-term sustainable way of ensuring that
 a data scientist's work is portable and reproducible.
 
 Software skills help,
-and I have written [multiple](https://ericmjl.github.io/blog/2024/4/5/how-to-grow-software-development-skills-in-a-data-science-team/)
-[blog](https://ericmjl.github.io/blog/2022/3/31/everything-gets-a-package-yes-everything-gets-a-package/)
-[posts](https://ericmjl.github.io/blog/2024/4/17/how-llms-can-accelerate-data-science/)
-[about](https://ericmjl.github.io/blog/2022/4/1/functional-over-object-oriented-style-for-pipeline-esque-code/)
-[them](https://ericmjl.github.io/blog/2023/7/21/behind-the-scenes-developing-llamabot/),
+and I have written [multiple](https://ronikobrosly.github.io/blog/2024/4/5/how-to-grow-software-development-skills-in-a-data-science-team/)
+[blog](https://ronikobrosly.github.io/blog/2022/3/31/everything-gets-a-package-yes-everything-gets-a-package/)
+[posts](https://ronikobrosly.github.io/blog/2024/4/17/how-llms-can-accelerate-data-science/)
+[about](https://ronikobrosly.github.io/blog/2022/4/1/functional-over-object-oriented-style-for-pipeline-esque-code/)
+[them](https://ronikobrosly.github.io/blog/2023/7/21/behind-the-scenes-developing-llamabot/),
 but today, points about software skills are adjacent to my main point;
 this article is primarily about _data_.
 In the open source world, a tool from [Posit PBC](https://posit.co/) called [`pins`](https://rstudio.github.io/pins-python/)
@@ -70,7 +70,7 @@ df = board.pin_read("em.finances")
 ```
 
 (If you need a refresher on environment variables,
-[this article](https://ericmjl.github.io/essays-on-data-science/software-skills/environment-variables/) may help.)
+[this article](https://ronikobrosly.github.io/essays-on-data-science/software-skills/environment-variables/) may help.)
 
 Alternatively, if one wants to work with file paths (my preferred way, [more explicit](https://peps.python.org/pep-0020/))
 rather than objects in memory with magical read/write methods (less preferred, less explicit),

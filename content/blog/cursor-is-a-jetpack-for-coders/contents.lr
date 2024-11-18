@@ -18,7 +18,7 @@ But boy, am I glad I did!
 To put Cursor through its paces,
 I decided to build something out of curiosity:
 an app that takes a plain text description of a calendar event and spits out an ICS file ready for import into my calendar.
-I leveraged [LlamaBot's StructuredBot](https://ericmjl.github.io/llamabot/examples/structuredbot/) to translate natural language into the ICS file format.
+I leveraged [LlamaBot's StructuredBot](https://ronikobrosly.github.io/llamabot/examples/structuredbot/) to translate natural language into the ICS file format.
 Now, I'll be the first to admit that CSS isn't my strong suit,
 so I turned to Claude 3.5 Sonnet (Cursor's default language model) to style it for me using Bootstrap.
 

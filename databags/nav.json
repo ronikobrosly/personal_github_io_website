@@ -44,7 +44,7 @@
     "footer": [
         {
             "title": "Resume",
-            "href": "https://ericmjl.github.io/resume",
+            "href": "https://ronikobrosly.github.io/resume",
             "icon": "far fa-file-alt"
         },
         {
@@ -80,7 +80,7 @@
         },
         {
             "title": "Blog RSS",
-            "href": "https://ericmjl.github.io/blog.xml",
+            "href": "https://ronikobrosly.github.io/blog.xml",
             "icon": "fas fa-rss"
         }
     ]

@@ -49,7 +49,7 @@ Finally, the **documentation quality** matters as always: we developer types wil
 
 ## Prompt Experimentation and Evaluation
 
-From an application developer's perspective, experimenting with prompts and evaluating the quality of the outputs is hugely important. HegelAI develops [PromptTools](https://github.com/hegelai/prompttools), which is a toolkit for recording prompts and outputs. Jumping ahead to my work, [LlamaBot](https://github.com/ericmjl/llamabot) contains a [PromptRecorder](https://ericmjl.github.io/llamabot/examples/recorder/) that does the same.
+From an application developer's perspective, experimenting with prompts and evaluating the quality of the outputs is hugely important. HegelAI develops [PromptTools](https://github.com/hegelai/prompttools), which is a toolkit for recording prompts and outputs. Jumping ahead to my work, [LlamaBot](https://github.com/ericmjl/llamabot) contains a [PromptRecorder](https://ronikobrosly.github.io/llamabot/examples/recorder/) that does the same.
 
 Evaluation is trickier, because "evaluation" as a concept is very broad. Evaluation is used to ensure that outputs conform to both hard rules (e.g. do not mention the phrase, "As an AI") and softer rules (e.g. positive mood). The usual playbook for evaluation is to mix custom rules and code; getting a human to score the outputs is not scalable (if scale is what one is concerned with), but it is the highest quality way to score outputs. The tooling for prompt evaluation is evolving fast (alongside the rest of the ecosystem), but there are a few to note, including [PromptFoo](https://github.com/promptfoo/promptfoo), [Promptimize](https://github.com/preset-io/promptimize), and [TruLens](https://github.com/truera/trulens/).
 
@@ -62,7 +62,7 @@ If you are a command-line type of person, Simon Willison built the [`llm`](https
 
 ## My work
 
-The content of this post came through because of my experience building a Python application toolkit ([LlamaBot](https://github.com/ericmjl/llamabot)), which is built on top of ChromaDB, LiteLLM, and other LLM toolkits. As I built out LlamaBot, I also built test case applications further to develop my understanding of the LLM space. What resulted was a bunch of use cases, such as [Zotero Chat](https://ericmjl.github.io/llamabot/cli/zotero/), a [Git commit writer](https://ericmjl.github.io/llamabot/cli/git/), a [blog social media composer](https://github.com/ericmjl/website/blob/main/apis/blogbot/api.py) written using FastAPI, HTMX, and LlamaBot, and many more tools where LLMs were part of the workflow.
+The content of this post came through because of my experience building a Python application toolkit ([LlamaBot](https://github.com/ericmjl/llamabot)), which is built on top of ChromaDB, LiteLLM, and other LLM toolkits. As I built out LlamaBot, I also built test case applications further to develop my understanding of the LLM space. What resulted was a bunch of use cases, such as [Zotero Chat](https://ronikobrosly.github.io/llamabot/cli/zotero/), a [Git commit writer](https://ronikobrosly.github.io/llamabot/cli/git/), a [blog social media composer](https://github.com/ericmjl/website/blob/main/apis/blogbot/api.py) written using FastAPI, HTMX, and LlamaBot, and many more tools where LLMs were part of the workflow.
 
 ## Make smart (and sane) choices
 
