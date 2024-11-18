@@ -3,7 +3,7 @@ import requests
 from bs4 import BeautifulSoup
 
 
-def get_latest_blog_posts(base_url: str = "https://ericmjl.github.io/blog/") -> dict:
+def get_latest_blog_posts(base_url: str = "https://ronikobrosly.github.io/blog/") -> dict:
     """Get latest blog posts"""
     response = requests.get(base_url)
     html = response.content

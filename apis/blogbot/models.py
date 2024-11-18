@@ -187,7 +187,7 @@ class SubstackPost(BaseModel):
         ...,
         description=(
             "A signoff to end the post. Use one of "
-            "Cheers\nEric or Happy Coding\nEric, "
+            "Cheers\nRoni or Happy Coding\nRoni, "
             "the latter being suited to posts about coding."
         ),
     )

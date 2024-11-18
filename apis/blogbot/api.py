@@ -171,6 +171,6 @@ async def search(search_term: Annotated[str, Form()]):
         pubdate = find_publication_date(sources[r])
         pubdate_url = convert_pubdate_to_url(pubdate)
         rel_url = r.relative_to(blog_path)
-        output += f"<li><a href='https://ericmjl.github.io/blog/{pubdate_url}/{rel_url}'>{rel_url}</a></li>"
+        output += f"<li><a href='https://ronikobrosly.github.io/blog/{pubdate_url}/{rel_url}'>{rel_url}</a></li>"
     output += "</ul>"
     return output
