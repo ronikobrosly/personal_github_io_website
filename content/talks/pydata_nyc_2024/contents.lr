@@ -14,6 +14,7 @@ category: Work
 ---
 lead: Yes
 ---
-summary: We discuss a causal framework for the identifying root cause of cascasing failures in a system of connected microservices.
+summary: The ability to quickly identify and resolve breakages among interconnected microservices is critical for any tech organization running production software. Unfortunately, in most organizations, identifying the root cause of a breakage can take engineers hours of manually sifting through logs and dashboards. In this talk, we described a fast, automated, and holistic approach to root cause analysis via an ensemble of structural causal models. This talk should be relevant to anyone interested in causal modeling, the field of observability, reliability engineering, or anyone wanting to troubleshoot production software issues faster.
+
 ---
 visible: Visible

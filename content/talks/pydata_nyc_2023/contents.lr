@@ -1,0 +1,19 @@
+title: The dangers of storytelling with feature importance  @ PyData NYC 2023 (no video available)
+
+---
+body:
+
+#### youtube ####
+url: #
+#### slides ####
+url: https://docs.google.com/presentation/d/1F_cDWQvF1uXWqYIXlC5TTGM3ApPI92k4/edit?usp=sharing&ouid=106648805068606228158&rtpof=true&sd=true
+#### github ####
+url: # https://colab.research.google.com/drive/1UF9HGssZ105BeB3-iosnR-OJFUz-GqWU?usp=sharing
+---
+category: Work
+---
+lead: Yes
+---
+summary: It's common for machine learning practitioners to train a supervised learning model, generate feature importance metrics, and then attempt to use these values to tell a data story that suggests what interventions should be taken to drive the outcome variable a favorable way (e.g. "X was an important feature in our churn prediction model, so we should consider doing more X to reduce churn"). This simply does not work, and the idea that standard feature importance measures can be interpretted causally is one of data science's more enduring myths. In this session we talked through why this isn't the case, what feature importance is actually good for, and we'll give a brief overview of a simple causal feature importance approach: Meta Learners. This talk should be relevant to machine learning practitioners of any skill level that want to gain actionable, causal insights from their predictive models.
+---
+visible: Visible
