@@ -1,0 +1,42 @@
+name: Build website
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      # https://github.com/actions/checkout
+      - uses: actions/checkout@v4.2.2
+
+
+      # setup pixi
+      - uses: prefix-dev/setup-pixi@v0.8.1
+        with:
+          pixi-version: v0.30.0
+          cache: true
+
+      - name: Build website
+        run: pixi run build
+
+      # https://github.com/peaceiris/actions-gh-pages
+      - name: Deploy website to ericmjl.github.io
+        uses: peaceiris/actions-gh-pages@v4.0.0
+        with:
+          # https://github.com/peaceiris/actions-gh-pages#%EF%B8%8F-set-personal-access-token-personal_token
+          personal_token: ${{ secrets.GHPAGES_TOKEN }}
+          publish_dir: ./site
+          external_repository: ericmjl/ericmjl.github.io
+          publish_branch: master
+          # destination_dir: manuscript
+          allow_empty_commit: false
+          keep_files: false
+          force_orphan: true
+          enable_jekyll: false
+          disable_nojekyll: false
+          exclude_assets: '.lektor/buildstate'

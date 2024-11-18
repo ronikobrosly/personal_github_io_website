@@ -1,0 +1,45 @@
+title: Welcome!
+---
+body:
+
+Hi! I'm Eric,
+and I lead Research Data Science in the Data Science and AI group at [Moderna Therapeutics](https://www.modernatx.com) (July 2021).
+Prior to that, I was part of a special ops data team
+at [the Novartis Institutes for Biomedical Research's Informatics department](https://www.nibr.com/) (Sep 2017).
+Prior to that, I was an [Insight Health Data Sciences Fellow](http://insighthealthdata.com/),
+and defended my [doctoral thesis](http://ericmjl.github.io/thesis)
+in the [Department of Biological Engineering](https://be.mit.edu/)
+at [MIT](https://web.mit.edu/) earlier in 2017.
+
+My life's motto is quoted from the Gospel of Luke:
+
+> From everyone who has been given much, much will be demanded;
+> and from the one who has been entrusted with much, much more will be asked.
+>
+> <a href="https://www.bible.com/bible/111/LUK.12.48">Luke 12:48</a>
+
+I am an [open source](./open-source) contributor and developer,
+a [speaker](./talks) and [educator](./teaching) at Python conferences.
+I also have authored two [pedagogical Data Science books](./books).
+My professional mission is to make science run at the speed of thought
+so that we can discover new medicines for patients faster.
+
+Professionally,
+I am on the [Editorial Review Board](https://jmlr.csail.mit.edu/editorial-board-reviewers.html)
+of the [Journal of Machine Learning Research](https://jmlr.csail.mit.edu),
+and have served on the organizing committees for PyCon and SciPy conferences
+as part of the conferences' respective Financial Aid teams.
+
+If you'd like to connect,
+please feel free to send me a [Shortmail message](http://koalamail.ericmjl.com/send/ericmjl).
+
+When I update my blog,
+I usually send out an accompanying [Substack](https://dspn.substack.com) post.
+To stay up-to-date on what I'm writing about, please consider subscribing there.
+And if you'd like to sponsor the coffee that helps me make the content,
+please consider using [GitHub Sponsors](https://github.com/sponsors/ericmjl).
+
+For the curious, this website was hand-crafted with ❤️ using [Terminal.css](https://terminalcss.xyz)
+and [Lektor](https://www.getlektor.com/).
+---
+_discoverable: yes

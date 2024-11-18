@@ -1,0 +1,67 @@
+{% macro render_project_card(project) %}
+<div class="terminal-card">
+  <header class="card-title">{{ project.title }}</header>
+  <div class="card-body">
+    {{ render_card_img_top(project) }}
+    {{ project.summary }}
+    {% for blk in project.body.blocks %}
+
+    {% if blk._flowblock == "resource" %}
+    <a href="{{ blk.url }}" class="card-link">{{ blk.label }}</a>
+    {% endif %}
+
+    {% if blk._flowblock == "github" %}
+    <a href="{{ blk.url }}" class="card-link">GitHub Repository</a>
+    {% endif %}
+
+    {% if blk._flowblock == "notebooks" %}
+    <a href="{{ blk.url }}" class="card-link">Notebooks</a>
+    {% endif %}
+
+    {% if blk._flowblock == "slides" %}
+    <a href="{{ blk.url }}" class="card-link">Slides</a>
+    {% endif %}
+
+    {% if blk._flowblock == "book" %}
+    <a href="{{ blk.url }}" class="card-link">Book</a>
+    {% endif %}
+
+    {% if blk._flowblock == "youtube" %}
+    <a href="{{ blk.url }}" class="card-link">YouTube</a>
+    {% endif %}
+
+    {% endfor %}
+    <a href="{{ project|url }}" class="card-link">Details</a>
+  </div>
+</div>
+{% endmacro %}
+
+{% macro render_card_img_top(project) %}
+<div class="card-img-top bg-light">
+  {{ render_youtube(project) }}
+</div>
+{% endmacro %}
+
+{% macro render_youtube(project) %}
+{% for blk in project.body.blocks %}
+{% if blk._flowblock == "youtube" %}
+{{ blk }}
+{% endif %}
+{% endfor %}
+{% endmacro %}
+
+
+{% macro render_project(project) %}
+<div class="terminal-card">
+  <header class="card-title">{{ project.title }}</header>
+  <div class="card-body">
+    {{ render_card_img_top(project) }}
+    {{ project.summary }}
+    {% for blk in project.body.blocks %}
+    {% if blk._flowblock != "youtube" %}
+    {{ blk }}
+    {% endif %}
+    {% endfor %}
+  </div>
+</div>
+{% endmacro %}

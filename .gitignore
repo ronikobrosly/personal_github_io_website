@@ -1,0 +1,12 @@
+*DS_Store
+site/*
+node_modules
+*.pyc
+.env
+# pixi environments
+.pixi
+*.egg-info
+.lektor/buildstate
+
+# SQLite database
+message_log.db

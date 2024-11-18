@@ -1,0 +1,114 @@
+<!doctype html>
+
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta charset="utf-8">
+    <style media="screen">
+        body {
+            padding-top: 70px;
+            padding-bottom: 70px;
+        }
+    </style>
+    {% block highlighting %}
+    {% endblock %}
+
+    {% block metatags %}
+    {% endblock %}
+
+
+    <link rel="stylesheet" href="https://unpkg.com/terminal.css@0.7.2/dist/terminal.min.css" />
+
+
+    <style>
+        .blog-card-container {
+            display: flex;
+        }
+
+        .blog-card-left {
+            flex: 1;
+        }
+
+        .blog-card-right {
+            flex: 3;
+        }
+
+    </style>
+    <!-- Mathjax -->
+    <!-- <script type="text/javascript" async
+        src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-MML-AM_CHTML">
+        </script>
+
+    <script type="text/x-mathjax-config">
+        MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}});
+    </script> -->
+
+    <script>
+        MathJax = {
+            tex: {
+                inlineMath: [['$', '$'], ['\\(', '\\)']]
+            },
+            svg: {
+                fontCache: 'global'
+            }
+        };
+    </script>
+    <script type="text/javascript" id="MathJax-script" async
+        src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js">
+        </script>
+
+</head>
+
+<title>{% block title %}Welcome{% endblock %} - Eric J. Ma's Personal Site</title>
+
+<body>
+    <div class="container">
+        <h1 class="logo">
+            <a style="color:black" href="/">
+                Eric J Ma's Website
+            </a>
+        </h1>
+        <!-- Top Navigation (local links) -->
+
+        <div class="terminal-nav">
+            <nav class="terminal-menu" id="local-links">
+                <ul>
+                    {% for link in bag('nav')['header'] %}
+                    <li class="menu-item">
+                        <!-- Set blinking cursor correctly on navigation -->
+                        {% set path_root = this.path|string %}
+                        {% set path_root = path_root.split("@")[0] %}
+                        {% set path_root = path_root.split("/")[1] + "/" %}
+                        {% set link_root = link["href"].split("/")[1] + "/" %}
+                        {% if link_root == path_root %}
+                        <a class="terminal-prompt" href="{{ link['href'] }}" rel="{{ link['rel'] }}">{{ link['title']
+                            }}</a>
+                        {% else %}
+                        <a href="{{ link['href'] }}" rel="{{ link['rel'] }}">{{ link['title'] }}</a>
+                        {% endif %}
+                    </li>
+                    {% endfor %}
+                </ul>
+            </nav>
+        </div>
+
+        <!-- Body -->
+        <div id="body">
+            {% block body %}{% endblock %}
+        </div>
+
+        <!-- Bottom Navigation (external links) -->
+        <div class="terminal-nav">
+            <nav class="terminal-menu" id="local-links">
+                <ul>
+                    {% for link in bag('nav')['footer'] %}
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ link['href'] }}" rel="{{ link['rel'] }}">
+                            {{ link['title'] }}</a>
+                    </li>
+                    {% endfor %}
+                </ul>
+            </nav>
+        </div>
+
+    </div>
+</body>

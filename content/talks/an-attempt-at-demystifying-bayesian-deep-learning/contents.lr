@@ -1,0 +1,22 @@
+title: An Attempt at Demystifying Bayesian Deep Learning
+---
+link: http://ericmjl.github.io/bayesian-deep-learning-demystified
+---
+resource: Slides
+---
+sort_key: 0
+---
+body:
+
+#### description ####
+text: At PyData NYC 2017, I presented a talk on the intuition behind Deep Learning (DL) and Bayesian DL, using mostly pictures and code, and with as little math as possible.
+#### youtube ####
+url: https://www.youtube.com/watch?v=s0S6HFdPtlA
+#### slides ####
+url: http://ericmjl.github.io/bayesian-deep-learning-demystified
+---
+summary: In which I tell you why Bayesian deep learning is nothing really special, delivered at PyData NYC 2017.
+---
+category: Grad School
+---
+visible: Visible

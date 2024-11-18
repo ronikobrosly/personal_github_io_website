@@ -1,0 +1,19 @@
+[project]
+name = Roni Kobrosly's Personal Website
+locale = en_US
+url = https://ronikobrosly.github.io/
+
+[servers.gh_ssh]
+name = GitHub Pages
+target = ghpages://ronikobrosly/ronikobrosly.github.io
+
+[servers.gh_https]
+name = GitHub Pages
+target = ghpages+https://ronikobrosly/ronikobrosly.github.io
+
+[packages]
+lektor-markdown-header-anchors = 0.3
+lektor-markdown-highlighter = 0.3.2
+lektor-atom = 0.4.0
+lektor-disqus-comments = 0.4
+lektor-tags = 0.2

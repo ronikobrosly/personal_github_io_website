@@ -1,0 +1,18 @@
+title: Bayesian Statistical Analysis with Python
+---
+body:
+
+#### description ####
+text: At PyCon 2017, I illustrate, using four statistical analysis problems, how to do parameter estimation and case/control comparison (A/B testing) with PyMC3 code.
+#### youtube ####
+url: https://www.youtube.com/watch?v=p1IB4zWq9C8
+#### notebooks ####
+url: https://github.com/ericmjl/bayesian-stats-talk
+---
+sort_key: 1
+---
+summary: How to do parameter estimation and case/control comparison in PyMC3, delivered at PyCon 2017.
+---
+category: Grad School
+---
+visible: Visible

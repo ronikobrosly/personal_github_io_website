@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <link rel="stylesheet" href="https://cdn.simplecss.org/simple.min.css">
+    <script src="https://unpkg.com/htmx.org@1.9.4"></script>
+</head>
+
+<body>
+    <h1>Eric's Blog Bot</h1>
+    <form id="form" name="form">
+        <label for="base_url">Base URL</label>
+        <select name="base_url" hx-get="/latest-blog-posts" hx-target="#blog-url">
+            <option value="http://localhost:5959/blog/">http://localhost:5959/blog/</option>
+            <option value="https://ericmjl.github.io/blog/">https://ericmjl.github.io/blog/</option>
+        </select>
+
+        <div id="blog-selection">
+            <label for="blog_url">Choose one of the latest Blog Posts</label>
+            <select name="blog_url" id="blog-url">
+                {% for url, title in latest_blog_posts.items() %}
+                <option value="{{ url }}">{{ title }}</option>
+                {% endfor %}
+            </select>
+        </div>
+
+        <button hx-post="/linkedin" hx-target="#linkedin-post" hx-swap="innerHTML" hx-indicator="#linkedin-spinner"
+            type="submit">Compose LinkedIn Post</button>
+        <img id="linkedin-spinner" class="htmx-indicator" src="/static/img/bars.svg" />
+
+        <button hx-post="/twitter" hx-target="#twitter-post" hx-swap="innerHTML" hx-indicator="#twitter-spinner"
+            type="submit">Compose Twitter Post</button>
+        <img id="twitter-spinner" class="htmx-indicator" src="/static/img/bars.svg" />
+
+        <button hx-post="/summary" hx-target="#summary-post" hx-swap="innerHTML" hx-indicator="#summary-spinner"
+            type="submit">Compose Summary</button>
+        <img id="summary-spinner" class="htmx-indicator" src="/static/img/bars.svg" />
+
+        <button hx-post="/substack" hx-target="#substack-post" hx-swap="innerHTML" hx-indicator="#substack-spinner"
+            type="submit">Compose Substack</button>
+        <img id="substack-spinner" class="htmx-indicator" src="/static/img/bars.svg" />
+
+        <button hx-post="/tags" hx-target="#tags-post" hx-swap="innerHTML" hx-indicator="#tags-spinner"
+            type="submit">Generate Tags</button>
+        <img id="tags-spinner" class="htmx-indicator" src="/static/img/bars.svg" />
+
+    </form>
+
+    <div id="linkedin-post-div">
+        <label for="linkedin-post">LinkedIn Post</label>
+        <textarea id="linkedin-post"></textarea>
+    </div>
+
+    <div id="twitter-post-div">
+        <label for="twitter-post">Twitter Post</label>
+        <textarea id="twitter-post"></textarea>
+    </div>
+
+    <div id="substack-post-div">
+        <label for="substack-post">Substack</label>
+        <textarea id="substack-post"></textarea>
+    </div>
+
+    <div id="tags-post-div">
+        <label for="tags-post">Tags</label>
+        <textarea id="tags-post"></textarea>
+    </div>
+
+    <div id="summary-post-div">
+        <label for="summary-post">Summary</label>
+        <textarea id="summary-post"></textarea>
+    </div>
+
+
+</body>
+
+</html>
