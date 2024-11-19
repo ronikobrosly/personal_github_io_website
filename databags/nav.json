@@ -16,11 +16,6 @@
             "icon": "fa-code"
         },
         {
-            "title": "Projects",
-            "href": "/projects",
-            "icon": "fa-briefcase"
-        },
-        {
             "title": "Talks",
             "href": "/talks",
             "icon": "fa-microphone"
@@ -48,14 +43,19 @@
             "icon": "fab fa-linkedin"
         },
         {
-            "title": "Bluesky",
-            "href": "https://bsky.app/profile/slykoby.bsky.social",
-            "icon": "fab fa-bluesky"
-        },
-        {
             "title": "GitHub",
             "href": "http://github.com/ronikobrosly",
             "icon": "fab fa-github"
+        },
+        {
+            "title": "Research publications",
+            "href": "https://scholar.google.com/scholar?hl=en&as_sdt=0%2C21&q=rw+kobrosly&btnG=",
+            "icon": "fab fa-envelope"
+        },
+        {
+            "title": "Bluesky",
+            "href": "https://bsky.app/profile/slykoby.bsky.social",
+            "icon": "fab fa-bluesky"
         },
         {
             "title": "Contact Me",
