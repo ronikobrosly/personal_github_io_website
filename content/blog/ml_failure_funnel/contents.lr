@@ -6,8 +6,6 @@ body:
 
 Anyone who has worked in tech in the data science / MLE / applied ML field knows that [most ML projects will fail](https://venturebeat.com/ai/why-do-87-of-data-science-projects-never-make-it-into-production/). Newcomers to the field have super high expectations about what they can do, and, sadly, this leads to a lot of them leaving the space altogether (See [this goodbye letter](https://ryxcommar.com/2022/11/27/goodbye-data-science/), or [this collection of stories](https://www.reddit.com/r/datascience/comments/q75ce8/who_has_left_data_science_and_analytics_what_are/) or [this list of unrealistic data science job expectations](https://towardsdatascience.com/why-youll-quit-your-data-science-job-6079d407bbeb)). ML project failure is an inevitable part of life in this field and it's happened to me many times at different stages of my career. In the last couple of years, I've begun to think about the building of ML projects as a sort of funnel process; ideas are cheap and many, but only a small amount of these ideas reach the end of the funnel and become productionized, solid, used, effective, and maintained ML applications. I sketched it out as this:
 
-![logo](./logo.webp)
-
 Below, I'm going to try to put this idea into writing. There are several "gates" on the way through the funnel and it's sort of similar to the [lifecycle of a ML project](https://neptune.ai/blog/life-cycle-of-a-machine-learning-project), but there isn't perfect overlap. I'll try to describe each gate in the order I've generally seen teams hit them and I'll try to sprinkle in examples I've personally encountered. In my estimation, less than 10% of "project intentions" make it all of the way through the funnel.
 
 ------
