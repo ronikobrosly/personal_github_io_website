@@ -1,0 +1,18 @@
+title: The machine learning project failure funnel
+---
+author: Roni Kobrosly
+---
+body:
+
+I love Medium and Substack. They're so great that only a non-English word can truly describe them: <b>fantastico</b>. However, not all tech leadership, data, and engineering blogs will let you subscribe and receive email updates on new posts. And some of the best personal blogs out there only drop a new post a few times a year. You're then forced to periodically and manually check these websites for updates. I've got a list of 50+ of these non-subscribable blogs that I care about, and checking in on them sucks. So, I built a tool named Blog Checker (clever name, I know), which automates the process of checking personal websites and blogs for updates. I have a script on OS X desktop that I double click to run this, and within 10 seconds I can find out if any of my favorite sites has changed since the last time I read it. Hopefully you can get some use out of it too!
+
+[As usual, the code is up on GitHub...](https://github.com/ronikobrosly/blog_checker)
+
+---
+pub_date: 2022-05-08
+---
+summary: I love Medium and Substack. They're so great that only a non-English word can truly describe them: fantastico. However, not all tech leadership, data, and engineering blogs will let you subscribe and receive email updates on new posts. And some of the best personal blogs out there only drop a new post a few times a year. You're then forced to periodically and manually check these websites for updates. I've got a list of 50+ of these non-subscribable blogs that I care about, and checking in on them sucks. So, I built a tool...
+---
+tags:
+
+open source
