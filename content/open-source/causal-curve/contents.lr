@@ -1,0 +1,20 @@
+title: causal-curve
+---
+body:
+
+#### description ####
+
+text: A package for performing causal inference when a treatment is continuous.
+
+#### github ####
+url: https://github.com/ronikobrosly/causal-curve
+---
+category: Work
+---
+sort_key: 3
+---
+summary: A package for performing causal inference when a treatment is continuous.
+---
+visible: Visible
+---
+lead: Yes
