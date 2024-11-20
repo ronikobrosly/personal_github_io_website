@@ -53,11 +53,6 @@
             "icon": "fab fa-envelope"
         },
         {
-            "title": "Bluesky",
-            "href": "https://bsky.app/profile/slykoby.bsky.social",
-            "icon": "fab fa-bluesky"
-        },
-        {
             "title": "Contact Me",
             "href": "https://mail.google.com/mail/?view=cm&fs=1&to=roni.kobrosly@gmail.com&su=Hi! Reaching out from your personal website...&body=blah blah blah",
             "icon": "far fa-envelope"

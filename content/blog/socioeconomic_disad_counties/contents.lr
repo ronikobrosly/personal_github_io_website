@@ -1,0 +1,40 @@
+title: Visualizing socioeconomic disadvantage across US counties
+---
+author: Roni Kobrosly
+---
+body:
+
+
+When we create maps to view the spatial variation of socioeconomic status, we are typically only viewing the variation of one factor at a time (e.g. just income or just unemployment rate). I thought it would be useful to create and visualize a summary score of overall "socioeconomic disadvantage" from many socioeconomic indicators. Using publicly available county-level US Census data from 2005 I created the following map. I conducted a factor analysis to combine the following indicators into one disadvantage measurement:
+
+* Net 5-year population change
+* % residents with less than a bachelor's degree
+* % households with below $75,000 annual income
+* % residents living at or below the poverty line
+* Infant deaths per 1,000 live births
+* Medicare recipients per 100,000 residents
+* % residents that own their dwelling
+* Unemployment rate
+
+The three most disadvantaged counties were:
+
+1) McDowell County, West Virginia
+2) Owsley County, Kentucky
+3) Buffalo County, South Dakota
+
+The three least disadvantaged counties were:
+
+1) Douglas County, Colorado
+2) Fairfax County, Virginia
+3) Loudoun County, Virigina
+
+You can find the code [here](https://github.com/ronikobrosly/US_county_disadvantage). 
+
+---
+pub_date: 2014-12-17
+---
+summary: When we create maps to view the spatial variation of socioeconomic status, we are typically only viewing the variation of one factor at a time (e.g. just income or just unemployment rate). I thought it would be useful to create and visualize a summary score of overall "socioeconomic disadvantage" from many socioeconomic indicators. 
+---
+tags:
+
+human data
