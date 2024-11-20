@@ -4,16 +4,27 @@ body:
 
 #### description ####
 
-text: A package for performing causal inference when a treatment is continuous.
+text: There are many implemented methods to perform causal inference when your intervention of interest is binary, but few methods exist to handle continuous treatments.
+
+This is unfortunate because there are many scenarios (in industry and research) where these methods would be useful. For example, when you would like to:
+
+* Estimate the causal response to increasing or decreasing the price of a product across a wide range.
+* Understand how the number of minutes per week of aerobic exercise causes positive health outcomes.
+* Estimate how decreasing order wait time will impact customer satisfaction, after controlling for confounding effects.
+* Estimate how changing neighborhood income inequality (Gini index) could be causally related to neighborhood crime rate.
+
+![](./causal_curve.webp)
+
+This library attempts to address this gap, providing tools to estimate causal curves (AKA causal dose-response curves). Both continuous and binary outcomes can be modeled against a continuous treatment.
 
 #### github ####
 url: https://github.com/ronikobrosly/causal-curve
 ---
 category: Work
 ---
-sort_key: 3
+sort_key: 1
 ---
-summary: A package for performing causal inference when a treatment is continuous.
+summary: A python package for performing causal inference when a treatment is continuous.
 ---
 visible: Visible
 ---

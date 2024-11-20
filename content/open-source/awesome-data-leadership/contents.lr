@@ -5,13 +5,33 @@ body:
 #### github ####
 url: https://github.com/ronikobrosly/awesome-data-leadership
 #### description ####
-text: A collection of articles on leading data teams.
+text: A curated list of awesome and useful posts, videos, and articles on leading a data team. This includes leadership at the middle-management, Director/VP, or C-suite level, for organizations both big and small. A few relevant engineering management articles are sprinkled in.
+
+![](./coding.webp)
+
+I've organized the articles in the following buckets:
+
+* Hiring
+* Culture
+* Impact
+* Strategy
+* Diversity Equity and Inclusion
+* Project Management
+* Code Review
+* Organization Structure and Job Titles
+* ML and AI Within an Organization
+* BI and Analytics Within an Organization
+* Management Skills
+* Data Platforms
+* Data Governance
+
+
 ---
 category: Work
 ---
 lead: Yes
 ---
-sort_key: 1
+sort_key: 2
 ---
 summary: A collection of articles on leading data teams.
 ---
