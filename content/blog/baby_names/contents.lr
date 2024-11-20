@@ -1,0 +1,82 @@
+title: How do baby names come and go?
+---
+author: Roni Kobrosly
+---
+body:
+
+<b>Quick caveat: In this analysis I used government data that assumed binary biological sex. That's why I only use terms like "boy" and "girl".</b>
+
+<b>Another note: If you're reading this and curious about a name, shoot me an email and I'll make a plot for you 🐣</b> 
+
+I’m in my mid-thirties and as many of my friends are starting to make their own families, I'm having to learn lots of baby names. I’ve heard lots of people say that “older” names are becoming popular and in hearing these baby names I feel like there is something to this.
+
+One of my good friends has a sweet, one-year old baby named Vera. It’s a beautiful, old-fashioned name for sure, but is it becoming popular again? 
+
+![](./Vera.webp)
+
+After plotting some data from the Social Security Administration, it does look to be making a comeback. Funny aside: It turns out the name Ariel spiked in popularity after Disney's 1989 release of [The Little Mermaid](https://en.wikipedia.org/wiki/The_Little_Mermaid_(1989_film)). 
+
+![](./Ariel.webp)
+
+This made me wonder more generally about names and their trends. Are there complicated dynamics at play with the popularity of names, or does their popularity come and go in waves, or do most names peak in popularity for a bit and fade into history? I recently attended SciPy 2019 and attended a great session on time series clustering. This question seemed like a great problem to try out some of the methods I had learned there, such as the concept of [dynamic time warping (DTW)](https://pdfs.semanticscholar.org/05a2/0cde15e172fc82f32774dd0cf4fe5827cad2.pdf).
+
+I ran an analysis and found the following:
+
+* While there are some definite, clear clusters in name popularity over time, there is tons of heterogeneity here. Bottom line: you won't be able to neatly categorize the rise and fall of names with a few simple rules.
+* Although I pulled out more clusters for boys, it seems like there is more complexity in girl naming trends. See the final girl name cluster, for example, which the algorithm couldn't disentangle.
+
+Here are the name trend clusters I was able to pull out. Click on the links below to see the full plots for each (each line in a plot represents a unique name's popularity over time). I also shared a few exemplars for each (names with the closest DTW distance to the center of their cluster). Note: to simplify things I excluded names if there were less than 10,000 instances of them in the last 100 years. See this notebook for more details on the analysis. 
+
+------
+Boy name clusters:
+------
+
+<b>Cluster #1</b>: Not popular before but exploding in popularity over the last decade (e.g. Owen, Cruz, Carter) 
+
+![](./boys_0.webp)
+
+<b>Cluster #2</b>: A sharp peak in the mid-20th century but that’s it (e.g. Dale, Roger, Tony)
+
+![](./boys_1.webp)
+
+<b>Cluster #3</b>: Peaked in the late 90s / early aughts but dying out (e.g. Jacob, Trenton, Brennan)
+
+![](./boys_2.webp)
+
+<b>Cluster #4</b>: Very old names that have died out (e.g. Archie, Walter, Louis)
+
+![](./boys_3.webp)
+
+<b>Cluster #5</b>: Popular towards the end of the 20th century but dying out (e.g. Timothy, Brian, Eric)
+
+![](./boys_4.webp)
+
+
+------
+Girl name clusters:
+------
+
+<b>Cluster #1</b>: Super popular the last two decades but mostly dropping off (e.g. Arianna, Sophia, Makenzie)
+
+![](./girls_0.webp)
+
+
+<b>Cluster #2</b>: Old-timey names that have died out (e.g. Flora, Maxine, Lillie)
+
+![](./girls_1.webp)
+
+
+<b>Cluster #3</b>: Wildcards / difficult to cluster! (e.g. Melissa, Amy, Erin)
+
+![](./girls_2.webp)
+
+
+
+---
+pub_date: 2019-07-19
+---
+summary: II’m in my mid-thirties and as many of my friends are starting to make their own families, I'm having to learn lots of baby names. I’ve heard lots of people say that “older” names are becoming popular and in hearing these baby names I feel like there is something to this. What kind of name trends exist out there? 
+---
+tags:
+
+time series
