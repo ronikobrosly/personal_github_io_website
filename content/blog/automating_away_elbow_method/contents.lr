@@ -14,50 +14,14 @@ For one-off analyses, using your eyeballs and some subjectivity might be fine, b
 
 Zhu's idea is to generate the data you would typically generate to identify the elbow/kink. Then, he treats this data as a composite of two different samples, separated by the cutoff he is trying to identify. He loops through all possible cutoffs, in an attempt to find the cutoff that maximizes the profile log-likelihood (using sample means and a pooled SD in the calculations). Here's my stab at implementing Zhu's method: 
 
+<pre lang="python">
+	<code>
+import something as sm
 
-                           <!-- HTML generated using hilite.me --><div style="background: #ffffff; overflow:auto;width:auto;background: #f8f8f8; overflow:auto;width:auto;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #DD4422">&quot;&quot;&quot;</span>
-<span style="color: #DD4422">Automagical elbow finder</span>
-<span style="color: #DD4422">&quot;&quot;&quot;</span>
-
-<span style="color: #008800; font-weight: bold">import</span> <span style="color: #0e84b5; font-weight: bold">numpy</span> <span style="color: #008800; font-weight: bold">as</span> <span style="color: #0e84b5; font-weight: bold">np</span>
-<span style="color: #008800; font-weight: bold">from</span> <span style="color: #0e84b5; font-weight: bold">scipy.stats</span> <span style="color: #008800; font-weight: bold">import</span> norm
-
-
-<span style="color: #008800; font-weight: bold">def</span> <span style="color: #0066BB; font-weight: bold">find_optimal_k</span>(data):
-    <span style="color: #DD4422">&quot;&quot;&quot;</span>
-<span style="color: #DD4422">    Provide a numpy array, returns index of that array to serve as elbow, cut-off point</span>
-<span style="color: #DD4422">    &quot;&quot;&quot;</span>
-
-    <span style="color: #008800; font-weight: bold">def</span> <span style="color: #0066BB; font-weight: bold">__calc_logl</span>(series, mu, sd):
-        <span style="color: #DD4422">&quot;&quot;&quot;</span>
-<span style="color: #DD4422">        Helper function to calculate log-likelihood</span>
-<span style="color: #DD4422">        &quot;&quot;&quot;</span>
-        logl <span style="color: #333333">=</span> <span style="color: #0000DD; font-weight: bold">0</span>
-        <span style="color: #008800; font-weight: bold">for</span> i <span style="color: #000000; font-weight: bold">in</span> series:
-            logl <span style="color: #333333">+=</span> np<span style="color: #333333">.</span>log(norm<span style="color: #333333">.</span>pdf(i, mu, sd))
-
-        <span style="color: #008800; font-weight: bold">return</span> logl
-
-    profile_logl <span style="color: #333333">=</span> []
-
-    <span style="color: #888888"># Loop through all possible pairs of series within the array</span>
-    <span style="color: #008800; font-weight: bold">for</span> q <span style="color: #000000; font-weight: bold">in</span> <span style="color: #007020">range</span>(<span style="color: #0000DD; font-weight: bold">1</span>, <span style="color: #007020">len</span>(data)):
-        n <span style="color: #333333">=</span> <span style="color: #007020">len</span>(data)
-        s1 <span style="color: #333333">=</span> data[<span style="color: #0000DD; font-weight: bold">0</span>:q]
-        s2 <span style="color: #333333">=</span> data[q:]
-
-        <span style="color: #888888"># Calculate means and standard deviations of both series</span>
-        mu1 <span style="color: #333333">=</span> s1<span style="color: #333333">.</span>mean()
-        mu2 <span style="color: #333333">=</span> s2<span style="color: #333333">.</span>mean()
-        sd1 <span style="color: #333333">=</span> s1<span style="color: #333333">.</span>std()
-        sd2 <span style="color: #333333">=</span> s2<span style="color: #333333">.</span>std()
-        sd_pooled <span style="color: #333333">=</span> np<span style="color: #333333">.</span>sqrt((((q<span style="color: #333333">-</span><span style="color: #0000DD; font-weight: bold">1</span>)<span style="color: #333333">*</span>(sd1<span style="color: #333333">**</span><span style="color: #0000DD; font-weight: bold">2</span>)<span style="color: #333333">+</span>(n<span style="color: #333333">-</span>q<span style="color: #333333">-</span><span style="color: #0000DD; font-weight: bold">1</span>)<span style="color: #333333">*</span>(sd2<span style="color: #333333">**</span><span style="color: #0000DD; font-weight: bold">2</span>)) <span style="color: #333333">/</span> (n<span style="color: #333333">-</span><span style="color: #0000DD; font-weight: bold">2</span>)))
-
-        <span style="color: #888888"># Calculate profile log-likelihood</span>
-        profile_logl<span style="color: #333333">.</span>append(calc_logl(s1, mu1, sd_pooled) <span style="color: #333333">+</span> calc_logl(s2, mu2, sd_pooled))
-
-    <span style="color: #008800; font-weight: bold">return</span> np<span style="color: #333333">.</span>argmax(profile_logl) <span style="color: #333333">+</span> <span style="color: #0000DD; font-weight: bold">1</span>
-</pre></div>
+def test():
+	pass
+	</code>
+</pre>
 
 ---
 pub_date: 2018-09-24
