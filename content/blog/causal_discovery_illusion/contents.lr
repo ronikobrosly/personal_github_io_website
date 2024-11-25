@@ -4,11 +4,49 @@ author: Roni Kobrosly
 ---
 body:
 
+If you're given only a tabular dataset and a target variable of interest, but with no domain knowledge around what the data represents or how it was generated, you can do a few interesting things. Let's say you work at a rideshare startup and have a Postgres table like the following, and your target variable of interest is ridership for your carshare service. All you know is that rides in any time interval is important to the business and that it's good for the business to maximize this (duh):
+
+![](./sample_data.webp)
+
+Given this data and no domain knowledge, you can:
+
+* Explore the data, identify missing values, understand distributions, collect basic summary statistics (the mean, the median, skew, etc.) 
+* Look at statistical correlations between all variables and your target variable
+* Find and visualize groupings (AKA clusters) of observations around any combination of variables; or along these lines, identify anomalous observations. 
+* Build a ML model (from super simple to something complex) to predict values of the target variable given the other variables. 
+* Generate new, sythetic look-alike data that mimics all of the univariate and joint distributions in the original data.
+
+Sounds impressive but... the translation of these things into real world value is near null. Even if you could predict ridership in this data really well, are the predictors leading or lagging indicators (if they're the latter, your model is pointless)? Are any of the predictors actionable/intervenable by the business? What was the data generating process and is this data sound? 
+
+-----
+# Enter: domain knowledge and causality
+-----
+
+Having domain knowledge around each of the above factors would be greatly helpful, and maybe you could glean some insights from that data or potentially create usable ML from it. That's good and well 🙌🏼. 
+
+Causal graphs can go above and beyond this and are immensely powerful. They allow us to formally structural our knowledge of some topic by mapping out causes and effects. See this simple causal graph that [Lyft uses in thinking through the causality of predicting ridership](https://eng.lyft.com/causal-forecasting-at-lyft-part-1-14cca6ff3d6d). 
+
+![](./causal_graph.webp)
+
+In other words, causal graphs allow us to formally encode our domain knowledge on some topic. Having a true causal understanding of the mechanisms behind some business process along with real data enables us to: 
+
+* Make predictive models that are way more actionable 
+* Allow us to make stronger inference around the effects of individual factors 
+    
+The challenge is, <b>mapping causality in data requires time, becoming a SME in your area of interest, and it's not really scalable</b>. It's not the kind of thing you can throw into an algorithm to figure out... but it hasn't stopped people from trying. There is an entire field of research dedicating to trying to determine causality (to draw up a causal graph like the above one from Lyft), from data. It's sometimes named [causal structure learning or causal discovery](https://link.springer.com/article/10.1007/s10208-022-09581-9). There is so much interest in it that there are even [competitions](https://hub.crunchdao.com/competitions/causality-discovery) to see if the world's hackers and researchers can finally crack it (correctly determine a causal graph given only unmarked data). Winning first place in the following causal discovery data competition was $40k USD.   
+
+ ![](./competition.webp)
+
+I get the drive behind it. It promises a scalable way to learn causality from data and algorithmically do what an SME could do. The only problem is, I believe <b>this fundamentally not possible</b>. By the way, the top performing approach used in the above dataset only achieved around 77% accuracy in correctly specifying the true DAG, which is <b>abysmal</b>.
+
+
+
+
 
 ---
 pub_date: 2024-11-21
 ---
-summary: Whenever I discuss causal thinking with data, people inevitably bring up the topic of automated causal discovery. I get it. It's sort of like the search for El Dorado and would change the field of data science to its core if it were possible. I talk about what it is and how this is unlikely to happen anytime soon. 
+summary: Whenever I discuss causal thinking with data, people inevitably bring up the topic of automated causal discovery. I get it. It's sort of like the search for El Dorado and would change the field of data science to its core if it were possible. I talk about what it is and how this is unlikely to happen anytime soon.
 
 ---
 tags:
