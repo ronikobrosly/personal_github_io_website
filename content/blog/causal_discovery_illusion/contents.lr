@@ -37,14 +37,27 @@ The challenge is, <b>mapping causality in data requires time, becoming a SME in 
 
  ![](./competition.webp)
 
-I get the drive behind it. It promises a scalable way to learn causality from data and algorithmically do what an SME could do. The only problem is, I believe <b>this fundamentally not possible</b>. By the way, the top performing approach used in the above dataset only achieved around 77% accuracy in correctly specifying the true DAG, which is <b>abysmal</b>.
+I get the drive behind it. It promises a scalable way to learn causality from data and algorithmically do what an SME could do. The only problem is, I believe <b>this fundamentally not possible</b>. By the way, the top performing approach used in the above dataset only achieved around 77% accuracy in correctly specifying the true DAG, which is <b>abysmal</b>. It would be incredibly challenging to do useful modeling with a graph that is 77% accurate in terms of edge placement. 
 
 
+-----
+# El Dorado doesn't exist
+-----
 
+[Many attempts have been made to automate causal discovery given only a dataset](https://arxiv.org/pdf/2305.10032). They range from simple statistical comparisons of variable triplets (if I hold variable Z constant, does it change the relationship the relationship of X and Y?), to starting with a random graph and permuting it until it looks like something that is scored as more likely to have generated the observed data, to, more recently, reframing the task as a [continuous optimization problem](https://arxiv.org/abs/1803.01422). All in all, there are probably 20-ish unique methods proposed for automating this task and 100s open source implementations of these methods available online. Through personal experience, given the same initial dataset, if I picked 100 of the top-starred implementations and tried to generate a causal graph, I would get 100 vastly-different results. I could try to formally demonstrate this here but I've gone through this exercise so many times in the past it doesn't feel worth the time.  
 
+There are some secondary approaches people have proposed to make up for this instability and get closer to the real result:
+
+* Use these approaches to generate an initial graph and then apply domain knowledge to prune or add causes and effects as needed
+* Use an approach where you identify areas of the most uncertainty in the causal graph, and then try some interventions, explore additional data in those areas.
+* Use an approach put forward by Yoshua Bengio's group and [employ LLMs to take in a corpus of text and augment or build your causal graph](https://arxiv.org/pdf/2402.01207). 
+
+The problem is in doing these approaches you lose scalability benefit you were originally going for or in the case of the third approach the results still aren't accurate enough to be useful.  
+
+For now, I just don't think this sort of automated causal discovery is possible. Ultimately, if the AI community is able to achieve true general artificial intelligence, it may be possible for this AI to really learn causality via exploration and research... but it's anyone's guess whether we'll get there. 
 
 ---
-pub_date: 2024-11-21
+pub_date: 2024-11-25
 ---
 summary: Whenever I discuss causal thinking with data, people inevitably bring up the topic of automated causal discovery. I get it. It's sort of like the search for El Dorado and would change the field of data science to its core if it were possible. I talk about what it is and how this is unlikely to happen anytime soon.
 
