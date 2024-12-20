@@ -56,11 +56,12 @@ Here's my attempt at bulleting out the key takeaways I learned from the phone ca
 * There is a spectrum of companies where data and the data work is closer to the core of the business (to name some big names: LinkedIn, Spotify, Facebook, and Glassdoor have that data work at its very core), and there are other companies where the core of the business is something more traditional: Selling clothes, selling bank accounts, selling software for writing documents (yes, even companies selling software) and the data team/component is essentially an appendage / arm of the company. Data maturity is less import to companies of the latter category.
 * Classic ML has become less sexy than generative AI, but data engineering is as unsexy as it was a decade ago. And without a solid data engineering foundation, you <b>cannot</b> do BI, analytics, ML, or AI well. 
 * Some interesting question to ask during a data job interview process if you want to suss out their degree of data maturity:
-	- If your data team vanished tomorrow, how much would that impact the business (OBVIOUSLY you need to frame this in a gentle way)
+	- If your data team vanished tomorrow, how much would that impact the business (OBVIOUSLY you need to frame this in a gentle way). Maybe like "How is your world different without the presense of your team?"
 	- How much data do you have and can you quantify it? Look for specificity in the answer (we've got petabytes of data in X, terabytes of Y, etc.)
 	- What does your data team look like? How many other types of role X are there?
 	- What impact have your existing models or dashboards had, specifically?
 	- It is important to me that I make an impact in my work? If I were to step in tomorrow, would I be able to deploy something within a month that would be used?
+	- Is your data team considered first-class citizens in the company?
 
 
 ---
