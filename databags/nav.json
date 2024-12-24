@@ -48,6 +48,11 @@
             "icon": "fab fa-github"
         },
         {
+            "title": "Stack Overflow Profile",
+            "href": "https://stackoverflow.com/users/2831487/slyron",
+            "icon": "fab fa-github"
+        },
+        {
             "title": "Bluesky",
             "href": "https://bsky.app/profile/slykoby.bsky.social",
             "icon": "fab fa-bluesky"
