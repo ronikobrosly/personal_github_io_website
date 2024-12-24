@@ -6,6 +6,11 @@
             "icon": "fa-home"
         },
         {
+            "title": "Resume",
+            "href": "https://raw.githubusercontent.com/ronikobrosly/resume/main/kobrosly_data_jan_2025_general.pdf",
+            "icon": "far fa-file-alt"
+        },
+        {
             "title": "Blog",
             "href": "/blog",
             "icon": "fas fa-pen"
@@ -33,11 +38,6 @@
     ],
     "footer": [
         {
-            "title": "Resume",
-            "href": "https://raw.githubusercontent.com/ronikobrosly/resume/main/kobrosly_data_jan_2025_general.pdf",
-            "icon": "far fa-file-alt"
-        },
-        {
             "title": "LinkedIn",
             "href": "https://www.linkedin.com/in/ronikobrosly",
             "icon": "fab fa-linkedin"
@@ -48,7 +48,7 @@
             "icon": "fab fa-github"
         },
         {
-            "title": "Stack Overflow Profile",
+            "title": "Stack Overflow",
             "href": "https://stackoverflow.com/users/2831487/slyron",
             "icon": "fab fa-github"
         },
