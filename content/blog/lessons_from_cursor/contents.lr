@@ -1,0 +1,52 @@
+title: Some initial lessons from using Cursor to build a production web app
+---
+author: Roni Kobrosly
+---
+body:
+
+Happy New Year!
+
+Over the holiday break, I had the opportunity to try out the [Cursor Pro](https://www.cursor.com/), one of the newer and more discussed GenAI coding assistants and IDE. It is meant to be like GitHub CoPilot, but the idea is it is its own IDE and AI is infused into each aspect of it:
+
+* It auto-completes lines
+* It auto-corrects syntax errors
+* You can discuss the entire codebase or just a specific line (by selecting it via cursor)
+* It will automatically compose files based on your description
+* It is multi-modal so it will happily ingest images as well as your text descriptions or package documentation
+* You can select which premium, foundation model to use (in the Pro addition) 
+
+What use I put it toward? I have been slowly working on a side-project named Data Compass AI for some time (eventually it'll live at [datacompass.ai](http://www.datacompass.ai/)). The purpose of Data Compass AI is to make the data maturity of organizations more transparent and to help rate their data journey. Think Glassdoor or Charity Navigator but focused on "data maturity" (is data centralized and clean? Are data team members first-class citizens in the tech org? Are ML models or dashboards making a quantifiable impact?). I'll describe more about the idea in a future blog post once it's up in production at [datacompass.ai](http://www.datacompass.ai/).
+
+While the domain the app focuses on is around data engineering and science, building Data Compass AI is essentially a straight up software engineering task. I've primarily relied on simple small python frameworks like [Flask](https://flask.palletsprojects.com/en/stable/) for creating APIs and simple demo web apps, but a proper dynamic, production web app would need something beefier with a ORM, easy to install authentication features, security measures like rate-limiting logins, etc. I was somewhat familiar with the [Django](https://www.djangoproject.com/) python framework but I was hoping to learn more about it through Cursor (and better understand Cursor workflows in the process). 
+
+There are so many places to begin w.r.t. Cursor. At PyData NYC 2024 a Microsoft CoPilot product owner gave a keynote talk on how the shift from the current developer workflow to a AI-enhanced developer workflow would mean shifts from:
+
+<pre><code>
+* Coding --> Exploring
+* Building --> Evaluating
+* Testing --> Optimizing
+</code></pre>
+
+I fully agree with this sentiment now. I see Cursor and other AI coding assistants as force multipliers rather than something that will replace engineers (at least in the short and medium-term future). By which, I mean this: if a junior developer has weak skills and intuitions around coding, design, and architecture of, say, level <b>1</b>, it results in 5x improvement in speed of development, resulting in an outcome of <b>5</b>. A seasoned senior engineer, of skill 10, could produce an outcome of <b>50</b>. In other words, I feel like I was able to learn the Django framework and produce a near-production ready app at 5x speed.
+
+![](./robot.webp)
+
+Here are some of the lessons I learned from the experience, which I think are partly specific to Cursor and partly general around AI-assisted software development:
+
+* It helps to periodically remind the agent the purpose of what it is doing. Particularly if you step away from the laptop for a while or open a new chat. Cursor with `claude sonnet 3.5` running under the hood did a good job of retaining holistic context of the project work in chunks of a few hours, but if a significantly new task was asked of it, 
+* Good foundational engineering skills are still a must. I found that it would occasionally forget that certain files already existed and try to re-create them with slightly new names. That's an obvious example. On the more subtle side, the Cursor-claude combo would occasionally re-create functions and build off of them, resulting in subtley messy code. The data models it produced (even after a few iterations of back and forth in chat) needed to be tweaked to be more elegant and for the foreign keys to make more sense.
+* A sort of continuation of the prior bullet: I found that each major suggestion (creation of a big class, etc) required about 5% reworking to make things more elegant/cleaner or to clean up bugs.
+* Complex integration tests are no longer daughting. I think it's been known for some time that these agents are great at writing simple-ish unit tests (which is great!), but I've always found integration tests to be extremely daughting. With relative ease, the Cursor-claude combo was able to create a temporary test database, spin up a browser via Selenium, mocking various things, and literally step through the account-creation process with a headless browser. That's magic. A task like that might have taken me 5+ hours previously as there are so many little details / complexity involved. 
+* The Cursor-claude combo was incredibly helpful at debugging in cases where neither I or it could figure out an issue. Yes, I would be able to write `print` statements to the terminal or check on the database to see if an intermediate processing step worked, but I found the agent was particularly great at creating temporary debugging lines and then removing them afterwards. It could even help me interpret these issues well. I employ D3 in the app on the results page and I'm only weakly-to-moderately experienced with JS. The agent was a godsend in those instances.
+
+
+---
+pub_date: 2025-01-02
+---
+summary: Over the holiday break, I had the opportunity to try out the Cursor Pro, one of the newer and more discussed GenAI coding assistants and IDE. It is meant to be like GitHub CoPilot, but the idea is it is its own IDE and AI is infused into each aspect of it. I learned a lot about both Cursor and the python Django framework through Cursor.
+
+---
+tags:
+
+generative ai
+engineering
