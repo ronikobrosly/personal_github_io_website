@@ -1,0 +1,36 @@
+title: Data Compass AI is almost here!
+---
+author: Roni Kobrosly
+---
+body: Let me lead with the raison d'être of Data Compass AI. 
+
+The data science and GenAI field is exploding. It's been called the sexiest job of the 21st century. Many data science and GenAI masters programs are springing up, creating armies of data scientists and GenAI engineers. The future of the field looks great right?
+
+Unfortunately many data scientists seem to be leaving the field in droves. Job satisfaction is quite low, and burnout is high. Most data science teams are completely ineffective from a business perspective. I would agree this has little to do with the talent of the data science indviduals. There are many reasons for this:
+
+* When interviewing for potential data science roles, candidates are told the company has "mountains of data" and "endless exciting problems to tackle", but this is often not true.
+* Companies have immature tech stacks, make data cleaning and productionizing models a nightmare.
+* Company culture is not data-driven and data teams aren't first-class tech citizens (they're appendages expected to do magic) causing data scientists to struggle to get buy-in for their work.
+* Data scientists are often siloed in their work, and don't get to work on the most interesting problems.
+
+Data Compass AI's mission is to make organizations' data maturity levels (be they large corporations, startups, non-profits, or government agencies) transparent to data job seekers and the data community. And also to allow organizations to see how their data maturity stacks up against others in their industry.
+
+
+I leveraged the AI-infused Cursor IDE heavily in the process and learned a TREMENDOUS amount about AI-assisted coding. Here are some lessons:
+
+* AI coding assistants are **phenomenial** debuggers. I would say they are orders of magnitude better at debugging than writing fresh code. This applies to AWS procedures, using common frameworks, dealing with git issues, etc. In my mind, the primary use case of AI assitants ought to be around debugging and fixing errors.
+* Left to their own devices, AI coding assistant will forget minor details of existing coding, and replicate functionality. These causes cascading bugs. Developers must be vigilant. 
+* AI assistants work better when you continue long threads of conversation, versus opening a new thread for new areas of work. At least in the cause of Claude Sonnet 3.5, with each new thread, it seemed to forget the point of the web app and what the codebase looks like.
+
+
+---
+pub_date: 2025-02-21
+---
+summary: I'm so close to delivering a production web service to help folks in the data community. It's the most ambitious tech thing I've done and I'm extremely excited and nervous! I learned a lot along the way...
+---
+tags: 
+
+generative ai
+engineering
+career
+data
