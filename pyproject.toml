@@ -1,8 +1,15 @@
 [project]
 name = "ronikobrosly-website"
 version = "0.0.1"
-requires-python = "==3.11"
+requires-python = "==3.12"
 description = "Roni Kobrosly's Personal Website"
+dependencies = [
+    "click==7.1.2",
+    "flask>=2.0.3",
+    "jinja2>=3.1.6",
+    "lektor>=3.2.0",
+    "requests>=2.32.4",
+]
 
 [tool.setuptools.packages.find]
 where = [""]
