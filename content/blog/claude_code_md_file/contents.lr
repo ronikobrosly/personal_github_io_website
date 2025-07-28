@@ -270,7 +270,6 @@ FROM jobs_details;
 SELECT run_id, status, start_time, total_jobs_found, total_new_jobs 
 FROM scraping_runs 
 ORDER BY start_time DESC LIMIT 5;
-```
 
 ## Development Notes
 
