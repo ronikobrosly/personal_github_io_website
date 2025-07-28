@@ -40,11 +40,11 @@ When unsure about implementation details, ALWAYS ask the developer.
 
 ### Core Pipeline Flow
 
-1. **Job Scraping**: Collect new job postings from configured websites (`src/scrapers/`)
-2. **Data Persistence**: Store job data in SQLite database with deduplication (`src/database/`)
-3. **Relevance Analysis**: ML/NLP-based job matching against user profile (`src/analysis/`)
-4. **Job Classification**: AI-powered role classification using Claude AI (`src/analysis/job_classifier.py`)
-5. **Document Generation**: Generate customized LaTeX resumes and compile to PDF (`src/templates/`)
+1. **Job Scraping**: Collect new job postings from configured websites (src/scrapers/)
+2. **Data Persistence**: Store job data in SQLite database with deduplication (src/database/)
+3. **Relevance Analysis**: ML/NLP-based job matching against user profile (src/analysis/)
+4. **Job Classification**: AI-powered role classification using Claude AI (src/analysis/job_classifier.py)
+5. **Document Generation**: Generate customized LaTeX resumes and compile to PDF (src/templates/)
 6. **Email Reporting**: Send automated reports with generated PDFs (planned)
 7. **Data Cleanup**: Remove old job records and optimize storage
 
@@ -55,13 +55,13 @@ When unsure about implementation details, ALWAYS ask the developer.
 - **Analysis Engine**: AI-powered job classification and relevance scoring
 - **Document Generation**: LaTeX template processing and PDF compilation
 - **Configuration System**: Environment variables + YAML configuration files
-- **Pipeline Orchestrator**: Central coordinator in `src/__main__.py`
+- **Pipeline Orchestrator**: Central coordinator in src/__main__.py
 
 ### Input Requirements
 
 The system requires:
-- **Environment Variables**: API keys and service credentials in `secrets.env`
-- **LaTeX Templates**: Resume templates in `templates/resume/`
+- **Environment Variables**: API keys and service credentials in secrets.env
+- **LaTeX Templates**: Resume templates in templates/resume/
 - **Configuration Files**: User profile, skills, and scraping configuration
 - **Database**: SQLite database with three-table schema
 
@@ -156,7 +156,7 @@ from tests.conftest import some_fixture
 
 
 ### Documentation Standards
-- **Module Docstrings**: 1-2 sentence description at top of each `.py` file
+- **Module Docstrings**: 1-2 sentence description at top of each .py file
 - **Function Docstrings**: Follow this format:
 def calculate_area(length: float, width: float) -> float:
     """Calculates the area of a rectangle.
@@ -171,25 +171,25 @@ def calculate_area(length: float, width: float) -> float:
 
 ### Anchor Comments
 Use anchor comments for AI/developer reference:
-- `AIDEV-NOTE:` - Important implementation details
-- `AIDEV-TODO:` - Tasks that need completion
-- `AIDEV-QUESTION:` - Questions about implementation
+- AIDEV-NOTE: - Important implementation details
+- AIDEV-TODO: - Tasks that need completion
+- AIDEV-QUESTION: - Questions about implementation
 
-**Important**: Before scanning files, grep for existing `AIDEV-*` anchors in relevant subdirectories.
+**Important**: Before scanning files, grep for existing AIDEV-* anchors in relevant subdirectories.
 
 ### Guidelines
 - **Type Hints**: Required for all function parameters and return values
 - **Testing**: Unit tests required for all new code with >90% coverage
-- **Error Handling**: Use custom exceptions from `src.database.exceptions`
+- **Error Handling**: Use custom exceptions from src.database.exceptions
 - **Logging**: Use structured logging throughout all components
 - **Configuration**: Prefer environment variables for sensitive data
 
 ## Database Architecture
 
 ### Schema Overview
-- **`jobs_details`**: Core job information with classification metadata
-- **`job_sources`**: Website configuration and scraping status
-- **`scraping_runs`**: Pipeline execution tracking and performance metrics
+- **jobs_details**: Core job information with classification metadata
+- **job_sources**: Website configuration and scraping status
+- **scraping_runs**: Pipeline execution tracking and performance metrics
 
 ### Key Database Operations
 from src.database.service import JobDatabase
@@ -270,6 +270,7 @@ FROM jobs_details;
 SELECT run_id, status, start_time, total_jobs_found, total_new_jobs 
 FROM scraping_runs 
 ORDER BY start_time DESC LIMIT 5;
+```
 
 ## Development Notes
 
@@ -283,14 +284,14 @@ ORDER BY start_time DESC LIMIT 5;
 7. **Cleanup**: Remove old records and optimize storage
 
 ### Development-Friendly Features
-- **Skip Scraping Mode**: `--skip-scraping` automatically resets processing status
+- **Skip Scraping Mode**: --skip-scraping automatically resets processing status
 - **Modular Execution**: Each phase can be skipped for targeted testing
 - **Comprehensive Logging**: Detailed execution logs with structured output
 - **Test Modes**: Limited scraping for development and testing
 - **Error Recovery**: Graceful handling of failures with detailed error reporting
 
 ### Configuration Management
-- **Environment Variables**: Sensitive data in `secrets.env` (gitignored)
+- **Environment Variables**: Sensitive data in secrets.env (gitignored)
 - **YAML Configuration**: User profile, skills, and analysis settings
 - **Dynamic Loading**: Configuration loaded on demand with caching
 - **Fallback Support**: Environment variables override YAML settings
@@ -310,31 +311,31 @@ ORDER BY start_time DESC LIMIT 5;
 ## Important Implementation Notes
 
 ### Adding New Job Sites
-1. Add configuration to `config/sites/sites_config.py`
-2. Create scraper class in `src/scrapers/sites/new_site_scraper.py`
-3. Register in `ScraperManager.create_scraper()` method
-4. Add comprehensive tests in `tests/unit/scrapers/`
+1. Add configuration to config/sites/sites_config.py
+2. Create scraper class in src/scrapers/sites/new_site_scraper.py
+3. Register in ScraperManager.create_scraper() method
+4. Add comprehensive tests in tests/unit/scrapers/
 
 ### Extending Analysis Engine
-1. Modify scoring weights in `config/analysis/scoring_weights.yaml`
-2. Update user skills in `config/analysis/skill_mappings.yaml`
-3. Customize job filters in `config/analysis/job_filters.yaml`
-4. Customize analysis logic in `src/analysis/relevance_analyzer.py`
-5. Add new classification types in `src/analysis/job_classifier.py`
+1. Modify scoring weights in config/analysis/scoring_weights.yaml
+2. Update user skills in config/analysis/skill_mappings.yaml
+3. Customize job filters in config/analysis/job_filters.yaml
+4. Customize analysis logic in src/analysis/relevance_analyzer.py
+5. Add new classification types in src/analysis/job_classifier.py
 
 ### Database Schema Evolution
-1. Modify models in `src/database/models/`
-2. Generate migration: `cd data && alembic revision --autogenerate -m "description"`
+1. Modify models in src/database/models/
+2. Generate migration: cd data && alembic revision --autogenerate -m "description"
 3. Review and edit generated migration file
-4. Apply migration: `cd data && alembic upgrade head`
-5. Update related service methods in `src/database/service.py`
+4. Apply migration: cd data && alembic upgrade head
+5. Update related service methods in src/database/service.py
 
 ### Document Generation Pipeline
 1. **Classification**: AI determines job type (IC vs Leadership)
 2. **Template Selection**: Choose appropriate LaTeX template
 3. **Content Customization**: Modify template with job-specific keywords
-4. **Compilation**: Use `xelatex` to generate PDF
-5. **File Management**: Save to `data/exports/` with descriptive names
+4. **Compilation**: Use xelatex to generate PDF
+5. **File Management**: Save to data/exports/ with descriptive names
 
 ## Security and Best Practices
 
@@ -368,7 +369,7 @@ ORDER BY start_time DESC LIMIT 5;
 - **Database Tests**: Test all CRUD operations and migrations
 
 ### Test Data Management
-- **Fixtures**: Reusable test data in `tests/fixtures/`
+- **Fixtures**: Reusable test data in tests/fixtures/
 - **Mocking**: Mock external services (Claude API, web requests)
 - **Database**: Use separate test database for isolation
 - **Cleanup**: Ensure tests clean up after themselves
@@ -383,7 +384,7 @@ ORDER BY start_time DESC LIMIT 5;
 
 ## Maintenance Reminders
 
-- **Update Dependencies**: Regularly update `requirements.txt` and `uv.lock`
+- **Update Dependencies**: Regularly update requirements.txt and uv.lock
 - **Monitor Logs**: Check application logs for errors and performance issues
 - **Database Maintenance**: Regular cleanup of old records and optimization
 - **Configuration Review**: Periodically review and update configuration files
