@@ -380,8 +380,6 @@ code: |
     - **Code Quality**: Maintain high standards with automated checks
     - **Documentation**: Keep documentation in sync with code
 
-    ---
-
     ## Maintenance Reminders
 
     - **Update Dependencies**: Regularly update requirements.txt and uv.lock
@@ -390,8 +388,6 @@ code: |
     - **Configuration Review**: Periodically review and update configuration files
     - **Security Updates**: Keep API keys rotated and monitor for security issues
     - **Performance Monitoring**: Track pipeline execution times and resource usage
-
-    ---
 
     **Development Philosophy**: We optimize for maintainability over cleverness. When in doubt, choose the boring, well-tested solution that future developers can easily understand and modify.
     ```
