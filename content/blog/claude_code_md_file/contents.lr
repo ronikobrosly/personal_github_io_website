@@ -25,6 +25,7 @@ It includes:
 * Instructions to continually update the README.md and CLAUDE.md files as code is modified.
 * Instructions on the preferred way to install new third-party libraries (via `uv`) and a reminder to continually update dependency text files. 
 
+code: |
 ```
 # CLAUDE.md - Development Guidance
 
@@ -368,6 +369,7 @@ ORDER BY start_time DESC LIMIT 5;
 - **Database Tests**: Test all CRUD operations and migrations
 
 ### Test Data Management
+i
 - **Fixtures**: Reusable test data in tests/fixtures/
 - **Mocking**: Mock external services (Claude API, web requests)
 - **Database**: Use separate test database for isolation
