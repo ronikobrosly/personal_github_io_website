@@ -4,9 +4,26 @@ author: Roni Kobrosly
 ---
 body:
 
+The wonderful terminal integration and easy MCP configuring of Claude Code has gotten me really excited. I would even say it fully restored my joy for development that I had a decade ago! 
 
+I won't lie, there was a bit of pain initially as I experimented in finding the right scope of prompts to provide to Claude. As of now, I've found that asking Claude to implement something like a moderate feature or something on the scale of 300-ish lines of code is a good task size (followed by a manual inspection, of course). Asking it to do significantly more and you risk incuring too much debt from debugging plus the time cost of reviewing multiple new modules of code. Asking Claude to do less than a moderate feature erases the acceleration benefit AI provides you.
 
-Here is the entire file for ease of use:
+I've been playing with it for a couple of months and think I finally have a project-level `claude.md` file that does a good job maintaining the quality of the AI's work prompt to prompt, session to session. 
+
+Below is an example of a `CLAUDE.md` file associated with a hypothetical app that scrapes data science jobs from various websites, performs relevancy analysis, updates a given template resume with an initial version of summary, work experience, and skill bullets. I cobbled this together from multiple sources and augmented it with of my own instructions.
+
+It includes:
+* A high-level description of the pipeline and required inputs.
+* A detailed file and folder tree with descriptions.
+* Style guidelines.
+* Instructions on formatting of docstrings.
+* Instructions on how to create AI tags, which are essentially comments written by Claude Code for Claude Code.
+* Clear details on setting up the database and commands to run the pipeline. These ought to be understandable to a junior developer. 
+* Key queries on how to explore the database and help debug data issues.
+* Security mandates
+* Testing guidelines. Each new feature should be accompanied by unit and integration tests.
+* Instructions to continually update the README.md and CLAUDE.md files as code is modified.
+* Instructions on the preferred way to install new third-party libraries (via `uv`) and a reminder to continually update dependency text files. 
 
 ```
 # CLAUDE.md - Development Guidance
@@ -50,7 +67,7 @@ The system requires:
 
 ## Project Structure
 
-```
+
 src/                             # Source code
 ├── __main__.py                  # Main pipeline entry point
 ├── analysis/                    # Job analysis and classification
@@ -116,12 +133,12 @@ scripts/                         # Setup and maintenance scripts
 └── setup/                       # Environment setup scripts
     ├── init_database.py         # Database initialization
     └── setup_job_sources.py     # Job source configuration
-```
+
 
 ## Code Style and Patterns
 
 ### Import Organization
-```python
+
 # Built-in Python packages (alphabetical)
 from collections import defaultdict, namedtuple, OrderedDict
 import logging
@@ -136,12 +153,11 @@ from scipy.stats import cauchy, gamma, triang
 # Local module imports (alphabetical)
 from src.localmodule import SomeClass
 from tests.conftest import some_fixture
-```
+
 
 ### Documentation Standards
 - **Module Docstrings**: 1-2 sentence description at top of each `.py` file
 - **Function Docstrings**: Follow this format:
-```python
 def calculate_area(length: float, width: float) -> float:
     """Calculates the area of a rectangle.
 
@@ -152,7 +168,6 @@ def calculate_area(length: float, width: float) -> float:
     Returns:
         float: The calculated area of the rectangle.
     """
-```
 
 ### Anchor Comments
 Use anchor comments for AI/developer reference:
@@ -177,7 +192,6 @@ Use anchor comments for AI/developer reference:
 - **`scraping_runs`**: Pipeline execution tracking and performance metrics
 
 ### Key Database Operations
-```python
 from src.database.service import JobDatabase
 
 # Initialize database service
@@ -191,12 +205,10 @@ result = job_db.batch_create_jobs_with_deduplication(job_batch)
 # Development helpers
 reset_results = job_db.reset_all_job_processing_status()
 relevance_results = job_db.reset_all_job_relevance()
-```
 
 ## Common Commands
 
 ### Development Workflow
-```bash
 # Setup environment
 uv sync                                     # Install dependencies
 python scripts/setup/init_database.py      # Initialize database
@@ -239,10 +251,8 @@ python -m pytest --cov=src                # Tests with coverage
 ruff format .                             # Format code
 ruff check .                              # Lint code
 ruff check --fix .                        # Auto-fix linting issues
-```
 
 ### Database Schema Inspection
-```sql
 -- View job details with processing status
 SELECT role_title, company_name, is_relevant, is_processed, 
        job_classification, classification_confidence 
@@ -260,7 +270,6 @@ FROM jobs_details;
 SELECT run_id, status, start_time, total_jobs_found, total_new_jobs 
 FROM scraping_runs 
 ORDER BY start_time DESC LIMIT 5;
-```
 
 ## Development Notes
 
