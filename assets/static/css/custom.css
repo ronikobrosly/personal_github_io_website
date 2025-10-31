@@ -1,5 +1,18 @@
 /* Custom styles for terminal.css compatibility */
 
+/* Blinking cursor animation */
+@keyframes cursor {
+  0% {
+    opacity: 0;
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
 /* Layout styles for terminal-specific classes */
 .terminal-card {
   margin: 25px 0;
@@ -37,6 +50,16 @@
   font-weight: bold;
 }
 
+.terminal-prompt::after {
+  content: "";
+  animation: cursor 800ms infinite;
+  background: var(--accent, #ff6347);
+  display: inline-block;
+  height: 1em;
+  width: 3px;
+  margin-left: 2px;
+}
+
 /* Container for overall layout */
 .container {
   max-width: 960px;
@@ -49,11 +72,22 @@
   font-size: calc(var(--font-size, 1rem) * 1.8);
   margin: 25px 0;
   text-align: center;
+  font-family: "Fira Code", "JetBrains Mono", Monaco, Consolas, "Ubuntu Mono", monospace;
 }
 
 .logo a {
   text-decoration: none;
   color: var(--foreground, #45372b);
+}
+
+.logo a::after {
+  content: "";
+  animation: cursor 800ms infinite;
+  background: var(--foreground, #45372b);
+  display: inline-block;
+  height: 1em;
+  width: 3px;
+  margin-left: 4px;
 }
 
 /* Blog card layout */
