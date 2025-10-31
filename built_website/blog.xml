@@ -1,0 +1,851 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom"><title>Roni Kobrosly's Blog</title><link href="https://ronikobrosly.github.io/blog/" rel="alternate"/><link href="https://ronikobrosly.github.io/blog.xml" rel="self"/><id>urn:uuid:f23e54c7-f455-3f2f-bf2d-5f5605d07329</id><updated>2025-06-16T00:00:00Z</updated><author><name/></author><entry><title>How I structure my Claude Code markdown memory files</title><link href="https://ronikobrosly.github.io/blog/2025/6/16/claude_code_md_file/" rel="alternate"/><updated>2025-06-16T00:00:00Z</updated><author><name>Roni Kobrosly</name></author><id>urn:uuid:112933dd-872a-3ee9-ac29-19415cd1004b</id><content type="html">&lt;p&gt;The wonderful terminal integration and easy MCP configuring of Claude Code has gotten me really excited. I would even say it fully restored my joy for development that I had a decade ago!&lt;/p&gt;
+&lt;p&gt;I won't lie, there was a bit of pain initially as I experimented in finding the right scope of prompts to provide to Claude. As of now, I've found that asking Claude to implement something like a moderate feature or something on the scale of 300-ish lines of code is a good task size (followed by a manual inspection, of course). Asking it to do significantly more and you risk incuring too much debt from debugging plus the time cost of reviewing multiple new modules of code. Asking Claude to do less than a moderate feature erases the acceleration benefit AI provides you.&lt;/p&gt;
+&lt;p&gt;I've been playing with it for a couple of months and think I finally have a project-level &lt;code&gt;claude.md&lt;/code&gt; file that does a good job maintaining the quality of the AI's work prompt to prompt, session to session.&lt;/p&gt;
+&lt;p&gt;Below is an example of a &lt;code&gt;CLAUDE.md&lt;/code&gt; file associated with a hypothetical app that scrapes data science jobs from various websites, performs relevancy analysis, updates a given template resume with an initial version of summary, work experience, and skill bullets. I cobbled this together from multiple sources and augmented it with of my own instructions.&lt;/p&gt;
+&lt;p&gt;It includes:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;A high-level description of the pipeline and required inputs.&lt;/li&gt;
+&lt;li&gt;A detailed file and folder tree with descriptions.&lt;/li&gt;
+&lt;li&gt;Style guidelines.&lt;/li&gt;
+&lt;li&gt;Instructions on formatting of docstrings.&lt;/li&gt;
+&lt;li&gt;Instructions on how to create AI tags, which are essentially comments written by Claude Code for Claude Code.&lt;/li&gt;
+&lt;li&gt;Clear details on setting up the database and commands to run the pipeline. These ought to be understandable to a junior developer. &lt;/li&gt;
+&lt;li&gt;Key queries on how to explore the database and help debug data issues.&lt;/li&gt;
+&lt;li&gt;Security mandates&lt;/li&gt;
+&lt;li&gt;Testing guidelines. Each new feature should be accompanied by unit and integration tests.&lt;/li&gt;
+&lt;li&gt;Instructions to continually update the README.md and CLAUDE.md files as code is modified.&lt;/li&gt;
+&lt;li&gt;Instructions on the preferred way to install new third-party libraries (via &lt;code&gt;uv&lt;/code&gt;) and a reminder to continually update dependency text files. &lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;code: |&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;```
+# CLAUDE.md - Development Guidance
+
+## Project Overview
+
+This project is an automated job checking and application pipeline that scrapes job websites, identifies relevant roles, and generates tailored resumes and cover letters. The system uses AI-powered job classification, intelligent document generation, and comprehensive data management.
+
+## The Golden Rule
+
+When unsure about implementation details, ALWAYS ask the developer.
+
+## Critical Architecture Decisions
+
+### Core Pipeline Flow
+
+1. **Job Scraping**: Collect new job postings from configured websites (src/scrapers/)
+2. **Data Persistence**: Store job data in SQLite database with deduplication (src/database/)
+3. **Relevance Analysis**: ML/NLP-based job matching against user profile (src/analysis/)
+4. **Job Classification**: AI-powered role classification using Claude AI (src/analysis/job_classifier.py)
+5. **Document Generation**: Generate customized LaTeX resumes and compile to PDF (src/templates/)
+6. **Email Reporting**: Send automated reports with generated PDFs (planned)
+7. **Data Cleanup**: Remove old job records and optimize storage
+
+### Key Components
+
+- **Database Layer**: Three-table schema (JobDetail, JobSource, ScrapingRun) with full audit trails
+- **Web Scrapers**: Multi-site data collection with anti-detection measures
+- **Analysis Engine**: AI-powered job classification and relevance scoring
+- **Document Generation**: LaTeX template processing and PDF compilation
+- **Configuration System**: Environment variables + YAML configuration files
+- **Pipeline Orchestrator**: Central coordinator in src/__main__.py
+
+### Input Requirements
+
+The system requires:
+- **Environment Variables**: API keys and service credentials in secrets.env
+- **LaTeX Templates**: Resume templates in templates/resume/
+- **Configuration Files**: User profile, skills, and scraping configuration
+- **Database**: SQLite database with three-table schema
+
+## Project Structure
+
+
+src/                             # Source code
+├── __main__.py                  # Main pipeline entry point
+├── analysis/                    # Job analysis and classification
+│   ├── config.py                # Analysis configuration loader
+│   ├── job_classifier.py        # AI-powered job classification
+│   ├── job_content_processor.py # Job content analysis utilities
+│   ├── keyword_extractor.py     # Keyword and skill extraction
+│   ├── relevance_analyzer.py    # Job relevance scoring engine
+│   ├── scoring_engine.py        # Relevance scoring algorithms
+│   └── skill_extractor.py       # Technical skill extraction
+├── database/                    # Database layer
+│   ├── connection.py            # Database connection management
+│   ├── exceptions.py            # Custom database exceptions
+│   ├── service.py               # Main database service interface (JobDatabase)
+│   └── models/                  # SQLAlchemy models
+│       ├── base.py              # Base model configuration
+│       ├── job_detail.py        # Job detail model
+│       ├── job_source.py        # Job source model
+│       └── scraping_run.py      # Scraping run model
+├── emailing/                    # Email functionality (planned)
+├── job_processor.py             # High-level job processing orchestrator
+├── scrapers/                    # Web scraping components
+│   ├── base_scraper.py          # Base scraper classes
+│   ├── scraper_manager.py       # Scraper orchestration
+│   ├── parsers/                 # Job posting parsers
+│   └── sites/                   # Site-specific scrapers
+│       └── hirebase_scraper.py  # Hirebase job site scraper
+├── templates/                   # Template processing
+│   ├── latex_processor.py       # LaTeX compilation to PDF
+│   └── resume_engine.py         # Resume template processing
+└── utils/                       # Shared utilities
+    └── config.py                # Configuration management
+
+config/                          # Configuration files
+├── analysis/                    # Job analysis configuration
+│   ├── scoring_weights.yaml     # Scoring algorithm weights
+│   ├── skill_mappings.yaml      # User skills and experience mappings
+│   ├── job_filters.yaml         # Job filtering criteria
+│   └── user_profile.yaml        # User profile and preferences
+└── sites/                       # Job site configurations
+    └── sites_config.py          # Scraping site definitions
+
+data/                            # Data storage
+├── alembic/                     # Database migration files
+├── exports/                     # Generated PDFs and LaTeX files
+└── jobs/                        # SQLite database location
+
+templates/                       # Document templates
+└── resume/                      # LaTeX resume templates
+    └── Awesome-CV-master/       # LaTeX resume template system
+
+tests/                           # Test suite
+├── conftest.py                  # Pytest configuration and fixtures
+├── fixtures/                    # Test data and sample files
+├── integration/                 # Integration tests
+└── unit/                        # Unit tests
+
+logs/                            # Application logs (created at runtime)
+└── application/                 # Pipeline execution logs
+
+scripts/                         # Setup and maintenance scripts
+├── migration/                   # Database migration utilities
+└── setup/                       # Environment setup scripts
+    ├── init_database.py         # Database initialization
+    └── setup_job_sources.py     # Job source configuration
+
+
+## Code Style and Patterns
+
+### Import Organization
+
+# Built-in Python packages (alphabetical)
+from collections import defaultdict, namedtuple, OrderedDict
+import logging
+import pdb
+import smtplib 
+
+# Third-party packages (alphabetical)
+import numpy as np
+import pandas as pd
+from scipy.stats import cauchy, gamma, triang
+
+# Local module imports (alphabetical)
+from src.localmodule import SomeClass
+from tests.conftest import some_fixture
+
+
+### Documentation Standards
+- **Module Docstrings**: 1-2 sentence description at top of each .py file
+- **Function Docstrings**: Follow this format:
+def calculate_area(length: float, width: float) -&amp;gt; float:
+    """Calculates the area of a rectangle.
+
+    Args:
+        length (float): The length of the rectangle.
+        width (float): The width of the rectangle.
+
+    Returns:
+        float: The calculated area of the rectangle.
+    """
+
+### Anchor Comments
+Use anchor comments for AI/developer reference:
+- AIDEV-NOTE: - Important implementation details
+- AIDEV-TODO: - Tasks that need completion
+- AIDEV-QUESTION: - Questions about implementation
+
+**Important**: Before scanning files, grep for existing AIDEV-* anchors in relevant subdirectories.
+
+### Guidelines
+- **Type Hints**: Required for all function parameters and return values
+- **Testing**: Unit tests required for all new code with &amp;gt;90% coverage
+- **Error Handling**: Use custom exceptions from src.database.exceptions
+- **Logging**: Use structured logging throughout all components
+- **Configuration**: Prefer environment variables for sensitive data
+
+## Database Architecture
+
+### Schema Overview
+- **jobs_details**: Core job information with classification metadata
+- **job_sources**: Website configuration and scraping status
+- **scraping_runs**: Pipeline execution tracking and performance metrics
+
+### Key Database Operations
+from src.database.service import JobDatabase
+
+# Initialize database service
+job_db = JobDatabase()
+
+# Core operations
+job = job_db.create_job(job_data)
+jobs = job_db.get_jobs_by_criteria({'is_relevant': True})
+result = job_db.batch_create_jobs_with_deduplication(job_batch)
+
+# Development helpers
+reset_results = job_db.reset_all_job_processing_status()
+relevance_results = job_db.reset_all_job_relevance()
+
+## Common Commands
+
+### Development Workflow
+# Setup environment
+uv sync                                     # Install dependencies
+python scripts/setup/init_database.py      # Initialize database
+python scripts/setup/setup_job_sources.py # Setup job sources
+
+# Development execution
+python -m src --skip-scraping              # Process existing jobs (auto-resets processing)
+python -m src --test_trial                 # Limited test run (3 jobs from 1 site)
+python -m src --skip-email --log-level DEBUG  # Debug mode
+
+# Pipeline options
+python -m src --log-level DEBUG            # Enable debug logging
+python -m src --skip-email                 # Skip email reporting
+python -m src --skip-analysis              # Skip job relevance analysis
+python -m src --skip-documents             # Skip document generation
+python -m src --cleanup-only               # Only run data cleanup
+python -m src --reset-processing           # Reset all jobs to unprocessed
+
+# Database management
+cd data &amp;amp;&amp;amp; alembic upgrade head            # Apply migrations
+cd data &amp;amp;&amp;amp; alembic current                 # Show current migration
+cd data &amp;amp;&amp;amp; alembic history                 # Show migration history
+cd data &amp;amp;&amp;amp; alembic revision --autogenerate -m "description"  # Create migration
+
+# Database inspection
+sqlite3 ./data/jobs/jobs.db               # Interactive SQLite session
+# Inside sqlite3:
+.mode box                                  # Pretty print mode
+.tables                                    # Show all tables
+.schema                                    # Show table schemas
+SELECT * FROM jobs_details LIMIT 5;       # Query jobs
+
+# Testing
+python -m pytest                          # Run all tests
+python -m pytest tests/unit/              # Unit tests only
+python -m pytest tests/integration/       # Integration tests only
+python -m pytest --cov=src                # Tests with coverage
+
+# Code quality
+ruff format .                             # Format code
+ruff check .                              # Lint code
+ruff check --fix .                        # Auto-fix linting issues
+
+### Database Schema Inspection
+-- View job details with processing status
+SELECT role_title, company_name, is_relevant, is_processed, 
+       job_classification, classification_confidence 
+FROM jobs_details 
+ORDER BY created_at DESC LIMIT 10;
+
+-- Check relevance statistics
+SELECT 
+    COUNT(*) as total_jobs,
+    SUM(CASE WHEN is_relevant = 1 THEN 1 ELSE 0 END) as relevant_jobs,
+    SUM(CASE WHEN is_processed = 1 THEN 1 ELSE 0 END) as processed_jobs
+FROM jobs_details;
+
+-- View scraping run history
+SELECT run_id, status, start_time, total_jobs_found, total_new_jobs 
+FROM scraping_runs 
+ORDER BY start_time DESC LIMIT 5;
+
+## Development Notes
+
+### Pipeline Execution Phases
+1. **Initialization**: Setup logging, database connection, run tracking
+2. **Scraping** (optional): Collect new job postings with anti-detection
+3. **Storage**: Batch insertion with deduplication and validation
+4. **Analysis**: Relevance scoring and AI-powered classification
+5. **Documents**: LaTeX template processing and PDF generation
+6. **Email**: Automated reporting with attachments (planned)
+7. **Cleanup**: Remove old records and optimize storage
+
+### Development-Friendly Features
+- **Skip Scraping Mode**: --skip-scraping automatically resets processing status
+- **Modular Execution**: Each phase can be skipped for targeted testing
+- **Comprehensive Logging**: Detailed execution logs with structured output
+- **Test Modes**: Limited scraping for development and testing
+- **Error Recovery**: Graceful handling of failures with detailed error reporting
+
+### Configuration Management
+- **Environment Variables**: Sensitive data in secrets.env (gitignored)
+- **YAML Configuration**: User profile, skills, and analysis settings
+- **Dynamic Loading**: Configuration loaded on demand with caching
+- **Fallback Support**: Environment variables override YAML settings
+
+### AI Integration
+- **Claude API**: Job classification and keyword extraction
+- **Confidence Scoring**: AI provides confidence levels for decisions
+- **Reasoning Explanations**: Detailed explanations for classification decisions
+- **Template Selection**: AI-driven template selection based on job type
+
+### Anti-Detection Measures
+- **Random Delays**: 3-8 second delays between requests
+- **User Agent Rotation**: Rotating browser identities
+- **Exponential Backoff**: Intelligent retry strategies
+- **Session Management**: Proper HTTP session handling
+
+## Important Implementation Notes
+
+### Adding New Job Sites
+1. Add configuration to config/sites/sites_config.py
+2. Create scraper class in src/scrapers/sites/new_site_scraper.py
+3. Register in ScraperManager.create_scraper() method
+4. Add comprehensive tests in tests/unit/scrapers/
+
+### Extending Analysis Engine
+1. Modify scoring weights in config/analysis/scoring_weights.yaml
+2. Update user skills in config/analysis/skill_mappings.yaml
+3. Customize job filters in config/analysis/job_filters.yaml
+4. Customize analysis logic in src/analysis/relevance_analyzer.py
+5. Add new classification types in src/analysis/job_classifier.py
+
+### Database Schema Evolution
+1. Modify models in src/database/models/
+2. Generate migration: cd data &amp;amp;&amp;amp; alembic revision --autogenerate -m "description"
+3. Review and edit generated migration file
+4. Apply migration: cd data &amp;amp;&amp;amp; alembic upgrade head
+5. Update related service methods in src/database/service.py
+
+### Document Generation Pipeline
+1. **Classification**: AI determines job type (IC vs Leadership)
+2. **Template Selection**: Choose appropriate LaTeX template
+3. **Content Customization**: Modify template with job-specific keywords
+4. **Compilation**: Use xelatex to generate PDF
+5. **File Management**: Save to data/exports/ with descriptive names
+
+## Security and Best Practices
+
+### Security Standards
+- **API Keys**: Store in environment variables, never commit to git
+- **Database**: Use parameterized queries to prevent injection
+- **Web Scraping**: Respect robots.txt and rate limits
+- **Error Handling**: Never expose sensitive information in logs
+- **Configuration**: Validate all input parameters
+
+### Performance Optimization
+- **Database Indexing**: Optimized queries for fast deduplication
+- **Batch Operations**: Process multiple jobs efficiently
+- **Connection Pooling**: Reuse database connections
+- **Caching**: Cache configuration and frequently accessed data
+- **Memory Management**: Clean up resources properly
+
+### Error Handling
+- **Custom Exceptions**: Use domain-specific exceptions
+- **Graceful Degradation**: Continue processing when possible
+- **Comprehensive Logging**: Log all errors with context
+- **Recovery Strategies**: Retry failed operations with backoff
+- **User Feedback**: Provide clear error messages
+
+## Testing Strategy
+
+### Test Coverage Requirements
+- **Unit Tests**: &amp;gt;90% coverage for all new code
+- **Integration Tests**: Test component interactions
+- **End-to-End Tests**: Test complete pipeline functionality
+- **Database Tests**: Test all CRUD operations and migrations
+
+### Test Data Management
+- **Fixtures**: Reusable test data in tests/fixtures/
+- **Mocking**: Mock external services (Claude API, web requests)
+- **Database**: Use separate test database for isolation
+- **Cleanup**: Ensure tests clean up after themselves
+
+### Continuous Integration
+- **Pre-commit Hooks**: Run linting and formatting before commits
+- **Test Automation**: Run tests on every commit
+- **Code Quality**: Maintain high standards with automated checks
+- **Documentation**: Keep documentation in sync with code
+
+## Maintenance Reminders
+
+- **Update Dependencies**: Regularly update requirements.txt and uv.lock
+- **Monitor Logs**: Check application logs for errors and performance issues
+- **Database Maintenance**: Regular cleanup of old records and optimization
+- **Configuration Review**: Periodically review and update configuration files
+- **Security Updates**: Keep API keys rotated and monitor for security issues
+- **Performance Monitoring**: Track pipeline execution times and resource usage
+
+**Development Philosophy**: We optimize for maintainability over cleverness. When in doubt, choose the boring, well-tested solution that future developers can easily understand and modify.
+```
+&lt;/code&gt;&lt;/pre&gt;
+</content></entry><entry><title>Data Compass AI is now fully in production! 🎉</title><link href="https://ronikobrosly.github.io/blog/2025/2/26/data_compass_release/" rel="alternate"/><updated>2025-02-26T00:00:00Z</updated><author><name>Roni Kobrosly</name></author><id>urn:uuid:240b3bce-b8af-39e2-8add-2748e6d17eb6</id><content type="html">&lt;p&gt;After weeks of work in the little cracks of free time I have these todays, I'm launching a new web service to help our wonderful data science / analytics / AI data community.&lt;/p&gt;
+&lt;p&gt;The service is &lt;a href="https://datacompass.ai"&gt;https://datacompass.ai&lt;/a&gt; 🧭&lt;/p&gt;
+&lt;p&gt;As I've mentioned in a prior post, despite the sexiness of the field, many data scientists/analysts/AI engineers seem to be leaving the field in droves. 
+Job satisfaction is low, and burnout is high. There are dozens of reasons for this, but here are a few:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;When interviewing for potential data science roles, candidates are told the company has "mountains of data" and "endless exciting problems to tackle". This is often not true.&lt;/li&gt;
+&lt;li&gt;Companies have immature tech stacks, making data ETL and productionizing models a nightmare.&lt;/li&gt;
+&lt;li&gt;Company culture is not data-driven, data teams are third-class citizens, and data teams struggle to get buy-in from stakeholders.&lt;/li&gt;
+&lt;li&gt;I've literally worked at an organization where we were pressured to "cook the books" and make analyses look better than the truth. It's hard to balance one's integrity with the need to put food on the table 😔&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Data Compass AI's mission is to make organizations' data maturity levels (be they large corporations, startups, non-profits, or government agencies) fully transparent to data job seekers and the data community. The idea is data employees anonymously fill out a data maturity survey about their org. It spans dimensions of Tech Stack, Impact, Data Quality, Leadership, Governance, Culture, and Project Management. Beyond helping job seekers transparently see how functional (or dysfunctional) a data org is, this service can also allow organizations to see how their data maturity stacks up against competitors and others in their industry.&lt;/p&gt;
+&lt;p&gt;The dimensions/facets of data maturity that are scored include: &lt;code&gt;Tech Stack Quality, Data Quality, Data Team Impact, Culture, Leadership, Governance, and Project Management&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;Data Compass AI has a number of important features to highlight.&lt;/p&gt;
+&lt;p&gt;1) The primary function is to visually compare global data maturity dimensions for all registered companies, against industry-specific companies, 
+and individual companies (see blog logo image). The idea here is to see how a specific organization compares against all other companies and those in the same industry.&lt;/p&gt;
+&lt;p&gt;2) Data Compass AI also allows users to see individual resposnes to survey questions for a given company. So if a user is particularly interested in the ease (or difficulty) in productionizing a model at an organization, they can clearly see it.&lt;/p&gt;
+&lt;p&gt;&lt;img src="individual_responses.webp" alt=""&gt;&lt;/p&gt;
+&lt;p&gt;3) It's easy to imagine a scenario where a job seeker or someone curious might want to directly compare survey results between two organizations. This can be done at a high level of granularity.&lt;/p&gt;
+&lt;p&gt;&lt;img src="compare_companies.webp" alt=""&gt;&lt;/p&gt;
+&lt;p&gt;4) Registered users can access a dashboard to get quick view of their company scores, as well as links the above-mentioned functions and a profile page where they can change their password or delete their account or data if they choose.&lt;/p&gt;
+&lt;p&gt;&lt;img src="dashboard.webp" alt=""&gt;&lt;/p&gt;
+&lt;p&gt;A few more key points I want to highlight:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;You must provide your work email to verify you work where you say you do (Glassdoor does this, so there is a precedent for this) but you will remain &lt;strong&gt;completely&lt;/strong&gt; anonymous. Your name will &lt;strong&gt;never&lt;/strong&gt; be mentioned.&lt;/li&gt;
+&lt;li&gt;You can delete your account and data whenever you like.&lt;/li&gt;
+&lt;li&gt;This service is 100% free and there is no catch to this. This is meant to be a genuine service for good to the data community.&lt;/li&gt;
+&lt;li&gt;We have a comprehensive set of community guidelines (&lt;a href="https://lnkd.in/eFf-WnYx"&gt;https://lnkd.in/eFf-WnYx&lt;/a&gt;) covering topics of abusive posts, identifying executives by name, harassment, safety threats, and most importantly neutrality (i.e. "Data Compass AI maintains neutrality in factual disputes. When contacted by you or your legal representatives regarding allegedly false and defamatory content, we cannot determine credibility. Unless other guideline violations are found, we allow users to stand by their reviews...")&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;So please, take 5-10 minutes and fill out the survey on your laptop or tablet (the UI is a work in progress for phones). The more data we collect, the more empowered job seekers will be.&lt;/p&gt;
+</content></entry><entry><title>Data Compass AI is almost here!</title><link href="https://ronikobrosly.github.io/blog/2025/2/21/data_compass_is_coming/" rel="alternate"/><updated>2025-02-21T00:00:00Z</updated><author><name>Roni Kobrosly</name></author><id>urn:uuid:a31a2379-ea98-32fd-8044-a878ff699450</id><content type="html">&lt;p&gt;Let me lead with the raison d'être of Data Compass AI.&lt;/p&gt;
+&lt;p&gt;The data science and GenAI field is exploding. It's been called the sexiest job of the 21st century. Many data science and GenAI masters programs are springing up, creating armies of data scientists and GenAI engineers. The future of the field looks great right?&lt;/p&gt;
+&lt;p&gt;Unfortunately many data scientists seem to be leaving the field in droves. Job satisfaction is quite low, and burnout is high. Most data science teams are completely ineffective from a business perspective. I would agree this has little to do with the talent of the data science indviduals. There are many reasons for this:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;When interviewing for potential data science roles, candidates are told the company has "mountains of data" and "endless exciting problems to tackle", but this is often not true.&lt;/li&gt;
+&lt;li&gt;Companies have immature tech stacks, make data cleaning and productionizing models a nightmare.&lt;/li&gt;
+&lt;li&gt;Company culture is not data-driven and data teams aren't first-class tech citizens (they're appendages expected to do magic) causing data scientists to struggle to get buy-in for their work.&lt;/li&gt;
+&lt;li&gt;Data scientists are often siloed in their work, and don't get to work on the most interesting problems.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Data Compass AI's mission is to make organizations' data maturity levels (be they large corporations, startups, non-profits, or government agencies) transparent to data job seekers and the data community. And also to allow organizations to see how their data maturity stacks up against others in their industry.&lt;/p&gt;
+&lt;p&gt;I leveraged the AI-infused Cursor IDE heavily in the process and learned a TREMENDOUS amount about AI-assisted coding. Here are some lessons:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;AI coding assistants are &lt;strong&gt;phenomenial&lt;/strong&gt; debuggers. I would say they are orders of magnitude better at debugging than writing fresh code. This applies to AWS procedures, using common frameworks, dealing with git issues, etc. In my mind, the primary use case of AI assitants ought to be around debugging and fixing errors.&lt;/li&gt;
+&lt;li&gt;Left to their own devices, AI coding assistant will forget minor details of existing coding, and replicate functionality. These causes cascading bugs. Developers must be vigilant. &lt;/li&gt;
+&lt;li&gt;AI assistants work better when you continue long threads of conversation, versus opening a new thread for new areas of work. At least in the cause of Claude Sonnet 3.5, with each new thread, it seemed to forget the point of the web app and what the codebase looks like.&lt;/li&gt;
+&lt;/ul&gt;
+</content></entry><entry><title>Some initial lessons from using Cursor to build a production web app</title><link href="https://ronikobrosly.github.io/blog/2025/1/2/lessons_from_cursor/" rel="alternate"/><updated>2025-01-02T00:00:00Z</updated><author><name>Roni Kobrosly</name></author><id>urn:uuid:824c888b-1956-34fb-b945-f826a78daa49</id><content type="html">&lt;p&gt;Happy New Year!&lt;/p&gt;
+&lt;p&gt;Over the holiday break, I had the opportunity to try out the &lt;a href="https://www.cursor.com/"&gt;Cursor Pro&lt;/a&gt;, one of the newer and more discussed GenAI coding assistants and IDE. It is meant to be like GitHub CoPilot, but the idea is it is its own IDE and AI is infused into each aspect of it:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;It auto-completes lines&lt;/li&gt;
+&lt;li&gt;It auto-corrects syntax errors&lt;/li&gt;
+&lt;li&gt;You can discuss the entire codebase or just a specific line (by selecting it via cursor)&lt;/li&gt;
+&lt;li&gt;It will automatically compose files based on your description&lt;/li&gt;
+&lt;li&gt;It is multi-modal so it will happily ingest images as well as your text descriptions or package documentation&lt;/li&gt;
+&lt;li&gt;You can select which premium, foundation model to use (in the Pro addition) &lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;What use I put it toward? I have been slowly working on a side-project named Data Compass AI for some time (eventually it'll live at &lt;a href="http://www.datacompass.ai/"&gt;datacompass.ai&lt;/a&gt;). The purpose of Data Compass AI is to make the data maturity of organizations more transparent and to help rate their data journey. Think Glassdoor or Charity Navigator but focused on "data maturity" (is data centralized and clean? Are data team members first-class citizens in the tech org? Are ML models or dashboards making a quantifiable impact?). I'll describe more about the idea in a future blog post once it's up in production at &lt;a href="http://www.datacompass.ai/"&gt;datacompass.ai&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;While the domain the app focuses on is around data engineering and science, building Data Compass AI is essentially a straight up software engineering task. I've primarily relied on simple small python frameworks like &lt;a href="https://flask.palletsprojects.com/en/stable/"&gt;Flask&lt;/a&gt; for creating APIs and simple demo web apps, but a proper dynamic, production web app would need something beefier with a ORM, easy to install authentication features, security measures like rate-limiting logins, etc. I was somewhat familiar with the &lt;a href="https://www.djangoproject.com/"&gt;Django&lt;/a&gt; python framework but I was hoping to learn more about it through Cursor (and better understand Cursor workflows in the process).&lt;/p&gt;
+&lt;p&gt;There are so many places to begin w.r.t. Cursor. At PyData NYC 2024 a Microsoft CoPilot product owner gave a keynote talk on how the shift from the current developer workflow to a AI-enhanced developer workflow would mean shifts from:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;
+* Coding --&gt; Exploring
+* Building --&gt; Evaluating
+* Testing --&gt; Optimizing
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;I fully agree with this sentiment now. I see Cursor and other AI coding assistants as force multipliers rather than something that will replace engineers (at least in the short and medium-term future). By which, I mean this: if a junior developer has weak skills and intuitions around coding, design, and architecture of, say, level &lt;b&gt;1&lt;/b&gt;, it results in 5x improvement in speed of development, resulting in an outcome of &lt;b&gt;5&lt;/b&gt;. A seasoned senior engineer, of skill 10, could produce an outcome of &lt;b&gt;50&lt;/b&gt;. In other words, I feel like I was able to learn the Django framework and produce a near-production ready app at 5x speed.&lt;/p&gt;
+&lt;p&gt;&lt;img src="robot.webp" alt=""&gt;&lt;/p&gt;
+&lt;p&gt;Here are some of the lessons I learned from the experience, which I think are partly specific to Cursor and partly general around AI-assisted software development:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;It helps to periodically remind the agent the purpose of what it is doing. Particularly if you step away from the laptop for a while or open a new chat. Cursor with &lt;code&gt;claude sonnet 3.5&lt;/code&gt; running under the hood did a good job of retaining holistic context of the project work in chunks of a few hours, but if a significantly new task was asked of it, &lt;/li&gt;
+&lt;li&gt;Good foundational engineering skills are still a must. I found that it would occasionally forget that certain files already existed and try to re-create them with slightly new names. That's an obvious example. On the more subtle side, the Cursor-claude combo would occasionally re-create functions and build off of them, resulting in subtley messy code. The data models it produced (even after a few iterations of back and forth in chat) needed to be tweaked to be more elegant and for the foreign keys to make more sense.&lt;/li&gt;
+&lt;li&gt;A sort of continuation of the prior bullet: I found that each major suggestion (creation of a big class, etc) required about 5% reworking to make things more elegant/cleaner or to clean up bugs.&lt;/li&gt;
+&lt;li&gt;Complex integration tests are no longer daughting. I think it's been known for some time that these agents are great at writing simple-ish unit tests (which is great!), but I've always found integration tests to be extremely daughting. With relative ease, the Cursor-claude combo was able to create a temporary test database, spin up a browser via Selenium, mocking various things, and literally step through the account-creation process with a headless browser. That's magic. A task like that might have taken me 5+ hours previously as there are so many little details / complexity involved. &lt;/li&gt;
+&lt;li&gt;The Cursor-claude combo was incredibly helpful at debugging in cases where neither I or it could figure out an issue. Yes, I would be able to write &lt;code&gt;print&lt;/code&gt; statements to the terminal or check on the database to see if an intermediate processing step worked, but I found the agent was particularly great at creating temporary debugging lines and then removing them afterwards. It could even help me interpret these issues well. I employ D3 in the app on the results page and I'm only weakly-to-moderately experienced with JS. The agent was a godsend in those instances.&lt;/li&gt;
+&lt;/ul&gt;
+</content></entry><entry><title>More thoughts on "data maturity" at organizations</title><link href="https://ronikobrosly.github.io/blog/2024/12/19/data_maturity_nov_2024/" rel="alternate"/><updated>2024-12-19T00:00:00Z</updated><author><name>Roni Kobrosly</name></author><id>urn:uuid:c259a347-9dab-324f-9ec9-d53011b4c126</id><content type="html">&lt;p&gt;I recently posted on &lt;a href="https://www.linkedin.com/posts/ronikobrosly_datascience-data-activity-7271572660034142208-7MtO?utm_source=share&amp;amp;utm_medium=member_desktop"&gt;LinkedIn&lt;/a&gt; about the state of "data maturity" at organizations. I'll spare you the trouble of linking to it:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;
+It’s almost 2025, but I can’t help but feel like the VAST majority of orgs lack “data maturity”. By this I mean:
+
+* A centralized data store with good metadata, dictionaries, and processes for ensuring the data remains clean
+* Leadership that understands how to effectively deploy BI, analytics, ML and quantify the real impact it has on KPIs
+* Teams of DS/MLEs that have the tools they need and the discipline to produce rigorously tested and well-written software
+
+Instead I still hear a lot of stories of places that: 
+
+* have a data science team to sort of check a box or say that they do data science. They rarely have the tools, clean data, or cultural buy-in to make an impact. The leadership can’t wrap their heads around why “ML magic” isn’t happening, and they ultimately don’t see the value.
+* have shadow data and tech orgs all doing their own things
+* use decision-driven data analysis instead of data-driven decisioning (“hey, can you re-run that analysis to show something that looks better for us?”)
+* store data in 10s of different data bases/lakes/whatever and ETL to get things done is a nightmare
+* partly rely on third-party data vendors that don’t play well with internal data tooling, causing frustration. 
+
+Sure, not all organizations care to be data-driven (maybe a 60-person e-commerce org just wants to know their sale numbers and inventory count, that’s fine!). But I’m staggered how by few small, medium, and enterprise-scale orgs that want that data-driven edge are sooo data immature. I don’t have the data, but I might guess 1 out of 30 orgs do this reasonably well. I imagine the numbers are worse in the more regulated industries (I.e. healthcare and finance) that have a heavy data governance requirement on top of everything. 
+
+Am I crazy?! I sort of figured these were 2015 issues that would be resolved in a decade. 
+
+Increasingly I’m coming around to Benn Stancil ‘s views on data (he seems to see the ability of data to drive value with some skepticism). I’m paraphrasing but in 2022 he said something to the effect of “businesses are all gambling, with data we have a very slightly better odds, but it’s still a gamble”. As in, data teams don’t make or break a businesses success. I’m a bit skeptical GenAI will change this dynamic. I can already see lots of companies marketing that the employ GenAI but is it done effectively or just to show they’re in the GenAI game. 
+
+I think the proliferation of blog posts entitled “why I left data science” is telling (https://towardsdatascience.com/why-youll-quit-your-data-science-job-6079d407bbeb, https://ryxcommar.com/2022/11/27/goodbye-data-science/, https://nirantk.com/writing/why-i-quit-data-science/)
+
+And to be clear I’m not having a career crisis 🙂 I’m just reflecting on my decade in the industry and all of the expectations those of us that started in the 2010s had. I still believe there is value in data to inform what decisions to make, I’m just a bit discouraged by the lack of orgs to figure this out still.
+
+At the risk of sounding age-ist, I do have some hope that as a generation of data-savvy folks enter the C-suite, things may get better. I feel like the current generation has a mentality of “hey we’ve got a lot of data right, just sprinkle some ML on top of what we have and we’re off to the races, right?”
+
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;After re-reading it, I didn't mean for it to come off as that spicy. It was meant to be 30% venting and 70% honest reflection on the state of the industry. It got a suprising amount of private replies and actually led to a number of Zoom call conversations.&lt;/p&gt;
+&lt;p&gt;Here are some of the replies:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;&lt;em&gt;"Definitely not crazy! I'm constantly surprised and confused how many teams are struggling with the same challenges that we heard team leaders talking about in 2014, 2015 ... ten years ago?! I think data science / ML / AI are all in a weird place where the amount of hype around them creates so many new tools, job titles, opportunities -- and a lot of that is great! -- but many (most?) companies haven't really found structures / tools / processes that work for them."&lt;/em&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;em&gt;"FWIW - I sorta relate, in that I largely transitioned away from DE and working as a backend engineer. Generally found it more rewarding to maintain core systems that make the product function. The challenges of ensuring large high traffic complex core services are reliable are generally more subtle and more varied than a typical “productionized sql” data pipeline. For data engineering, I sorta found the career paths were either transition to MLE, go into management, start a company, or maybe work in tooling. None of which particularly interest me at the moment, but to each their own!"&lt;/em&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;em&gt;"You’re not crazy but any team beyond maintenance is a gamble"&lt;/em&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;em&gt;"Maybe I've been lucky to work at organizations where I was part of a team building, maintaining, scaling and growing a core data engineering infrastructure that serves the need of a multitude of user groups, such as data scientists, business intelligence analysts, application developers, machine learning engineers. The work has been a mix of building dbt models, integrating apis / ingesting new data sources, building software pipelines to train and predict ML models and a multitude of other things. I don't think the journey has been unique but maybe different from others on this thread."&lt;/em&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Here's my attempt at bulleting out the key takeaways I learned from the phone call conversations:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Progress has been made, but it has occurred spottily.&lt;/li&gt;
+&lt;li&gt;Like a decade ago, there is still a percent of companies that excel at the data game, and a percent that doesn't. It's a minority that does. Maybe in 2015 it was (5%), perhaps now it's (10%).&lt;/li&gt;
+&lt;li&gt;There is a spectrum of companies where data and the data work is closer to the core of the business (to name some big names: LinkedIn, Spotify, Facebook, and Glassdoor have that data work at its very core), and there are other companies where the core of the business is something more traditional: Selling clothes, selling bank accounts, selling software for writing documents (yes, even companies selling software) and the data team/component is essentially an appendage / arm of the company. Data maturity is less import to companies of the latter category.&lt;/li&gt;
+&lt;li&gt;Classic ML has become less sexy than generative AI, but data engineering is as unsexy as it was a decade ago. And without a solid data engineering foundation, you &lt;b&gt;cannot&lt;/b&gt; do BI, analytics, ML, or AI well. &lt;/li&gt;
+&lt;li&gt;Some interesting question to ask during a data job interview process if you want to suss out their degree of data maturity:&lt;ul&gt;
+&lt;li&gt;If your data team vanished tomorrow, how much would that impact the business (OBVIOUSLY you need to frame this in a gentle way). Maybe like "How is your world different without the presense of your team?"&lt;/li&gt;
+&lt;li&gt;How much data do you have and can you quantify it? Look for specificity in the answer (we've got petabytes of data in X, terabytes of Y, etc.)&lt;/li&gt;
+&lt;li&gt;What does your data team look like? How many other types of role X are there?&lt;/li&gt;
+&lt;li&gt;What impact have your existing models or dashboards had, specifically?&lt;/li&gt;
+&lt;li&gt;It is important to me that I make an impact in my work? If I were to step in tomorrow, would I be able to deploy something within a month that would be used?&lt;/li&gt;
+&lt;li&gt;Is your data team considered first-class citizens in the company?&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+</content></entry><entry><title>Thoughts on "Do data-driven companies actually win"</title><link href="https://ronikobrosly.github.io/blog/2024/12/5/how_useful_is_data/" rel="alternate"/><updated>2024-12-05T00:00:00Z</updated><author><name>Roni Kobrosly</name></author><id>urn:uuid:6ce7af5d-352f-34d5-b15a-8db0d679c84b</id><content type="html">&lt;p&gt;The great &lt;a href="https://www.linkedin.com/in/benn-stancil/"&gt;Benn Stancil&lt;/a&gt;, founder of &lt;a href="https://www.linkedin.com/company/mode-analytics/"&gt;Mode&lt;/a&gt; has a &lt;a href="https://benn.substack.com"&gt;fantastic substack&lt;/a&gt;. He writes on topics like:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;"Is Excel immortal?"&lt;/li&gt;
+&lt;li&gt;"How a startup feels"&lt;/li&gt;
+&lt;li&gt;"How to create a winning pitch deck"&lt;/li&gt;
+&lt;li&gt;and the hilariously titled "Ed Harris would like to connect with you on LinkedIn"&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;img src="benn.webp" alt=""&gt;&lt;/p&gt;
+&lt;p&gt;He wrote a blog post way back in the summer of 2022 entitled &lt;a href="https://benn.substack.com/p/do-data-driven-companies-win"&gt;"Do data-driven companies actually win?"&lt;/a&gt;, and I just can't shake it from my mind. We take for granted that collecting data, mining it for insights, and building ML gives organizations a competitive edge. Is that true though? Have we rigoriously assessed that? It's sort of funny, but in this blog post I'm basically questioning the raison d'être of my profession 😂.&lt;/p&gt;
+&lt;p&gt;In this post he sets up a thought experiment where he compares a few theoretical, E-commerce startups selling clothes. They're run by very different types of experts. The companies are as follows:&lt;/p&gt;
+&lt;p&gt;1) "Long View": Their executives have been working in fashion for decades. They know the market, they say; our experience, and the intuition we’ve developed on top of it, will make us successful.&lt;/p&gt;
+&lt;p&gt;2) "Bolder": is led by executives who’ve been in the industry for less time. But true to their name, they believe in moving fast and making things, in not overthinking strategy, and that decisiveness is often more important than being right. As the last slide of their pitch deck says, “We fail when we look back.”&lt;/p&gt;
+&lt;p&gt;3) "Prodigious Daughter": is run by a thirty year-old wonder kid. In just a few years, she’s already put her stamp on fast fashion. Though her company is average in other ways, it has her generational talent.&lt;/p&gt;
+&lt;p&gt;4) "Square Corner": emphasizes operational excellence. Their leadership team writes emails with military precision, never never misses 7:30 a.m. standup, and always sends out board meeting slides, a pre-read, and a Loom explainer video exactly five days early.&lt;/p&gt;
+&lt;p&gt;5) The final startup is "MTRX": believes data will be their competitive edge. They've taken all of the MBA courses at Wharton data-driven business practices. Their prior experience is on par with that of Bolder’s founders, and has taught them that fashion is fickle and hard to predict. The most iconic brands, they say, will be built by companies that find and respond to new opportunities in the market before anyone else does. Fashion may be art, but running a business is a science.&lt;/p&gt;
+&lt;p&gt;Benn actually polled his readers for which company would be most succesful, but frustratingly I can't find the results!&lt;/p&gt;
+&lt;p&gt;To get to the point though, Benn makes the following statement:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;
+Honestly, if it’s my money, MTRX ain’t getting it. My stack rank is 1) Prodigious Daughter, 2) Bolder, 3) Square Corner, 4) MTRX, and 5) Long View. For early to mid-stage companies, give me talent and intuition over everything; if not that, I’ll trade away analytical rigor for speed and decisiveness. 
+
+Still, I don’t think that the statement that “data-driven companies win” is entirely wrong—it’s just data operates through a different mechanism than we might assume. 
+
+Most often, we say that data helps us make better decisions. We can devise better strategies, and be smarter operators. The implication here is that when we’re faced with a choice of what to do, with data, we’re wise; without it, we’re foolish. 
+
+I think this dramatically overstates data’s usefulness. Business problems are extraordinarily complicated, and analytical recommendations are mostly educated guesses. Great data teams likely make somewhat better guesses, but at the end of the day, we’re all still gambling.
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;I mostly agree with him.&lt;/p&gt;
+&lt;p&gt;How would we even go about rigoriously testing whether a data-driven company has an edge?&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Run an experiment? It's obviously not feasible to create a batch of new startups and randomize them to embrace the best data practices vs no&lt;/li&gt;
+&lt;li&gt;A natural experiment? As in, look at companies that previously weren't data-driven, identify a point at which they suddenly embraced the best data-driven practices? Perhaps a new CEO joins, with visions of realtime dashboards and Generative AI gleaming in their eyes. How would you know any change in revenue or other KPIs could be attributed to the data practices specifically? Maybe it's a change in management style or team organization or some third factor?&lt;/li&gt;
+&lt;li&gt;Run an analysis of observational data on the 1000s of startups over the years? How do we go about quantifying how data-driven they are? Furthermore, there is likely severe confounding factors at play that make the analysis suspect: maybe executives that embrace the latest market tactics and understand the market dynamics tend to succeed more and also tend to embrace data. Maybe data has nothing to do with it at all.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;I'm not aware of any rigorous attempt to measure the impact of an org being data-driven, but I'm very curious if something like this exists. Please let me know if you learn of anything on that topic!&lt;/p&gt;
+&lt;p&gt;In my experience and from hearing the stories of others, it feels like 1 out of 20 organizations have the data maturity to:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;properly create clean data, and have solid practices in place to ensuring data stays clean &lt;/li&gt;
+&lt;li&gt;organize/structure it in a way that data teams can use meaningfully use it&lt;/li&gt;
+&lt;li&gt;hire data engineers to lay a solid foundation before hiring sexy data scientists / ML engineers&lt;/li&gt;
+&lt;li&gt;understand that data-driven decision making is the way to go, instead of decision-driven data making ("Hey, this analysis didn't show the result I wanted to see. Can you try slicing and dicing the data again so it shows a better result?")&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;I could go on and on. This all sounds really negative, but I'm hopeful that as a data-savvy generation of tech folks make their way into the C-suite things will get better 🙏🏼.&lt;/p&gt;
+</content></entry><entry><title>The illusiveness of automated causal discovery</title><link href="https://ronikobrosly.github.io/blog/2024/11/25/causal_discovery_illusion/" rel="alternate"/><updated>2024-11-25T00:00:00Z</updated><author><name>Roni Kobrosly</name></author><id>urn:uuid:ceac8540-188f-353c-ab66-0e0d342d1abc</id><content type="html">&lt;p&gt;If you're given only a tabular dataset and a target variable of interest, but with no domain knowledge around what the data represents or how it was generated, you can do a few interesting things. Let's say you work at a rideshare startup and have a Postgres table like the following, and your target variable of interest is ridership for your carshare service. All you know is that rides in any time interval is important to the business and that it's good for the business to maximize this (duh):&lt;/p&gt;
+&lt;p&gt;&lt;img src="sample_data.webp" alt=""&gt;&lt;/p&gt;
+&lt;p&gt;Given this data and no domain knowledge, you can:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Explore the data, identify missing values, understand distributions, collect basic summary statistics (the mean, the median, skew, etc.) &lt;/li&gt;
+&lt;li&gt;Look at statistical correlations between all variables and your target variable&lt;/li&gt;
+&lt;li&gt;Find and visualize groupings (AKA clusters) of observations around any combination of variables; or along these lines, identify anomalous observations. &lt;/li&gt;
+&lt;li&gt;Build a ML model (from super simple to something complex) to predict values of the target variable given the other variables. &lt;/li&gt;
+&lt;li&gt;Generate new, sythetic look-alike data that mimics all of the univariate and joint distributions in the original data.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Sounds impressive but... the translation of these things into real world value is near null. Even if you could predict ridership in this data really well, are the predictors leading or lagging indicators (if they're the latter, your model is pointless)? Are any of the predictors actionable/intervenable by the business? What was the data generating process and is this data sound?&lt;/p&gt;
+&lt;hr&gt;
+&lt;h1 id="enter-domain-knowledge-and-causality"&gt;Enter: domain knowledge and causality&lt;/h1&gt;&lt;hr&gt;
+&lt;p&gt;Having domain knowledge around each of the above factors would be greatly helpful, and maybe you could glean some insights from that data or potentially create usable ML from it. That's good and well 🙌🏼.&lt;/p&gt;
+&lt;p&gt;Causal graphs can go above and beyond this and are immensely powerful. They allow us to formally structural our knowledge of some topic by mapping out causes and effects. See this simple causal graph that &lt;a href="https://eng.lyft.com/causal-forecasting-at-lyft-part-1-14cca6ff3d6d"&gt;Lyft uses in thinking through the causality of predicting ridership&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;&lt;img src="causal_graph.webp" alt=""&gt;&lt;/p&gt;
+&lt;p&gt;In other words, causal graphs allow us to formally encode our domain knowledge on some topic. Having a true causal understanding of the mechanisms behind some business process along with real data enables us to:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Make predictive models that are way more actionable &lt;/li&gt;
+&lt;li&gt;Allow us to make stronger inference around the effects of individual factors &lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;The challenge is, &lt;b&gt;mapping causality in data requires time, becoming a SME in your area of interest, and it's not really scalable&lt;/b&gt;. It's not the kind of thing you can throw into an algorithm to figure out... but it hasn't stopped people from trying. There is an entire field of research dedicating to trying to determine causality (to draw up a causal graph like the above one from Lyft), from data. It's sometimes named &lt;a href="https://link.springer.com/article/10.1007/s10208-022-09581-9"&gt;causal structure learning or causal discovery&lt;/a&gt;. There is so much interest in it that there are even &lt;a href="https://hub.crunchdao.com/competitions/causality-discovery"&gt;competitions&lt;/a&gt; to see if the world's hackers and researchers can finally crack it (correctly determine a causal graph given only unmarked data). Winning first place in the following causal discovery data competition was $40k USD.&lt;/p&gt;
+&lt;p&gt;&lt;img src="competition.webp" alt=""&gt;&lt;/p&gt;
+&lt;p&gt;I get the drive behind it. It promises a scalable way to learn causality from data and algorithmically do what an SME could do. The only problem is, I believe &lt;b&gt;this fundamentally not possible&lt;/b&gt;. By the way, the top performing approach used in the above dataset only achieved around 77% accuracy in correctly specifying the true DAG, which is &lt;b&gt;abysmal&lt;/b&gt;. It would be incredibly challenging to do useful modeling with a graph that is 77% accurate in terms of edge placement.&lt;/p&gt;
+&lt;hr&gt;
+&lt;h1 id="el-dorado-doesn-t-exist"&gt;El Dorado doesn't exist&lt;/h1&gt;&lt;hr&gt;
+&lt;p&gt;&lt;a href="https://arxiv.org/pdf/2305.10032"&gt;Many attempts have been made to automate causal discovery given only a dataset&lt;/a&gt;. They range from simple statistical comparisons of variable triplets (if I hold variable Z constant, does it change the relationship the relationship of X and Y?), to starting with a random graph and permuting it until it looks like something that is scored as more likely to have generated the observed data, to, more recently, reframing the task as a &lt;a href="https://arxiv.org/abs/1803.01422"&gt;continuous optimization problem&lt;/a&gt;. All in all, there are probably 20-ish unique methods proposed for automating this task and 100s open source implementations of these methods available online. Through personal experience, given the same initial dataset, if I picked 100 of the top-starred implementations and tried to generate a causal graph, I would get 100 vastly-different results. I could try to formally demonstrate this here but I've gone through this exercise so many times in the past it doesn't feel worth the time.&lt;/p&gt;
+&lt;p&gt;There are some secondary approaches people have proposed to make up for this instability and get closer to the real result:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Use these approaches to generate an initial graph and then apply domain knowledge to prune or add causes and effects as needed&lt;/li&gt;
+&lt;li&gt;Use an approach where you identify areas of the most uncertainty in the causal graph, and then try some interventions, explore additional data in those areas.&lt;/li&gt;
+&lt;li&gt;Use an approach put forward by Yoshua Bengio's group and &lt;a href="https://arxiv.org/pdf/2402.01207"&gt;employ LLMs to take in a corpus of text and augment or build your causal graph&lt;/a&gt;. &lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;The problem is in doing these approaches you lose scalability benefit you were originally going for or in the case of the third approach the results still aren't accurate enough to be useful.&lt;/p&gt;
+&lt;p&gt;For now, I just don't think this sort of automated causal discovery is possible. Ultimately, if the AI community is able to achieve true general artificial intelligence, it may be possible for this AI to really learn causality via exploration and research... but it's anyone's guess whether we'll get there.&lt;/p&gt;
+</content></entry><entry><title>Updating the website with Lektor and Terminal CSS</title><link href="https://ronikobrosly.github.io/blog/2024/11/18/new_website_2024/" rel="alternate"/><updated>2024-11-18T00:00:00Z</updated><author><name>Roni Kobrosly</name></author><id>urn:uuid:fbb1e34e-cf81-3d18-b382-fc67232d7fbe</id><content type="html">&lt;p&gt;My old personal site was starting to look a little dated and I missed working with HTML, CSS, and JS, so I made it a weekend project to do an overhaul.&lt;/p&gt;
+&lt;p&gt;I wanted to avoid the cost of getting a cloud server and stick to something simple, lightweight, and free like &lt;a href="https://pages.github.com/"&gt;GitHub Pages&lt;/a&gt;. In other words, I wanted a static website. Problem is, I wasn't familiar with the current landscape of open source static site creators, but a buddy of mine was able to make some nice recommendations:&lt;/p&gt;
+&lt;p&gt;&lt;img src="static_site_creators.webp" alt=""&gt;&lt;/p&gt;
+&lt;p&gt;I worked my way through the list, checking out each's documentation. At the end, I settled on Lektor as it seemed &lt;b&gt;really&lt;/b&gt; light-weight and I had a good existing example to use as a reference. The landscape is quite impressive and I was blown away by all of the various plug-ins these generators have (plug-ins to enable Google Analytics, tagging, commenting systems, etc...).&lt;/p&gt;
+&lt;p&gt;As a terminal lover, I settled on Terminal CSS, a "modern and minimal CSS framework for terminal lovers", which was made with ❤️ by &lt;a href="https://jduri.com/"&gt;Jonas Duri&lt;/a&gt;. I'm happy with the results!&lt;/p&gt;
+</content></entry><entry><title>The machine learning project failure funnel</title><link href="https://ronikobrosly.github.io/blog/2023/10/6/ml_failure_funnel/" rel="alternate"/><updated>2023-10-06T00:00:00Z</updated><author><name>Roni Kobrosly</name></author><id>urn:uuid:d3ecd120-f2d6-3dc1-a7f9-b1ad7c47ecb8</id><content type="html">&lt;p&gt;Anyone who has worked in tech in the data science / MLE / applied ML field knows that &lt;a href="https://venturebeat.com/ai/why-do-87-of-data-science-projects-never-make-it-into-production/"&gt;most ML projects will fail&lt;/a&gt;. Newcomers to the field have super high expectations about what they can do, and, sadly, this leads to a lot of them leaving the space altogether (See &lt;a href="https://ryxcommar.com/2022/11/27/goodbye-data-science/"&gt;this goodbye letter&lt;/a&gt;, or &lt;a href="https://www.reddit.com/r/datascience/comments/q75ce8/who_has_left_data_science_and_analytics_what_are/"&gt;this collection of stories&lt;/a&gt; or &lt;a href="https://towardsdatascience.com/why-youll-quit-your-data-science-job-6079d407bbeb"&gt;this list of unrealistic data science job expectations&lt;/a&gt;). ML project failure is an inevitable part of life in this field and it's happened to me many times at different stages of my career. In the last couple of years, I've begun to think about the building of ML projects as a sort of funnel process; ideas are cheap and many, but only a small amount of these ideas reach the end of the funnel and become productionized, solid, used, effective, and maintained ML applications. I sketched it out as this:&lt;/p&gt;
+&lt;p&gt;Below, I'm going to try to put this idea into writing. There are several "gates" on the way through the funnel and it's sort of similar to the &lt;a href="https://neptune.ai/blog/life-cycle-of-a-machine-learning-project"&gt;lifecycle of a ML project&lt;/a&gt;, but there isn't perfect overlap. I'll try to describe each gate in the order I've generally seen teams hit them and I'll try to sprinkle in examples I've personally encountered. In my estimation, less than 10% of "project intentions" make it all of the way through the funnel.&lt;/p&gt;
+&lt;hr&gt;
+&lt;h1 id="1-good-quality-and-quantity-of-data"&gt;1: Good quality and quantity of data?&lt;/h1&gt;&lt;hr&gt;
+&lt;p&gt;Ah ha! &lt;b&gt; You thought the order of items 1 and 2 would be switched, right?&lt;/b&gt;. After all, all tech projects ought to begin with a good idea. However, with companies that aren't in the upper echelon of data maturity, it's generally the case that they have some collected data (e.g. user clicks, web logs, etc), data teams subsequently try to draw up a list of potential project ideas that could employ that data, they prioritize those ideas based on their potential impact, likelihood of success, level of effort, etc etc, and then they try to build the thing. Sure, sometimes companies begin with a big transformative idea and decide to build or buy software to bring together data in service of that idea, but I find this happens less frequently. All organizations these days know that data is power, the degree to which they can harness it varies .&lt;/p&gt;
+&lt;p&gt;Accordingly, the first step is some open-ended data exploration, where teams will discover whether they have a decent quantity and quality of data to work with. So really, at this stage we don't have a specific project idea as much as we have a whiff of an idea / a sense that there could be something exciting to come out of looking at the data.&lt;/p&gt;
+&lt;p&gt;Almost all non-data practitioners don't have a good sense for what we'll need to get a project off the ground. So many times in my career I've had an excited product person from a team reach out to talk about how we could build something off of their data, only to learn that the excitement is about:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;an excel file with 100 reddit comments about the company product&lt;/li&gt;
+&lt;li&gt;gigabytes of application logs but they're missing critical fields&lt;/li&gt;
+&lt;li&gt;customer click stream data where 99% of click paths are two steps and then a sign-off&lt;/li&gt;
+&lt;li&gt;rich customer reviews text, but it was generated in such a way that you can't join it to customer IDs and so you have no idea who said what&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;This sort of thing happens &lt;b&gt;all the time&lt;/b&gt;.&lt;/p&gt;
+&lt;hr&gt;
+&lt;h1 id="2-important-well-articulated-business-problem"&gt;2: Important, well-articulated business problem?&lt;/h1&gt;&lt;hr&gt;
+&lt;p&gt;So it turns out you found more than just a 100 reddit comments in an excel file. Maybe your company has a large central data warehouse with Snowflake, tons of rich web logs in Splunk, or even a beefy excel file with a carefully curated history of the 1000s of technical incidents that has happened at the company. Good. Are you now able to pair that data with a clear business problem statement that all relevant stakeholders can get behind?&lt;/p&gt;
+&lt;p&gt;Note: unless you're at a small startup, it's unlikely that you'll be socializing this project idea with senior leadership at this point. So this step is really just "does my immeadiate leadership and the stakeholder team's leadership agree this is an important business project and that this isn't just a science project?"&lt;/p&gt;
+&lt;hr&gt;
+&lt;h1 id="3-model-well-built"&gt;3: Model well built?&lt;/h1&gt;&lt;hr&gt;
+&lt;p&gt;Now that you have some workable data and an idea, can you execute on this and build a half-way decent prototype?&lt;/p&gt;
+&lt;p&gt;This is the section that is probably the least worth drilling into since the overwhelming majority of internet content on machine learning already focuses on this. How do you pick the right model for a problem? And how do you build that model? And what libraries do you use? And how do you evaluate how well it works? And does it perform its task in an efficient way? And how did you package that model? Did you include unit and integration tests? And is there good documentation on the model? Etc, etc.&lt;/p&gt;
+&lt;p&gt;There are one of three outcomes here:&lt;/p&gt;
+&lt;p&gt;The prototype completely and miserably fails, and there is no way to reframe the problem to make it work.
+I find that this rarely happens. Either the DS/MLE developing the prototype or the team around them has developed the data intuition to know what has a chance of working. I suppose this can happen if you're working in a small, data immature organization where your first data hires are on the junior side, or if your data leader doesn't have ML expertise and is leading a junior team.&lt;/p&gt;
+&lt;p&gt;The prototype is a mixed success.
+By far, this seems to be the most likely outcome here. By "mixed success" I mean your binary classification model has metrics in the 70-80%, or your regression model has a great R-squared for some subpopulations but poor for others, or your computer vision / OCR model does a decent job extracting text from non-blurry images, but only 70% of the images in the wild are non-blurry. You'll need to do the plate balancing act of working to fine tune the model, reframe it or refocus it to make it more successful, work with the stakeholders to understand whether the model can be made serviceable, see if you can buy more time for improving the model, etc. Sometimes you get there, and sometimes you don't 🤷.&lt;/p&gt;
+&lt;p&gt;You knock the prototype out of the park!
+Damn, this feels fantastic when it happens. You developed a hybrid ML and regex-based algorithm that can successfully translate complex, unstructured factory codes into meaningful categories, somehow saving hundreds of hours of manual toil. Huzzah!&lt;/p&gt;
+&lt;hr&gt;
+&lt;h1 id="4-organizational-politics-economics-and-culture-permit-this"&gt;4: Organizational politics, economics, and culture permit this?&lt;/h1&gt;&lt;hr&gt;
+&lt;p&gt;Throughout my tech career, I've found this step to the bloodiest of all the steps in the funnel. This part of the funnel contains a vast cemetary of ideas. Losing at this point in the funnel can be particularly painful for data teams, because at this point you or your team have likely invested a decent amount of time getting to know the data, developed a prototype (that may even be quite promising!), and are starting to really believe in the potential of this project (particular the primary MLE behind it). Here are some examples of non-technical, potentially fatal blows to projects:&lt;/p&gt;
+&lt;p&gt;Politics:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;There is another (or multiple other) tech teams wanting to develop something similar, and either one of them got there first or one of their leaders outranks or has more influence than yours&lt;/li&gt;
+&lt;li&gt;Despite your efforts to demonstrate the value proposition of your work, someone in a senior leadership role just doesn't think it's the highest priority project&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Economics:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;For your project to be viable in a production setting (meeting SLAs in inference), you'll need some beefy, GPU-enabled instances that cost too much $$$.&lt;/li&gt;
+&lt;li&gt;The macro-economic environment doesn't look good. If you're a medium-sized startup and you have to choose between the team of software engineers that build the actual thing you sell, and the data team that hasn't yet hit a big homerun, the C-suite might cull the latter. Any projects in the works go into the trashbin and now you've got bigger problems than losing a project.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Culture:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Your organization is fundamentally conservative from a tech innovation perspective and is deeply skeptical of ML work. Site reliability engineering orgs can be this way: they are ideologically conservative and trust/prefer expert engineers to manually go in and make decisions. &lt;/li&gt;
+&lt;li&gt;Sadly, you belong to an organization where the ML team is there to check a box (for the board, investors, etc) and is a peripheral team and not core to the business.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;hr&gt;
+&lt;h1 id="5-deployed-well"&gt;5: Deployed well?&lt;/h1&gt;&lt;hr&gt;
+&lt;p&gt;Like with step #3, there is a terrific amount of internet content available on how to deployment ML applications, so it's not worth drilling too deep into this step.&lt;/p&gt;
+&lt;p&gt;The point here is: even if your organization has passed the prior stage of the funnel and has the funding to create a beefy Kubernetes cluster on bare metal, AWS's EKS, GCP's GKE, etc etc, it can be challenging for some organizations to put together an effective DevOps team. This is particularly true for older organizations trying to transition into a more data mature state. Kubernetes is not new, but it is &lt;a href="https://learnk8s.io/troubleshooting-deployments"&gt;notoriously challenging to troubleshoot and optimize&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;I've seen firsthand how a solid model completely crumbled because the small, central DevOps team was inexperienced and having turnover issues. Kubernetes pods were regularly failing and our external customers were getting 5xx errors from our REST API. It would be months before knowledgeable contractors would be brought in to diagnose the issue. So painful. &lt;a href="https://hackernoon.com/the-ai-hierarchy-of-needs-18f111fcc007"&gt;Solid DevOps and engineering is the foundation upon which ML can be built&lt;/a&gt;.&lt;/p&gt;
+&lt;hr&gt;
+&lt;h1 id="6-is-it-used"&gt;6: Is it used?&lt;/h1&gt;&lt;hr&gt;
+&lt;p&gt;If you've been involved in ML prototyping and application development for more than a year, I'm guessing you've felt pain from this question at least once in your tech career. There are few things more frustrating than having a great idea, getting buy-in, working with a small team for a month to build a tool, deploying it, celebrating, and then ... ouch, the dashboard tracking the usage of your API or web app is almost a flatline. There are so many reasons why this can happen:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;The organization's or stakeholder team's priorities have changed mid-project&lt;/li&gt;
+&lt;li&gt;There is a misalignment between what you delivered and what the stakeholder team originally needed&lt;/li&gt;
+&lt;li&gt;This is a subset of the above: maybe you are actually aligned to your stakeholder point of contact, but there is misalignment within the stakeholder team. For instance, their leader really thinks their team could use social media post classifier to help triage and respond to posts about the company, but all of the frontline folks that actually do respond to the posts feel like they don't actually need it.&lt;/li&gt;
+&lt;li&gt;It's difficult for the stakeholder team to consume your tool. Perhaps you built the tool in isolation for a month, the stakeholder team wasn't able to give you feedback, and it doesn't work that well from their perspective&lt;/li&gt;
+&lt;/ul&gt;
+&lt;hr&gt;
+&lt;h1 id="7-is-it-effective"&gt;7: Is it effective?&lt;/h1&gt;&lt;hr&gt;
+&lt;p&gt;I come from an academic background in epidemiology. Epidemiologists make a distinction between "efficacy" and "effectiveness", where the former is defined as the performance of an intervention under ideal and controlled circumstances and the latter as its performance under real-world conditions.&lt;/p&gt;
+&lt;p&gt;While it's critical to think through what your data distributions in the wild look like versus in your model training sandbox, that's actually not what I'm getting at here. Instead: after your application has been written and deployed and is being used, is it altering real world behavior and moving KPIs in the way you'd like? Human behavior is weird, and if your ML application is meant to be directly consumed by people, sometimes the outcome can shock you. Here's an example:&lt;/p&gt;
+&lt;p&gt;I have a former colleague that worked for medium-sized startup that focused algorithmicly-selected clothing boxes for subscribed customers. As you can imagine, there was a giant warehouse somewhere with hundreds of aisles and rows that housed all of the individual clothing items. My friend created an algorithm to suggest efficient routes around the aisles that the warehouse workers could use to put together a customer's box (their job entailed packing a box by collecting 5 items). All of the above funnel steps were met and his excellent model was put into production. The application was implemented and in the first week all of the workers were getting familiar with the system. A month later he ran some queries to see whether the mean minutes needed to construct a box (his metric of interest) had decreased. The metric didn't decrease, it didn't hold constant, IT ACTUALLY INCREASED. He ran all sorts of checks, but he could find nothing wrong from an engineering or mathematical perspective. He excluded the first week of the new system from his calculations, so it wasn't that it took the workers time to adjust to the new system. He verified that most workers were indeed taking the new, optimal routes. The team concluded that the increase had to be related to the behavior or psychology of the workers. Maybe workers felt less urgency knowing that their route had been chosen for them, or maybe workers felt like this reduced their autonomy and so it hurt their morale and speed. A well-intentioned, perfectly delivered ML application flopped in the face of counter-intuitive human nature.&lt;/p&gt;
+&lt;hr&gt;
+&lt;h1 id="7-maintained-well"&gt;7: Maintained well?&lt;/h1&gt;&lt;hr&gt;
+&lt;p&gt;Wahoo! Your team's project is running in production and meaningfully improving metrics. You hopefully get the kudos you deserve and the organization's trust in your team increases.&lt;/p&gt;
+&lt;p&gt;Remember though, we're playing the long game here. There are many technical and non-technical reasons why a productionized and effective ML application could still fail down the road.&lt;/p&gt;
+&lt;p&gt;Technical:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;While you were able to deploy an effective model, it was built quickly and there was a significant amount of technical debt incurred. Or perhaps your team continuously prioritizes new feature development over addressing technical debt. As the project grows, it increasingly becomes hard to update it or fix bugs. The project becomes unwieldy and programming tasks that should take a few hours end up taking days. The project dies with a whimper, not a bang.&lt;/li&gt;
+&lt;li&gt;You fail to proactively and regularly assess the post-deployment performance of your model. The distributions of data that feed into your model change (data drift) or a bug is introduced / an issue occurs with your ETL pipeline and your input data is compromised. Customers complain and lose trust in your work.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Non-technical:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;There is a significant amount of turnover on your team and there is a lack of quality documentation and tribal knowledge to sustain the project.&lt;/li&gt;
+&lt;li&gt;Your organization's financial situation changes down the road, and at that point maintaining the project isn't worth it for the tech org.&lt;/li&gt;
+&lt;/ul&gt;
+</content></entry><entry><title>Generative AI and the end of software engineering?</title><link href="https://ronikobrosly.github.io/blog/2022/12/16/ai_end_of_software_engineering/" rel="alternate"/><updated>2022-12-16T00:00:00Z</updated><author><name>Roni Kobrosly</name></author><id>urn:uuid:8c0725f7-d119-3a09-8481-2f0882ddd003</id><content type="html">&lt;p&gt;ChatGPT has clearly broken through into pop-culture when my non-technical family members have all independently learned about it. Okay, that's pretty qualitative, but we do know that less than a week after the November 30th release of ChatGPT, over a million new users registered on openAI to test it out themselves . I can't blame them; interacting with the model is a &lt;b&gt;magical experience&lt;/b&gt;!&lt;/p&gt;
+&lt;p&gt;One of the hottest ChatGPT takes I've heard from mostly non-technical, tech-enthusiast folks (I'm not throwing shade at the non-technical. To be fair, I've heard this take from one or two solid technical folks I know too) is that ChatGPT, or one of it's near-term successors, will effectively put software engineers into the dustpan of history, that machine learning engineers will go the way of the dodo, that data engineers will be the cowboy to ChatGPT's barbed wire fencing. AI/ML-code generation is certainly not new (See OpenAI's Codex, GitHub Copilot, Tabnine, Polycoder, etc. etc.), but for whatever reason this particular model has really popularized this idea among the public. Maybe because this particular AI model is more easily accesible to the average internet user than prior ones?&lt;/p&gt;
+&lt;p&gt;I can give some arguments why ChatGPT and it's successors in the short and medium-term are not going to take down software engineering as a field. &lt;b&gt;I do think in the long-term most programming will be automated, but I wouldn't let this discourage someone young who interested in pursuing a career involving software engineering&lt;/b&gt;. Below is my attempt to collect my thoughts around this and present my case to a lay audience. Some of these arguments I'm about to list aren't novel, as I've been digesting a ton of articles and blog posts about ChatGPT, but I'll do my best to cite sources. For simplicity sake, I'm going to refer to all technical, coding professionals (software engineers, site reliability engineers, ML engineers, etc.) as "engineers."&lt;/p&gt;
+&lt;p&gt;I truly don't have a dog in this fight; I'm no longer a technical IC that spends most of the work day coding, so I don't feel particularly threatened by the thought of programming being automated away. Also, please don't take this as me bashing GPTChat or the ML/AI field (I'm a data practitioner by trade!). It's just when I make predictions about the future, I error on the conservative side rather than the optimistic one.&lt;/p&gt;
+&lt;hr&gt;
+&lt;h1 id="1-writing-code-is-only-part-of-what-experienced-engineers-do"&gt;1: Writing code is only part of what experienced engineers do&lt;/h1&gt;&lt;hr&gt;
+&lt;p&gt;Maybe I'm saying this because I've tended to work hand-in-hand with mostly senior engineers in my career, but I've rarely encountered the so-called "&lt;a href="https://medium.com/creativesoftware/how-not-to-be-a-code-monkey-605b6190ed01"&gt;coding monkey&lt;/a&gt;". This is a developer that passively takes on programming tasks, which usually come with full specs, to build something in isolation in a corner of the room.&lt;/p&gt;
+&lt;p&gt;Instead, an experience engineer:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Uses business sense, empathy, and interpersonal skills to influence product direction and to set the expectations of business leadership.&lt;/li&gt;
+&lt;li&gt;Carefully chooses a combination of approachs and tools to balance getting that MVP out the door while allowing for scalability down the road.&lt;/li&gt;
+&lt;li&gt;Collaborates closely with other engineers to make sure they're building towards a common goal.&lt;/li&gt;
+&lt;li&gt;Uses logic, experience, and intuition to debug complex technical problems.&lt;/li&gt;
+&lt;li&gt;Employs creativity when up against technical or business constraints (see this &lt;a href="https://en.wikipedia.org/wiki/Adaptive_tile_refresh"&gt;beautiful example&lt;/a&gt;).&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;In short, there are tons of "soft skills" that successful engineers rely on. These are the types of skills many say can't easily be replaced by AI.&lt;/p&gt;
+&lt;hr&gt;
+&lt;h1 id="2-for-the-near-and-medium-term-these-models-can-be-incorrect-and-aren-t-easily-able-to-communicate-their-uncertainty"&gt;2: For the near and medium term, these models can be incorrect and aren't easily able to communicate their uncertainty&lt;/h1&gt;&lt;hr&gt;
+&lt;p&gt;I'll admit, this feels like one of the weaker arguments. This technology will certainly improve over time. That said, for every 100 social media posts showing ChatGPT nailing it with an incredible response, there are a handful of examples where it completely flops. There is no shortage of examples on the internet of ChatGPT giving objectively incorrect responses to basic questions.&lt;/p&gt;
+&lt;p&gt;This wouldn't be so bad if these large language models could color their responses with some measure of uncertainty. While there are very recent research papers exploring this topic, it's still a relatively new area of research.&lt;/p&gt;
+&lt;p&gt;This all isn't a huge deal if you're casually playing with ChatGPT in the browser, but this can quickly become catastrophic if you farm out to ChatGPT all of the development work on that new application you're cooking up. Common applications can be staggering in size (measured in terms of number of lines of code)6, and even if one were to build out that application in a careful piecemeal fashion with ChatGPT, you're going to need some professional to take stock of what you have and systematically hunt out the silent bugs and issues that arise. Though we'll probably get there someday, we're just truly no where close to automatic code generation at scale.&lt;/p&gt;
+&lt;hr&gt;
+&lt;h1 id="3-language-and-code-generating-models-will-increasingly-be-using-model-outputs-as-part-of-their-training-data"&gt;3: Language and code generating models will increasingly be using model outputs as part of their training data&lt;/h1&gt;&lt;hr&gt;
+&lt;p&gt;GPT-3, the model that ChatGPT was made from, &lt;a href="https://www.sciencefocus.com/future-technology/gpt-3/"&gt;was trained on almost 600GB of data obtained from books, articles, Wikipedia, other pieces of writing on the internet&lt;/a&gt;. Part of that includes public code repositories, which explains how ChatGPT it is able to both write code and explain code you provide to it.&lt;/p&gt;
+&lt;p&gt;Quick aside: there is zero guarantee that this public code is well-written or free of bugs. All the same, these language models happily lap them up at training time. This isn't the main point of this argument, but still, important to point out.&lt;/p&gt;
+&lt;p&gt;&lt;a href="https://www.stackoverflow.com/"&gt;Stack Overflow&lt;/a&gt; is almost certainly the most commonly googled website when it comes to getting coding syntax questions answered. Over the last few years, there have been an increasing number users that have supplied AI-generated answers to public questions (&lt;a href="https://meta.stackoverflow.com/questions/421831/temporary-policy-chatgpt-is-banned"&gt;so much so, that Stack Overflow recently banned the use of ChatGPT answers from their forum&lt;/a&gt;). This isn't happening just in programming world. There is a growing amount of AI-generated text, art, etc on the internet, across all forums and in all languages.&lt;/p&gt;
+&lt;p&gt;And therein lies the problem. Any amateur scientist can tell you what happens when you train a model on it's own outputs, produce new output, train on that output, and rinse and repeat. &lt;b&gt;You eventually get incoherent garbage&lt;/b&gt;. Think about the explosion of AI-generated art on the web. Imagine them getting less precise, more glitchy, and more abstract over time, as the models get noisier and noisier...&lt;/p&gt;
+&lt;p&gt;All of GPT-3 and ChatGPT's successors in the short and medium term will continue training off of publicly-available text on the internet, and it's not hard for me to imagine how the growth of AI output on the internet could outpace incremental improvements in model architecture and the scaling of the models themselves. &lt;a href="https://www.forbes.com/sites/bernardmarr/2018/05/21/how-much-data-do-we-create-every-day-the-mind-blowing-stats-everyone-should-read/?sh=218d253e60ba"&gt;Don't forget&lt;/a&gt;:, "Over the last two years alone 90 percent of the data in the world was generated".&lt;/p&gt;
+&lt;hr&gt;
+&lt;h1 id="4-this-isn-t-extinction-this-is-another-tool-in-the-toolbox"&gt;4: This isn't extinction, this is another tool in the toolbox&lt;/h1&gt;&lt;hr&gt;
+&lt;p&gt;This is less of an argument and more of a concluding prediction. The computer spreadsheet didn't make accountants obselete, instead, all accountants these days are expert users of Excel.&lt;/p&gt;
+&lt;p&gt;I do think that some years from now engineers will increasingly work more in the planning/architecting headspace and most of their day will involve code review of machine-generated code. I can see a future where kicking off a new application project could involve describing the users and goals, a diagram of the app's architecture, and sets of well-thought out prompts for the code-generating AI to build out modules. In this scenario, the best engineers will be experts at finely-specifying their prompts for code-generating AI services (think about how some folks are great at googling while others aren't).&lt;/p&gt;
+&lt;hr&gt;
+&lt;p&gt;I'll stop writing now. I don't want to be rude and not give ChatGPT a chance to defend itself. So I asked it:&lt;/p&gt;
+&lt;p&gt;Me:
+&lt;code&gt;Can you please give me some arguments for why generative AI models like ChatGPT are not going to make software engineers obsolete? List your arguments, and make them understandable to a non-technical audience.&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;ChatGPT:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;There are several reasons why generative AI models like ChatGPT are not going to make software engineers obsolete:
+
+1) Generative AI models are still limited in their capabilities: While these models can generate human-like text, they do not have the same level of understanding and reasoning abilities as humans. They cannot design, develop, or debug software in the same way that a human software engineer can.
+
+2) Generative AI models require human oversight and guidance: These models are not capable of working independently and require human input and guidance to function effectively. They also require human supervision to ensure that the output they generate is accurate and appropriate.
+
+3) Generative AI models are only one tool in the software engineer's toolkit: Software engineers use a variety of tools and techniques to develop software, and generative AI models are just one of these tools. They are not a replacement for the skills, knowledge, and expertise of a human software engineer.
+
+4) Generative AI models do not have the same level of creativity and innovation as humans: While these models can generate text and code that may seem creative or innovative, they do not have the same level of creativity and innovation as a human software engineer. They are not capable of coming up with new ideas or solving complex problems in the same way that humans can.
+
+Overall, while generative AI models like ChatGPT can be useful tools in the software development process, they are not a replacement for human software engineers and the skills and expertise that they bring to the table.
+&lt;/code&gt;&lt;/pre&gt;
+</content></entry><entry><title>Misc October updates 🍂 🎃 and PyData NYC</title><link href="https://ronikobrosly.github.io/blog/2022/10/3/oct_2022_updates/" rel="alternate"/><updated>2022-10-03T00:00:00Z</updated><author><name>Roni Kobrosly</name></author><id>urn:uuid:172a6712-1ba7-3390-abe6-679b09c5bc66</id><content type="html">&lt;p&gt;Fall is here and you really ought to buy some of those pumpkin pancake/waffle mixes at the store. I'm there for it. I've been thinking a lot recently about data-driven culture and who is responsible for building it and maintaining it in organizations. &lt;a href="https://roundup.getdbt.com/p/analytics-isnt-for-analysts"&gt;Some people say this responsibility lies primarily with the executive leadership&lt;/a&gt;. Others say it's primarily on data teams to show their value, stop being a passive service team, and evangelize the value of data to product teams. I do think that as a generation of data practitioners move up the leadership ladder and enter the C-suite, strong data culture will be easier to build. I'm not sure where I come out on this, but I'd like to formalize my thoughts around this and write it up sometime soon. Also, the November PyData NYC conference is around the corner. I'll be running another causal inference tutorial session and excited to learn about the projects attendees will be putting this stuff towards. Beyond that, I'm really looking forward to sessions like "&lt;a href="https://nyc2022.pydata.org/cfp/talk/7EH8RM/"&gt;20 ideas to build social capital in the Data Science ecosystem&lt;/a&gt;" and "&lt;a href="https://nyc2022.pydata.org/cfp/talk/BCRAZQ/"&gt;Causal machine learning for a smart paywall at The New York Times&lt;/a&gt;". I remember when I was a poor grad student that the paywall was less smart and we could just freely visit NYTimes.com while in private browser mode. Fall in NYC is gorgeous and I'm looking forward to seeing the colorful foliage in Central and Prospect Park, eating at Joe's Pizza in the Village, checking out old haunts, and then getting a parting slice at Joe's Pizza.&lt;/p&gt;
+</content></entry><entry><title>Teaching causal inference at SciPy 2022</title><link href="https://ronikobrosly.github.io/blog/2022/8/3/causal_inference_scipy_2022/" rel="alternate"/><updated>2022-08-03T00:00:00Z</updated><author><name>Roni Kobrosly</name></author><id>urn:uuid:724ee9c8-18a8-3916-a86e-865c68c3b584</id><content type="html">&lt;p&gt;I recently had the privilege of giving a talk and tutorial session at SciPy 2022 in Austin. Besides rediscovering how hot central Texas is in the summer (&lt;b&gt;the sun is trying to kill you&lt;/b&gt;), I walked away with some useful insights from the audience such as: (1) people are hungry to learn more about this topic. (2) Most people came in thinking that causal inference was a way to improve ML predictions, rather than more closely related to A/B testing and decision science. (3) One of the more controversial points was around how people should not interpret variable importance measures (e.g. SHAP values) as causal.
+&lt;a href="https://www.youtube.com/watch?v=tkJ3xo28-T0&amp;amp;t=48s"&gt;You can watch the first half of the talk here&lt;/a&gt; and if you'd like to look through the materials / try your hand at the execises, &lt;a href="https://github.com/ronikobrosly/causal_inference_intro"&gt;you can find them here on GitHub&lt;/a&gt;.&lt;/p&gt;
+</content></entry><entry><title>Keeping up with blogs made less annoying</title><link href="https://ronikobrosly.github.io/blog/2022/5/8/keeping_up_with_blogs/" rel="alternate"/><updated>2022-05-08T00:00:00Z</updated><author><name>Roni Kobrosly</name></author><id>urn:uuid:0442ee4a-0064-31e9-87e0-cfef541e697a</id><content type="html">&lt;p&gt;I love Medium and Substack. They're so great that only a non-English word can truly describe them: &lt;b&gt;fantastico&lt;/b&gt;. However, not all tech leadership, data, and engineering blogs will let you subscribe and receive email updates on new posts. And some of the best personal blogs out there only drop a new post a few times a year. You're then forced to periodically and manually check these websites for updates. I've got a list of 50+ of these non-subscribable blogs that I care about, and checking in on them sucks. So, I built a tool named Blog Checker (clever name, I know), which automates the process of checking personal websites and blogs for updates. I have a script on OS X desktop that I double click to run this, and within 10 seconds I can find out if any of my favorite sites has changed since the last time I read it. Hopefully you can get some use out of it too!&lt;/p&gt;
+&lt;p&gt;&lt;a href="https://github.com/ronikobrosly/blog_checker"&gt;As usual, the code is up on GitHub...&lt;/a&gt;&lt;/p&gt;
+</content></entry><entry><title>Aggregating great articles on data leadership</title><link href="https://ronikobrosly.github.io/blog/2022/4/18/aggregating_data_leadership_articles/" rel="alternate"/><updated>2022-04-18T00:00:00Z</updated><author><name>Roni Kobrosly</name></author><id>urn:uuid:389e2bb3-c697-3a2c-b3de-109408953f2a</id><content type="html">&lt;p&gt;Like many data folk I'm subscribed to a bunch of weekly data analytics, data science, analytics engineering, and etc. email services. They're roundups of great blog posts, papers, and articles all over the web. Pretty regularly I come across gems in these roundups that give fantastic insights about data leadership, but usually a week later the email is buried under 6 feet of crap in my inbox. No more! Here is my attempt at collecting the crème de la crème posts on data leadership and management, covering topics like hiring, culture, strategy, org structure, and more. I recently came across the phenomenon of the &lt;a href="https://github.com/sindresorhus/awesome"&gt;awesome-list&lt;/a&gt;, and thought it was a format that would work. Please contribute!
+&lt;a href="https://github.com/ronikobrosly/awesome-data-leadership"&gt;Check out the list here...&lt;/a&gt;&lt;/p&gt;
+</content></entry><entry><title>Obesity, causality, and agent-based modeling</title><link href="https://ronikobrosly.github.io/blog/2022/2/24/obesity_agent_based_modeling/" rel="alternate"/><updated>2022-02-24T00:00:00Z</updated><author><name>Roni Kobrosly</name></author><id>urn:uuid:3070f0b7-b1ce-3ea1-af00-a03c22a3fef5</id><content type="html">&lt;p&gt;Obesity, as a public health problem, has an enormous amount of "causes". Some of them are systems-level causes like &lt;a href="https://www.reuters.com/article/us-health-diet-farm-subsidies/foods-from-subsidized-commodities-tied-to-obesity-idUSKCN0ZL2ER"&gt;the types of farmed foods we tend to subsidize on a national level&lt;/a&gt;, our policies around public transit, the walkability of neighorhoods, the presence of &lt;a href="https://en.wikipedia.org/wiki/Food_desert"&gt;food deserts&lt;/a&gt;, our social networks and their attitudes toward obesity, the media, etc etc. Of course, there are individual-level causes too like one's diet, one's finances, one's education level, etc. &lt;a href="https://academic.oup.com/epirev/article/26/1/124/384238?login=false"&gt;This is basically the idea behind the Social Determinants of Health&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;If you wanted to explore some potential solutions to this public health problem, you might consider running an experiment to test out policies that could help out. Problem is, experiments can take time to build out and are costly. You could use historic data and perform causal inference to try to infer which actions might be helpful in a causal way. But the causes of obesity are complex, and maybe it'll be difficult to model all of that!&lt;/p&gt;
+&lt;p&gt;I recently came across a great academic paper (&lt;a href="https://academic.oup.com/aje/article/178/2/287/122804?login=true"&gt;from an grad school mentor&lt;/a&gt;) that takes a stab at addressing this problem through simulations, and I think the lessons from this are very much applicable to some business problems we face in industry. The authors propose a third way to understand the causal effects of possible solutions, they create a simulation! Specifically an &lt;a href="https://en.wikipedia.org/wiki/Agent-based_model"&gt;agent-based model&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;&lt;img src="galea_diagram.webp" alt=""&gt;
+&lt;a href="https://pubmed.ncbi.nlm.nih.gov/25480821/"&gt;You can read the original paper here&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;They were curious if targetting people's social networks would have an impact on obesity at the population level. They created thousands of simulated people, assign them demographic features (race, income, education, etc.), follow them forward in time from their teens into old age, allow them to connect to each other through social groups (It's been shown that having obesity in one's social network is associated with an increased risk of obesity. The increased risk isn't trivial! &lt;a href="https://pubmed.ncbi.nlm.nih.gov/17652652/"&gt;"A person's chances of becoming obese increased by 57% if he or she had a friend who became obese in a given interval."&lt;/a&gt;), belong to distinct neighorhood types, etc. They used government data to determine how they should assign features to the "agents" and used public, published studies to program in how the individual- and systems- level attributes would influence their probability of obesity each year. With this, they basically have a complex model of the world, and they can freely play with parameters to see if it impacts how much obesity develops in the population. Cool right?&lt;/p&gt;
+&lt;p&gt;I recently learned about a python tool named &lt;a href="https://mesa.readthedocs.io/en/latest/"&gt;Mesa&lt;/a&gt; and wanted to try this out for myself. So I read through their paper, gathered government data (&lt;a href="https://www.cdc.gov/nchs/nhanes/index.htm"&gt;NHANES data&lt;/a&gt;) and program this virtual world with the same rules as in the paper. Like they did in the paper, I created an environment with moderate racial, educational, and income segration. Each node represents a agent/person, each line represents a social connection:&lt;/p&gt;
+&lt;p&gt;&lt;img src="logo.webp" alt=""&gt;&lt;/p&gt;
+&lt;p&gt;As you do in agent-based modeling, I let the simulation run, allowing the agents to age from 18 to 80 years. The probability of an agent being obese year varied based on factors mentioned before like their age, race, education, income, social connections, neighborhood characteristics, and more.&lt;/p&gt;
+&lt;p&gt;&lt;img src="obesity_single_agent_prob.webp" alt=""&gt;&lt;/p&gt;
+&lt;p&gt;I found the following prevalences of obesity throughout the lifecourse (which aren't too far off from real national-level estimates).&lt;/p&gt;
+&lt;p&gt;&lt;img src="obesity_prev_by_race.webp" alt=""&gt;&lt;/p&gt;
+&lt;p&gt;Remember, the point of doing this is tweak the parameters of this simulation and identify whether certain actions/policies could help reduce the population obesity problem. In the original paper, they were curious whether preventing the most focusing obesity prevention efforts on the most connected individuals in large networks of people could be a meaningful course of action to reduce obesity in populations. Like in the paper, I "forced" the 10% most connected individuals to never become obese, I "forced" a random 10% of the population to never become obese, and I also took no action. Running the simulation 100 times in each scenario, I got the following results (with 95% confidence intervals):&lt;/p&gt;
+&lt;p&gt;&lt;img src="obesity_final_result.webp" alt=""&gt;&lt;/p&gt;
+&lt;p&gt;So, it does not seem like targetting the most connected individuals does anything meaningful beyond targetting random individuals. That is useful, actionable info!&lt;/p&gt;
+&lt;p&gt;How could possibly be an industry, analytics use-case for something this? I think there could be a place for this when modeling consumer product preferences, or exploring network-wide effects of interventions in social media.&lt;/p&gt;
+&lt;p&gt;If you're interested, the simulation code is up &lt;a href="https://github.com/ronikobrosly/obesity_ABM"&gt;on GitHub&lt;/a&gt;.&lt;/p&gt;
+</content></entry><entry><title>How do baby names come and go?</title><link href="https://ronikobrosly.github.io/blog/2019/7/19/baby_names/" rel="alternate"/><updated>2019-07-19T00:00:00Z</updated><author><name>Roni Kobrosly</name></author><id>urn:uuid:a42d197f-8c74-3369-80d7-3e55a6de62fc</id><content type="html">&lt;p&gt;&lt;b&gt;Quick caveat: In this analysis I used government data that assumed binary biological sex. That's why I only use terms like "boy" and "girl".&lt;/b&gt;&lt;/p&gt;
+&lt;p&gt;&lt;b&gt;Another note: If you're reading this and curious about a name, shoot me an email and I'll make a plot for you 🐣&lt;/b&gt;&lt;/p&gt;
+&lt;p&gt;I’m in my mid-thirties and as many of my friends are starting to make their own families, I'm having to learn lots of baby names. I’ve heard lots of people say that “older” names are becoming popular and in hearing these baby names I feel like there is something to this.&lt;/p&gt;
+&lt;p&gt;One of my good friends has a sweet, one-year old baby named Vera. It’s a beautiful, old-fashioned name for sure, but is it becoming popular again?&lt;/p&gt;
+&lt;p&gt;&lt;img src="Vera.webp" alt=""&gt;&lt;/p&gt;
+&lt;p&gt;After plotting some data from the Social Security Administration, it does look to be making a comeback. Funny aside: It turns out the name Ariel spiked in popularity after Disney's 1989 release of &lt;a href="https://en.wikipedia.org/wiki/The_Little_Mermaid_(1989_film"&gt;The Little Mermaid&lt;/a&gt;).&lt;/p&gt;
+&lt;p&gt;&lt;img src="Ariel.webp" alt=""&gt;&lt;/p&gt;
+&lt;p&gt;This made me wonder more generally about names and their trends. Are there complicated dynamics at play with the popularity of names, or does their popularity come and go in waves, or do most names peak in popularity for a bit and fade into history? I recently attended SciPy 2019 and attended a great session on time series clustering. This question seemed like a great problem to try out some of the methods I had learned there, such as the concept of &lt;a href="https://pdfs.semanticscholar.org/05a2/0cde15e172fc82f32774dd0cf4fe5827cad2.pdf"&gt;dynamic time warping (DTW)&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;I ran an analysis and found the following:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;While there are some definite, clear clusters in name popularity over time, there is tons of heterogeneity here. Bottom line: you won't be able to neatly categorize the rise and fall of names with a few simple rules.&lt;/li&gt;
+&lt;li&gt;Although I pulled out more clusters for boys, it seems like there is more complexity in girl naming trends. See the final girl name cluster, for example, which the algorithm couldn't disentangle.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Here are the name trend clusters I was able to pull out. Click on the links below to see the full plots for each (each line in a plot represents a unique name's popularity over time). I also shared a few exemplars for each (names with the closest DTW distance to the center of their cluster). Note: to simplify things I excluded names if there were less than 10,000 instances of them in the last 100 years. See this notebook for more details on the analysis.&lt;/p&gt;
+&lt;hr&gt;
+&lt;h2 id="boy-name-clusters"&gt;Boy name clusters:&lt;/h2&gt;&lt;p&gt;&lt;b&gt;Cluster #1&lt;/b&gt;: Not popular before but exploding in popularity over the last decade (e.g. Owen, Cruz, Carter)&lt;/p&gt;
+&lt;p&gt;&lt;img src="boys_0.webp" alt=""&gt;&lt;/p&gt;
+&lt;p&gt;&lt;b&gt;Cluster #2&lt;/b&gt;: A sharp peak in the mid-20th century but that’s it (e.g. Dale, Roger, Tony)&lt;/p&gt;
+&lt;p&gt;&lt;img src="boys_1.webp" alt=""&gt;&lt;/p&gt;
+&lt;p&gt;&lt;b&gt;Cluster #3&lt;/b&gt;: Peaked in the late 90s / early aughts but dying out (e.g. Jacob, Trenton, Brennan)&lt;/p&gt;
+&lt;p&gt;&lt;img src="boys_2.webp" alt=""&gt;&lt;/p&gt;
+&lt;p&gt;&lt;b&gt;Cluster #4&lt;/b&gt;: Very old names that have died out (e.g. Archie, Walter, Louis)&lt;/p&gt;
+&lt;p&gt;&lt;img src="boys_3.webp" alt=""&gt;&lt;/p&gt;
+&lt;p&gt;&lt;b&gt;Cluster #5&lt;/b&gt;: Popular towards the end of the 20th century but dying out (e.g. Timothy, Brian, Eric)&lt;/p&gt;
+&lt;p&gt;&lt;img src="boys_4.webp" alt=""&gt;&lt;/p&gt;
+&lt;hr&gt;
+&lt;h2 id="girl-name-clusters"&gt;Girl name clusters:&lt;/h2&gt;&lt;p&gt;&lt;b&gt;Cluster #1&lt;/b&gt;: Super popular the last two decades but mostly dropping off (e.g. Arianna, Sophia, Makenzie)&lt;/p&gt;
+&lt;p&gt;&lt;img src="girls_0.webp" alt=""&gt;&lt;/p&gt;
+&lt;p&gt;&lt;b&gt;Cluster #2&lt;/b&gt;: Old-timey names that have died out (e.g. Flora, Maxine, Lillie)&lt;/p&gt;
+&lt;p&gt;&lt;img src="girls_1.webp" alt=""&gt;&lt;/p&gt;
+&lt;p&gt;&lt;b&gt;Cluster #3&lt;/b&gt;: Wildcards / difficult to cluster! (e.g. Melissa, Amy, Erin)&lt;/p&gt;
+&lt;p&gt;&lt;img src="girls_2.webp" alt=""&gt;&lt;/p&gt;
+</content></entry><entry><title>Automating away the "elbow method"</title><link href="https://ronikobrosly.github.io/blog/2018/9/24/automating_away_elbow_method/" rel="alternate"/><updated>2018-09-24T00:00:00Z</updated><author><name>Roni Kobrosly</name></author><id>urn:uuid:127acd4b-fe11-3825-b913-fce9724b1bbb</id><content type="html">&lt;p&gt;For some types of unsupervised learning analyses, machine learning practitioners have typically needed to examine a plot and make a somewhat subjective judgement call to tune the model (the so-called "elbow method"). I can think of two examples of this but others certainly exist:&lt;/p&gt;
+&lt;p&gt;1) In any sort of clustering analysis: finding the appropriate number of clusters by plotting the within-cluster sum of squares against the number of clusters.&lt;/p&gt;
+&lt;p&gt;2) When reducing feature space via PCA or a Factor Analysis: using a Scree plot to determine the number of components/factors to extract.&lt;/p&gt;
+&lt;p&gt;For one-off analyses, using your eyeballs and some subjectivity might be fine, but what if you are using these methods as part of a pipeline in an automated process? I came across a very simple and elegant solution to this, which is described by Mu Zhu &lt;a href="http://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.90.3768&amp;amp;rep=rep1&amp;amp;type=pdf"&gt;in this paper&lt;/a&gt;. Lots of heuristics exist to solve this but I've found this method to be particularly robust.&lt;/p&gt;
+&lt;p&gt;Zhu's idea is to generate the data you would typically generate to identify the elbow/kink. Then, he treats this data as a composite of two different samples, separated by the cutoff he is trying to identify. He loops through all possible cutoffs, in an attempt to find the cutoff that maximizes the profile log-likelihood (using sample means and a pooled SD in the calculations). Here's my stab at implementing Zhu's method:&lt;/p&gt;
+&lt;div style="background: #ffffff; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"&gt;&lt;pre style="margin: 0; line-height: 125%"&gt;
+
+&lt;span style="color: #DD4422"&gt;&amp;quot;&amp;quot;&amp;quot;&lt;/span&gt;
+&lt;span style="color: #DD4422"&gt;Automagical elbow finder&lt;/span&gt;
+&lt;span style="color: #DD4422"&gt;&amp;quot;&amp;quot;&amp;quot;&lt;/span&gt;
+
+&lt;span style="color: #008800; font-weight: bold"&gt;import&lt;/span&gt; &lt;span style="color: #0e84b5; font-weight: bold"&gt;numpy&lt;/span&gt; &lt;span style="color: #008800; font-weight: bold"&gt;as&lt;/span&gt; &lt;span style="color: #0e84b5; font-weight: bold"&gt;np&lt;/span&gt;
+&lt;span style="color: #008800; font-weight: bold"&gt;from&lt;/span&gt; &lt;span style="color: #0e84b5; font-weight: bold"&gt;scipy.stats&lt;/span&gt; &lt;span style="color: #008800; font-weight: bold"&gt;import&lt;/span&gt; norm
+
+
+&lt;span style="color: #008800; font-weight: bold"&gt;def&lt;/span&gt; &lt;span style="color: #0066BB; font-weight: bold"&gt;find_optimal_k&lt;/span&gt;(data):
+    &lt;span style="color: #DD4422"&gt;&amp;quot;&amp;quot;&amp;quot;&lt;/span&gt;
+&lt;span style="color: #DD4422"&gt;    Provide a numpy array, returns index of that array to serve as elbow cut-off point&lt;/span&gt;
+&lt;span style="color: #DD4422"&gt;    &amp;quot;&amp;quot;&amp;quot;&lt;/span&gt;
+
+    &lt;span style="color: #008800; font-weight: bold"&gt;def&lt;/span&gt; &lt;span style="color: #0066BB; font-weight: bold"&gt;__calc_logl&lt;/span&gt;(series, mu, sd):
+        &lt;span style="color: #DD4422"&gt;&amp;quot;&amp;quot;&amp;quot;&lt;/span&gt;
+&lt;span style="color: #DD4422"&gt;        Helper function to calculate log-likelihood&lt;/span&gt;
+&lt;span style="color: #DD4422"&gt;        &amp;quot;&amp;quot;&amp;quot;&lt;/span&gt;
+        logl &lt;span style="color: #333333"&gt;=&lt;/span&gt; &lt;span style="color: #0000DD; font-weight: bold"&gt;0&lt;/span&gt;
+        &lt;span style="color: #008800; font-weight: bold"&gt;for&lt;/span&gt; i &lt;span style="color: #000000; font-weight: bold"&gt;in&lt;/span&gt; series:
+            logl &lt;span style="color: #333333"&gt;+=&lt;/span&gt; np&lt;span style="color: #333333"&gt;.&lt;/span&gt;log(norm&lt;span style="color: #333333"&gt;.&lt;/span&gt;pdf(i, mu, sd))
+
+        &lt;span style="color: #008800; font-weight: bold"&gt;return&lt;/span&gt; logl
+
+    profile_logl &lt;span style="color: #333333"&gt;=&lt;/span&gt; []
+
+    &lt;span style="color: #888888"&gt;# Loop through all possible pairs of series within the array&lt;/span&gt;
+    &lt;span style="color: #008800; font-weight: bold"&gt;for&lt;/span&gt; q &lt;span style="color: #000000; font-weight: bold"&gt;in&lt;/span&gt; &lt;span style="color: #007020"&gt;range&lt;/span&gt;(&lt;span style="color: #0000DD; font-weight: bold"&gt;1&lt;/span&gt;, &lt;span style="color: #007020"&gt;len&lt;/span&gt;(data)):
+        n &lt;span style="color: #333333"&gt;=&lt;/span&gt; &lt;span style="color: #007020"&gt;len&lt;/span&gt;(data)
+        s1 &lt;span style="color: #333333"&gt;=&lt;/span&gt; data[&lt;span style="color: #0000DD; font-weight: bold"&gt;0&lt;/span&gt;:q]
+        s2 &lt;span style="color: #333333"&gt;=&lt;/span&gt; data[q:]
+
+        &lt;span style="color: #888888"&gt;# Calculate means and standard deviations of both series&lt;/span&gt;
+        mu1 &lt;span style="color: #333333"&gt;=&lt;/span&gt; s1&lt;span style="color: #333333"&gt;.&lt;/span&gt;mean()
+        mu2 &lt;span style="color: #333333"&gt;=&lt;/span&gt; s2&lt;span style="color: #333333"&gt;.&lt;/span&gt;mean()
+        sd1 &lt;span style="color: #333333"&gt;=&lt;/span&gt; s1&lt;span style="color: #333333"&gt;.&lt;/span&gt;std()
+        sd2 &lt;span style="color: #333333"&gt;=&lt;/span&gt; s2&lt;span style="color: #333333"&gt;.&lt;/span&gt;std()
+        sd_pooled &lt;span style="color: #333333"&gt;=&lt;/span&gt; np&lt;span style="color: #333333"&gt;.&lt;/span&gt;sqrt((((q&lt;span style="color: #333333"&gt;-&lt;/span&gt;&lt;span style="color: #0000DD; font-weight: bold"&gt;1&lt;/span&gt;)&lt;span style="color: #333333"&gt;*&lt;/span&gt;(sd1&lt;span style="color: #333333"&gt;**&lt;/span&gt;&lt;span style="color: #0000DD; font-weight: bold"&gt;2&lt;/span&gt;)&lt;span style="color: #333333"&gt;+&lt;/span&gt;(n&lt;span style="color: #333333"&gt;-&lt;/span&gt;q&lt;span style="color: #333333"&gt;-&lt;/span&gt;&lt;span style="color: #0000DD; font-weight: bold"&gt;1&lt;/span&gt;)&lt;span style="color: #333333"&gt;*&lt;/span&gt;(sd2&lt;span style="color: #333333"&gt;**&lt;/span&gt;&lt;span style="color: #0000DD; font-weight: bold"&gt;2&lt;/span&gt;)) &lt;span style="color: #333333"&gt;/&lt;/span&gt; (n&lt;span style="color: #333333"&gt;-&lt;/span&gt;&lt;span style="color: #0000DD; font-weight: bold"&gt;2&lt;/span&gt;)))
+
+        &lt;span style="color: #888888"&gt;# Calculate profile log-likelihood&lt;/span&gt;
+        profile_logl&lt;span style="color: #333333"&gt;.&lt;/span&gt;append(calc_logl(s1, mu1, sd_pooled) &lt;span style="color: #333333"&gt;+&lt;/span&gt; calc_logl(s2, mu2, sd_pooled))
+
+    &lt;span style="color: #008800; font-weight: bold"&gt;return&lt;/span&gt; np&lt;span style="color: #333333"&gt;.&lt;/span&gt;argmax(profile_logl) &lt;span style="color: #333333"&gt;+&lt;/span&gt; &lt;span style="color: #0000DD; font-weight: bold"&gt;1&lt;/span&gt;
+&lt;/pre&gt;
+&lt;/div&gt;</content></entry><entry><title>Visualizing socioeconomic disadvantage across US counties</title><link href="https://ronikobrosly.github.io/blog/2014/12/17/socioeconomic_disad_counties/" rel="alternate"/><updated>2014-12-17T00:00:00Z</updated><author><name>Roni Kobrosly</name></author><id>urn:uuid:64ac8235-b304-35c6-b6b7-e4e435224bd8</id><content type="html">&lt;p&gt;When we create maps to view the spatial variation of socioeconomic status, we are typically only viewing the variation of one factor at a time (e.g. just income or just unemployment rate). I thought it would be useful to create and visualize a summary score of overall "socioeconomic disadvantage" from many socioeconomic indicators. Using publicly available county-level US Census data from 2005 I created the following map. I conducted a factor analysis to combine the following indicators into one disadvantage measurement:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Net 5-year population change&lt;/li&gt;
+&lt;li&gt;% residents with less than a bachelor's degree&lt;/li&gt;
+&lt;li&gt;% households with below $75,000 annual income&lt;/li&gt;
+&lt;li&gt;% residents living at or below the poverty line&lt;/li&gt;
+&lt;li&gt;Infant deaths per 1,000 live births&lt;/li&gt;
+&lt;li&gt;Medicare recipients per 100,000 residents&lt;/li&gt;
+&lt;li&gt;% residents that own their dwelling&lt;/li&gt;
+&lt;li&gt;Unemployment rate&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;The three most disadvantaged counties were:&lt;/p&gt;
+&lt;p&gt;1) McDowell County, West Virginia
+2) Owsley County, Kentucky
+3) Buffalo County, South Dakota&lt;/p&gt;
+&lt;p&gt;The three least disadvantaged counties were:&lt;/p&gt;
+&lt;p&gt;1) Douglas County, Colorado
+2) Fairfax County, Virginia
+3) Loudoun County, Virigina&lt;/p&gt;
+&lt;p&gt;You can find the code &lt;a href="https://github.com/ronikobrosly/US_county_disadvantage"&gt;here&lt;/a&gt;.&lt;/p&gt;
+</content></entry></feed>

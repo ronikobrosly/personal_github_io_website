@@ -1,0 +1,326 @@
+<!doctype html>
+
+<head>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-TT9MYHW754"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'G-TT9MYHW754');
+    </script>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta charset="utf-8">
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="../../../../../static/favicon.png">
+
+    <!-- Open Graph Image -->
+    <meta property="og:image" content="../../../../../static/og-image.png">
+    <meta property="og:image:type" content="image/png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+
+    
+<!-- Syntax Highlighter. Use pygments. -->
+<link rel="stylesheet" href="../../../../../static/pygments.css">
+
+
+    
+
+<meta property="og:title" content="More thoughts on &#34;data maturity&#34; at organizations">
+<meta property='og:url' content='http://ronikobrosly.github.io/blog//blog/data_maturity_nov_2024' />
+
+
+
+
+    <link rel="stylesheet" href="../../../../../static/css/terminal.css" />
+    <link rel="stylesheet" href="../../../../../static/css/custom.css" />
+    <!-- Mathjax -->
+    <!-- <script type="text/javascript" async
+        src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-MML-AM_CHTML">
+        </script>
+
+    <script type="text/x-mathjax-config">
+        MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}});
+    </script> -->
+
+    <script>
+        MathJax = {
+            tex: {
+                inlineMath: [['$', '$'], ['\\(', '\\)']]
+            },
+            svg: {
+                fontCache: 'global'
+            }
+        };
+    </script>
+    <script type="text/javascript" id="MathJax-script" async
+        src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js">
+        </script>
+
+</head>
+
+<title>More thoughts on &#34;data maturity&#34; at organizations - Roni Kobrosly's Personal Site</title>
+
+<body>
+    <div class="container">
+        <h1 class="logo">
+            <a style="color:black" href="/">
+                Roni Kobrosly Ph.D.'s Website
+            </a>
+        </h1>
+        <!-- Top Navigation (local links) -->
+
+        <div class="terminal-nav">
+            <nav class="terminal-menu" id="local-links">
+                <ul>
+                    
+                    <li class="menu-item">
+                        <!-- Set blinking cursor correctly on navigation -->
+                        
+                        
+                        
+                        
+                        
+                        <a href="/" rel="">Home</a>
+                        
+                    </li>
+                    
+                    <li class="menu-item">
+                        <!-- Set blinking cursor correctly on navigation -->
+                        
+                        
+                        
+                        
+                        
+                        <a class="terminal-prompt" href="/blog" rel="">Blog</a>
+                        
+                    </li>
+                    
+                    <li class="menu-item">
+                        <!-- Set blinking cursor correctly on navigation -->
+                        
+                        
+                        
+                        
+                        
+                        <a href="/open-source" rel="">Open Source</a>
+                        
+                    </li>
+                    
+                    <li class="menu-item">
+                        <!-- Set blinking cursor correctly on navigation -->
+                        
+                        
+                        
+                        
+                        
+                        <a href="/talks" rel="">Talks</a>
+                        
+                    </li>
+                    
+                    <li class="menu-item">
+                        <!-- Set blinking cursor correctly on navigation -->
+                        
+                        
+                        
+                        
+                        
+                        <a href="/art" rel="">Art</a>
+                        
+                    </li>
+                    
+                    <li class="menu-item">
+                        <!-- Set blinking cursor correctly on navigation -->
+                        
+                        
+                        
+                        
+                        
+                        <a href="/bio" rel="">Bio</a>
+                        
+                    </li>
+                    
+                </ul>
+            </nav>
+        </div>
+
+        <!-- Body -->
+        <div id="body">
+            
+
+
+<div class="terminal-card">
+  <header id="post_title" name="post_title">
+<!-- Set title style -->
+<span name="title" id="title">More thoughts on &#34;data maturity&#34; at organizations</span>
+</header>
+  <div class="card-body">
+    
+<!-- Append author -->
+<small>
+  <p>
+    written by
+    
+    Roni Kobrosly
+    
+    on
+    <span id="pub_date" name="pub_date">2024-12-19</span>
+
+    
+    | tags:
+    <!-- Append tags after author -->
+    <span class="boxed" id="tags" name="tags">
+      <a class="tags" href="../../../../tag/personal updates/">
+        personal updates
+      </a>
+    </span>
+    <span class="boxed" id="tags" name="tags">
+      <a class="tags" href="../../../../tag/career/">
+        career
+      </a>
+    </span>
+    <span class="boxed" id="tags" name="tags">
+      <a class="tags" href="../../../../tag/data/">
+        data
+      </a>
+    </span>
+    <span class="boxed" id="tags" name="tags">
+      <a class="tags" href="../../../../tag/engineering/">
+        engineering
+      </a>
+    </span>
+    
+  </p>
+  
+</small>
+
+    <hr>
+    
+    
+    <img src="logo.webp" style="padding: 10px;" >
+    
+
+    <span id="post_body" name="post_body">
+      <p>I recently posted on <a href="https://www.linkedin.com/posts/ronikobrosly_datascience-data-activity-7271572660034142208-7MtO?utm_source=share&amp;utm_medium=member_desktop">LinkedIn</a> about the state of "data maturity" at organizations. I'll spare you the trouble of linking to it:</p>
+<pre><code>
+It’s almost 2025, but I can’t help but feel like the VAST majority of orgs lack “data maturity”. By this I mean:
+
+* A centralized data store with good metadata, dictionaries, and processes for ensuring the data remains clean
+* Leadership that understands how to effectively deploy BI, analytics, ML and quantify the real impact it has on KPIs
+* Teams of DS/MLEs that have the tools they need and the discipline to produce rigorously tested and well-written software
+
+Instead I still hear a lot of stories of places that: 
+
+* have a data science team to sort of check a box or say that they do data science. They rarely have the tools, clean data, or cultural buy-in to make an impact. The leadership can’t wrap their heads around why “ML magic” isn’t happening, and they ultimately don’t see the value.
+* have shadow data and tech orgs all doing their own things
+* use decision-driven data analysis instead of data-driven decisioning (“hey, can you re-run that analysis to show something that looks better for us?”)
+* store data in 10s of different data bases/lakes/whatever and ETL to get things done is a nightmare
+* partly rely on third-party data vendors that don’t play well with internal data tooling, causing frustration. 
+
+Sure, not all organizations care to be data-driven (maybe a 60-person e-commerce org just wants to know their sale numbers and inventory count, that’s fine!). But I’m staggered how by few small, medium, and enterprise-scale orgs that want that data-driven edge are sooo data immature. I don’t have the data, but I might guess 1 out of 30 orgs do this reasonably well. I imagine the numbers are worse in the more regulated industries (I.e. healthcare and finance) that have a heavy data governance requirement on top of everything. 
+
+Am I crazy?! I sort of figured these were 2015 issues that would be resolved in a decade. 
+
+Increasingly I’m coming around to Benn Stancil ‘s views on data (he seems to see the ability of data to drive value with some skepticism). I’m paraphrasing but in 2022 he said something to the effect of “businesses are all gambling, with data we have a very slightly better odds, but it’s still a gamble”. As in, data teams don’t make or break a businesses success. I’m a bit skeptical GenAI will change this dynamic. I can already see lots of companies marketing that the employ GenAI but is it done effectively or just to show they’re in the GenAI game. 
+
+I think the proliferation of blog posts entitled “why I left data science” is telling (https://towardsdatascience.com/why-youll-quit-your-data-science-job-6079d407bbeb, https://ryxcommar.com/2022/11/27/goodbye-data-science/, https://nirantk.com/writing/why-i-quit-data-science/)
+
+And to be clear I’m not having a career crisis 🙂 I’m just reflecting on my decade in the industry and all of the expectations those of us that started in the 2010s had. I still believe there is value in data to inform what decisions to make, I’m just a bit discouraged by the lack of orgs to figure this out still.
+
+At the risk of sounding age-ist, I do have some hope that as a generation of data-savvy folks enter the C-suite, things may get better. I feel like the current generation has a mentality of “hey we’ve got a lot of data right, just sprinkle some ML on top of what we have and we’re off to the races, right?”
+
+</code></pre><p>After re-reading it, I didn't mean for it to come off as that spicy. It was meant to be 30% venting and 70% honest reflection on the state of the industry. It got a suprising amount of private replies and actually led to a number of Zoom call conversations.</p>
+<p>Here are some of the replies:</p>
+<ul>
+<li><p><em>"Definitely not crazy! I'm constantly surprised and confused how many teams are struggling with the same challenges that we heard team leaders talking about in 2014, 2015 ... ten years ago?! I think data science / ML / AI are all in a weird place where the amount of hype around them creates so many new tools, job titles, opportunities -- and a lot of that is great! -- but many (most?) companies haven't really found structures / tools / processes that work for them."</em></p>
+</li>
+<li><p><em>"FWIW - I sorta relate, in that I largely transitioned away from DE and working as a backend engineer. Generally found it more rewarding to maintain core systems that make the product function. The challenges of ensuring large high traffic complex core services are reliable are generally more subtle and more varied than a typical “productionized sql” data pipeline. For data engineering, I sorta found the career paths were either transition to MLE, go into management, start a company, or maybe work in tooling. None of which particularly interest me at the moment, but to each their own!"</em></p>
+</li>
+<li><p><em>"You’re not crazy but any team beyond maintenance is a gamble"</em></p>
+</li>
+<li><p><em>"Maybe I've been lucky to work at organizations where I was part of a team building, maintaining, scaling and growing a core data engineering infrastructure that serves the need of a multitude of user groups, such as data scientists, business intelligence analysts, application developers, machine learning engineers. The work has been a mix of building dbt models, integrating apis / ingesting new data sources, building software pipelines to train and predict ML models and a multitude of other things. I don't think the journey has been unique but maybe different from others on this thread."</em></p>
+</li>
+</ul>
+<p>Here's my attempt at bulleting out the key takeaways I learned from the phone call conversations:</p>
+<ul>
+<li>Progress has been made, but it has occurred spottily.</li>
+<li>Like a decade ago, there is still a percent of companies that excel at the data game, and a percent that doesn't. It's a minority that does. Maybe in 2015 it was (5%), perhaps now it's (10%).</li>
+<li>There is a spectrum of companies where data and the data work is closer to the core of the business (to name some big names: LinkedIn, Spotify, Facebook, and Glassdoor have that data work at its very core), and there are other companies where the core of the business is something more traditional: Selling clothes, selling bank accounts, selling software for writing documents (yes, even companies selling software) and the data team/component is essentially an appendage / arm of the company. Data maturity is less import to companies of the latter category.</li>
+<li>Classic ML has become less sexy than generative AI, but data engineering is as unsexy as it was a decade ago. And without a solid data engineering foundation, you <b>cannot</b> do BI, analytics, ML, or AI well. </li>
+<li>Some interesting question to ask during a data job interview process if you want to suss out their degree of data maturity:<ul>
+<li>If your data team vanished tomorrow, how much would that impact the business (OBVIOUSLY you need to frame this in a gentle way). Maybe like "How is your world different without the presense of your team?"</li>
+<li>How much data do you have and can you quantify it? Look for specificity in the answer (we've got petabytes of data in X, terabytes of Y, etc.)</li>
+<li>What does your data team look like? How many other types of role X are there?</li>
+<li>What impact have your existing models or dashboards had, specifically?</li>
+<li>It is important to me that I make an impact in my work? If I were to step in tomorrow, would I be able to deploy something within a month that would be used?</li>
+<li>Is your data team considered first-class citizens in the company?</li>
+</ul>
+</li>
+</ul>
+
+    </span>
+
+    
+    
+    
+    
+    
+
+  </div>
+
+</div>
+
+
+
+
+        </div>
+
+        <!-- Bottom Navigation (external links) -->
+        <div class="terminal-nav">
+            <nav class="terminal-menu" id="local-links">
+                <ul>
+                    
+                    <li class="nav-item">
+                        <a class="nav-link" href="https://drive.google.com/file/d/1kk1d_7rJ0ILEU59e8hDQ7WQbN6TtyNKe/view?usp=sharing" rel="">
+                            Resume</a>
+                    </li>
+                    
+                    <li class="nav-item">
+                        <a class="nav-link" href="https://www.linkedin.com/in/ronikobrosly" rel="">
+                            LinkedIn</a>
+                    </li>
+                    
+                    <li class="nav-item">
+                        <a class="nav-link" href="http://github.com/ronikobrosly" rel="">
+                            GitHub</a>
+                    </li>
+                    
+                    <li class="nav-item">
+                        <a class="nav-link" href="https://stackoverflow.com/users/2831487/slyron" rel="">
+                            Stack Overflow</a>
+                    </li>
+                    
+                    <li class="nav-item">
+                        <a class="nav-link" href="https://bsky.app/profile/slykoby.bsky.social" rel="">
+                            Bluesky</a>
+                    </li>
+                    
+                    <li class="nav-item">
+                        <a class="nav-link" href="https://scholar.google.com/scholar?hl=en&amp;as_sdt=0%2C21&amp;q=rw+kobrosly&amp;btnG=" rel="">
+                            Publications</a>
+                    </li>
+                    
+                    <li class="nav-item">
+                        <a class="nav-link" href="https://mail.google.com/mail/?view=cm&amp;fs=1&amp;to=roni.kobrosly@gmail.com&amp;su=Hi! Reaching out from your personal website...&amp;body=blah blah blah" rel="">
+                            Contact Me</a>
+                    </li>
+                    
+                </ul>
+            </nav>
+        </div>
+
+    </div>
+</body>

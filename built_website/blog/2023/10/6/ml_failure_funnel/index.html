@@ -1,0 +1,350 @@
+<!doctype html>
+
+<head>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-TT9MYHW754"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'G-TT9MYHW754');
+    </script>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta charset="utf-8">
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="../../../../../static/favicon.png">
+
+    <!-- Open Graph Image -->
+    <meta property="og:image" content="../../../../../static/og-image.png">
+    <meta property="og:image:type" content="image/png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+
+    
+<!-- Syntax Highlighter. Use pygments. -->
+<link rel="stylesheet" href="../../../../../static/pygments.css">
+
+
+    
+
+<meta property="og:title" content="The machine learning project failure funnel">
+<meta property='og:url' content='http://ronikobrosly.github.io/blog//blog/ml_failure_funnel' />
+
+
+
+
+    <link rel="stylesheet" href="../../../../../static/css/terminal.css" />
+    <link rel="stylesheet" href="../../../../../static/css/custom.css" />
+    <!-- Mathjax -->
+    <!-- <script type="text/javascript" async
+        src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-MML-AM_CHTML">
+        </script>
+
+    <script type="text/x-mathjax-config">
+        MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}});
+    </script> -->
+
+    <script>
+        MathJax = {
+            tex: {
+                inlineMath: [['$', '$'], ['\\(', '\\)']]
+            },
+            svg: {
+                fontCache: 'global'
+            }
+        };
+    </script>
+    <script type="text/javascript" id="MathJax-script" async
+        src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js">
+        </script>
+
+</head>
+
+<title>The machine learning project failure funnel - Roni Kobrosly's Personal Site</title>
+
+<body>
+    <div class="container">
+        <h1 class="logo">
+            <a style="color:black" href="/">
+                Roni Kobrosly Ph.D.'s Website
+            </a>
+        </h1>
+        <!-- Top Navigation (local links) -->
+
+        <div class="terminal-nav">
+            <nav class="terminal-menu" id="local-links">
+                <ul>
+                    
+                    <li class="menu-item">
+                        <!-- Set blinking cursor correctly on navigation -->
+                        
+                        
+                        
+                        
+                        
+                        <a href="/" rel="">Home</a>
+                        
+                    </li>
+                    
+                    <li class="menu-item">
+                        <!-- Set blinking cursor correctly on navigation -->
+                        
+                        
+                        
+                        
+                        
+                        <a class="terminal-prompt" href="/blog" rel="">Blog</a>
+                        
+                    </li>
+                    
+                    <li class="menu-item">
+                        <!-- Set blinking cursor correctly on navigation -->
+                        
+                        
+                        
+                        
+                        
+                        <a href="/open-source" rel="">Open Source</a>
+                        
+                    </li>
+                    
+                    <li class="menu-item">
+                        <!-- Set blinking cursor correctly on navigation -->
+                        
+                        
+                        
+                        
+                        
+                        <a href="/talks" rel="">Talks</a>
+                        
+                    </li>
+                    
+                    <li class="menu-item">
+                        <!-- Set blinking cursor correctly on navigation -->
+                        
+                        
+                        
+                        
+                        
+                        <a href="/art" rel="">Art</a>
+                        
+                    </li>
+                    
+                    <li class="menu-item">
+                        <!-- Set blinking cursor correctly on navigation -->
+                        
+                        
+                        
+                        
+                        
+                        <a href="/bio" rel="">Bio</a>
+                        
+                    </li>
+                    
+                </ul>
+            </nav>
+        </div>
+
+        <!-- Body -->
+        <div id="body">
+            
+
+
+<div class="terminal-card">
+  <header id="post_title" name="post_title">
+<!-- Set title style -->
+<span name="title" id="title">The machine learning project failure funnel</span>
+</header>
+  <div class="card-body">
+    
+<!-- Append author -->
+<small>
+  <p>
+    written by
+    
+    Roni Kobrosly
+    
+    on
+    <span id="pub_date" name="pub_date">2023-10-06</span>
+
+    
+    | tags:
+    <!-- Append tags after author -->
+    <span class="boxed" id="tags" name="tags">
+      <a class="tags" href="../../../../tag/machine learning/">
+        machine learning
+      </a>
+    </span>
+    <span class="boxed" id="tags" name="tags">
+      <a class="tags" href="../../../../tag/product management/">
+        product management
+      </a>
+    </span>
+    <span class="boxed" id="tags" name="tags">
+      <a class="tags" href="../../../../tag/career/">
+        career
+      </a>
+    </span>
+    <span class="boxed" id="tags" name="tags">
+      <a class="tags" href="../../../../tag/data/">
+        data
+      </a>
+    </span>
+    
+  </p>
+  
+</small>
+
+    <hr>
+    
+    
+    <img src="logo.webp" style="padding: 10px;" >
+    
+
+    <span id="post_body" name="post_body">
+      <p>Anyone who has worked in tech in the data science / MLE / applied ML field knows that <a href="https://venturebeat.com/ai/why-do-87-of-data-science-projects-never-make-it-into-production/">most ML projects will fail</a>. Newcomers to the field have super high expectations about what they can do, and, sadly, this leads to a lot of them leaving the space altogether (See <a href="https://ryxcommar.com/2022/11/27/goodbye-data-science/">this goodbye letter</a>, or <a href="https://www.reddit.com/r/datascience/comments/q75ce8/who_has_left_data_science_and_analytics_what_are/">this collection of stories</a> or <a href="https://towardsdatascience.com/why-youll-quit-your-data-science-job-6079d407bbeb">this list of unrealistic data science job expectations</a>). ML project failure is an inevitable part of life in this field and it's happened to me many times at different stages of my career. In the last couple of years, I've begun to think about the building of ML projects as a sort of funnel process; ideas are cheap and many, but only a small amount of these ideas reach the end of the funnel and become productionized, solid, used, effective, and maintained ML applications. I sketched it out as this:</p>
+<p>Below, I'm going to try to put this idea into writing. There are several "gates" on the way through the funnel and it's sort of similar to the <a href="https://neptune.ai/blog/life-cycle-of-a-machine-learning-project">lifecycle of a ML project</a>, but there isn't perfect overlap. I'll try to describe each gate in the order I've generally seen teams hit them and I'll try to sprinkle in examples I've personally encountered. In my estimation, less than 10% of "project intentions" make it all of the way through the funnel.</p>
+<hr>
+<h1 id="1-good-quality-and-quantity-of-data">1: Good quality and quantity of data?</h1><hr>
+<p>Ah ha! <b> You thought the order of items 1 and 2 would be switched, right?</b>. After all, all tech projects ought to begin with a good idea. However, with companies that aren't in the upper echelon of data maturity, it's generally the case that they have some collected data (e.g. user clicks, web logs, etc), data teams subsequently try to draw up a list of potential project ideas that could employ that data, they prioritize those ideas based on their potential impact, likelihood of success, level of effort, etc etc, and then they try to build the thing. Sure, sometimes companies begin with a big transformative idea and decide to build or buy software to bring together data in service of that idea, but I find this happens less frequently. All organizations these days know that data is power, the degree to which they can harness it varies .</p>
+<p>Accordingly, the first step is some open-ended data exploration, where teams will discover whether they have a decent quantity and quality of data to work with. So really, at this stage we don't have a specific project idea as much as we have a whiff of an idea / a sense that there could be something exciting to come out of looking at the data.</p>
+<p>Almost all non-data practitioners don't have a good sense for what we'll need to get a project off the ground. So many times in my career I've had an excited product person from a team reach out to talk about how we could build something off of their data, only to learn that the excitement is about:</p>
+<ul>
+<li>an excel file with 100 reddit comments about the company product</li>
+<li>gigabytes of application logs but they're missing critical fields</li>
+<li>customer click stream data where 99% of click paths are two steps and then a sign-off</li>
+<li>rich customer reviews text, but it was generated in such a way that you can't join it to customer IDs and so you have no idea who said what</li>
+</ul>
+<p>This sort of thing happens <b>all the time</b>.</p>
+<hr>
+<h1 id="2-important-well-articulated-business-problem">2: Important, well-articulated business problem?</h1><hr>
+<p>So it turns out you found more than just a 100 reddit comments in an excel file. Maybe your company has a large central data warehouse with Snowflake, tons of rich web logs in Splunk, or even a beefy excel file with a carefully curated history of the 1000s of technical incidents that has happened at the company. Good. Are you now able to pair that data with a clear business problem statement that all relevant stakeholders can get behind?</p>
+<p>Note: unless you're at a small startup, it's unlikely that you'll be socializing this project idea with senior leadership at this point. So this step is really just "does my immeadiate leadership and the stakeholder team's leadership agree this is an important business project and that this isn't just a science project?"</p>
+<hr>
+<h1 id="3-model-well-built">3: Model well built?</h1><hr>
+<p>Now that you have some workable data and an idea, can you execute on this and build a half-way decent prototype?</p>
+<p>This is the section that is probably the least worth drilling into since the overwhelming majority of internet content on machine learning already focuses on this. How do you pick the right model for a problem? And how do you build that model? And what libraries do you use? And how do you evaluate how well it works? And does it perform its task in an efficient way? And how did you package that model? Did you include unit and integration tests? And is there good documentation on the model? Etc, etc.</p>
+<p>There are one of three outcomes here:</p>
+<p>The prototype completely and miserably fails, and there is no way to reframe the problem to make it work.
+I find that this rarely happens. Either the DS/MLE developing the prototype or the team around them has developed the data intuition to know what has a chance of working. I suppose this can happen if you're working in a small, data immature organization where your first data hires are on the junior side, or if your data leader doesn't have ML expertise and is leading a junior team.</p>
+<p>The prototype is a mixed success.
+By far, this seems to be the most likely outcome here. By "mixed success" I mean your binary classification model has metrics in the 70-80%, or your regression model has a great R-squared for some subpopulations but poor for others, or your computer vision / OCR model does a decent job extracting text from non-blurry images, but only 70% of the images in the wild are non-blurry. You'll need to do the plate balancing act of working to fine tune the model, reframe it or refocus it to make it more successful, work with the stakeholders to understand whether the model can be made serviceable, see if you can buy more time for improving the model, etc. Sometimes you get there, and sometimes you don't 🤷.</p>
+<p>You knock the prototype out of the park!
+Damn, this feels fantastic when it happens. You developed a hybrid ML and regex-based algorithm that can successfully translate complex, unstructured factory codes into meaningful categories, somehow saving hundreds of hours of manual toil. Huzzah!</p>
+<hr>
+<h1 id="4-organizational-politics-economics-and-culture-permit-this">4: Organizational politics, economics, and culture permit this?</h1><hr>
+<p>Throughout my tech career, I've found this step to the bloodiest of all the steps in the funnel. This part of the funnel contains a vast cemetary of ideas. Losing at this point in the funnel can be particularly painful for data teams, because at this point you or your team have likely invested a decent amount of time getting to know the data, developed a prototype (that may even be quite promising!), and are starting to really believe in the potential of this project (particular the primary MLE behind it). Here are some examples of non-technical, potentially fatal blows to projects:</p>
+<p>Politics:</p>
+<ul>
+<li>There is another (or multiple other) tech teams wanting to develop something similar, and either one of them got there first or one of their leaders outranks or has more influence than yours</li>
+<li>Despite your efforts to demonstrate the value proposition of your work, someone in a senior leadership role just doesn't think it's the highest priority project</li>
+</ul>
+<p>Economics:</p>
+<ul>
+<li>For your project to be viable in a production setting (meeting SLAs in inference), you'll need some beefy, GPU-enabled instances that cost too much $$$.</li>
+<li>The macro-economic environment doesn't look good. If you're a medium-sized startup and you have to choose between the team of software engineers that build the actual thing you sell, and the data team that hasn't yet hit a big homerun, the C-suite might cull the latter. Any projects in the works go into the trashbin and now you've got bigger problems than losing a project.</li>
+</ul>
+<p>Culture:</p>
+<ul>
+<li>Your organization is fundamentally conservative from a tech innovation perspective and is deeply skeptical of ML work. Site reliability engineering orgs can be this way: they are ideologically conservative and trust/prefer expert engineers to manually go in and make decisions. </li>
+<li>Sadly, you belong to an organization where the ML team is there to check a box (for the board, investors, etc) and is a peripheral team and not core to the business.</li>
+</ul>
+<hr>
+<h1 id="5-deployed-well">5: Deployed well?</h1><hr>
+<p>Like with step #3, there is a terrific amount of internet content available on how to deployment ML applications, so it's not worth drilling too deep into this step.</p>
+<p>The point here is: even if your organization has passed the prior stage of the funnel and has the funding to create a beefy Kubernetes cluster on bare metal, AWS's EKS, GCP's GKE, etc etc, it can be challenging for some organizations to put together an effective DevOps team. This is particularly true for older organizations trying to transition into a more data mature state. Kubernetes is not new, but it is <a href="https://learnk8s.io/troubleshooting-deployments">notoriously challenging to troubleshoot and optimize</a>.</p>
+<p>I've seen firsthand how a solid model completely crumbled because the small, central DevOps team was inexperienced and having turnover issues. Kubernetes pods were regularly failing and our external customers were getting 5xx errors from our REST API. It would be months before knowledgeable contractors would be brought in to diagnose the issue. So painful. <a href="https://hackernoon.com/the-ai-hierarchy-of-needs-18f111fcc007">Solid DevOps and engineering is the foundation upon which ML can be built</a>.</p>
+<hr>
+<h1 id="6-is-it-used">6: Is it used?</h1><hr>
+<p>If you've been involved in ML prototyping and application development for more than a year, I'm guessing you've felt pain from this question at least once in your tech career. There are few things more frustrating than having a great idea, getting buy-in, working with a small team for a month to build a tool, deploying it, celebrating, and then ... ouch, the dashboard tracking the usage of your API or web app is almost a flatline. There are so many reasons why this can happen:</p>
+<ul>
+<li>The organization's or stakeholder team's priorities have changed mid-project</li>
+<li>There is a misalignment between what you delivered and what the stakeholder team originally needed</li>
+<li>This is a subset of the above: maybe you are actually aligned to your stakeholder point of contact, but there is misalignment within the stakeholder team. For instance, their leader really thinks their team could use social media post classifier to help triage and respond to posts about the company, but all of the frontline folks that actually do respond to the posts feel like they don't actually need it.</li>
+<li>It's difficult for the stakeholder team to consume your tool. Perhaps you built the tool in isolation for a month, the stakeholder team wasn't able to give you feedback, and it doesn't work that well from their perspective</li>
+</ul>
+<hr>
+<h1 id="7-is-it-effective">7: Is it effective?</h1><hr>
+<p>I come from an academic background in epidemiology. Epidemiologists make a distinction between "efficacy" and "effectiveness", where the former is defined as the performance of an intervention under ideal and controlled circumstances and the latter as its performance under real-world conditions.</p>
+<p>While it's critical to think through what your data distributions in the wild look like versus in your model training sandbox, that's actually not what I'm getting at here. Instead: after your application has been written and deployed and is being used, is it altering real world behavior and moving KPIs in the way you'd like? Human behavior is weird, and if your ML application is meant to be directly consumed by people, sometimes the outcome can shock you. Here's an example:</p>
+<p>I have a former colleague that worked for medium-sized startup that focused algorithmicly-selected clothing boxes for subscribed customers. As you can imagine, there was a giant warehouse somewhere with hundreds of aisles and rows that housed all of the individual clothing items. My friend created an algorithm to suggest efficient routes around the aisles that the warehouse workers could use to put together a customer's box (their job entailed packing a box by collecting 5 items). All of the above funnel steps were met and his excellent model was put into production. The application was implemented and in the first week all of the workers were getting familiar with the system. A month later he ran some queries to see whether the mean minutes needed to construct a box (his metric of interest) had decreased. The metric didn't decrease, it didn't hold constant, IT ACTUALLY INCREASED. He ran all sorts of checks, but he could find nothing wrong from an engineering or mathematical perspective. He excluded the first week of the new system from his calculations, so it wasn't that it took the workers time to adjust to the new system. He verified that most workers were indeed taking the new, optimal routes. The team concluded that the increase had to be related to the behavior or psychology of the workers. Maybe workers felt less urgency knowing that their route had been chosen for them, or maybe workers felt like this reduced their autonomy and so it hurt their morale and speed. A well-intentioned, perfectly delivered ML application flopped in the face of counter-intuitive human nature.</p>
+<hr>
+<h1 id="7-maintained-well">7: Maintained well?</h1><hr>
+<p>Wahoo! Your team's project is running in production and meaningfully improving metrics. You hopefully get the kudos you deserve and the organization's trust in your team increases.</p>
+<p>Remember though, we're playing the long game here. There are many technical and non-technical reasons why a productionized and effective ML application could still fail down the road.</p>
+<p>Technical:</p>
+<ul>
+<li>While you were able to deploy an effective model, it was built quickly and there was a significant amount of technical debt incurred. Or perhaps your team continuously prioritizes new feature development over addressing technical debt. As the project grows, it increasingly becomes hard to update it or fix bugs. The project becomes unwieldy and programming tasks that should take a few hours end up taking days. The project dies with a whimper, not a bang.</li>
+<li>You fail to proactively and regularly assess the post-deployment performance of your model. The distributions of data that feed into your model change (data drift) or a bug is introduced / an issue occurs with your ETL pipeline and your input data is compromised. Customers complain and lose trust in your work.</li>
+</ul>
+<p>Non-technical:</p>
+<ul>
+<li>There is a significant amount of turnover on your team and there is a lack of quality documentation and tribal knowledge to sustain the project.</li>
+<li>Your organization's financial situation changes down the road, and at that point maintaining the project isn't worth it for the tech org.</li>
+</ul>
+
+    </span>
+
+    
+    
+    
+    
+    
+
+  </div>
+
+</div>
+
+
+
+
+        </div>
+
+        <!-- Bottom Navigation (external links) -->
+        <div class="terminal-nav">
+            <nav class="terminal-menu" id="local-links">
+                <ul>
+                    
+                    <li class="nav-item">
+                        <a class="nav-link" href="https://drive.google.com/file/d/1kk1d_7rJ0ILEU59e8hDQ7WQbN6TtyNKe/view?usp=sharing" rel="">
+                            Resume</a>
+                    </li>
+                    
+                    <li class="nav-item">
+                        <a class="nav-link" href="https://www.linkedin.com/in/ronikobrosly" rel="">
+                            LinkedIn</a>
+                    </li>
+                    
+                    <li class="nav-item">
+                        <a class="nav-link" href="http://github.com/ronikobrosly" rel="">
+                            GitHub</a>
+                    </li>
+                    
+                    <li class="nav-item">
+                        <a class="nav-link" href="https://stackoverflow.com/users/2831487/slyron" rel="">
+                            Stack Overflow</a>
+                    </li>
+                    
+                    <li class="nav-item">
+                        <a class="nav-link" href="https://bsky.app/profile/slykoby.bsky.social" rel="">
+                            Bluesky</a>
+                    </li>
+                    
+                    <li class="nav-item">
+                        <a class="nav-link" href="https://scholar.google.com/scholar?hl=en&amp;as_sdt=0%2C21&amp;q=rw+kobrosly&amp;btnG=" rel="">
+                            Publications</a>
+                    </li>
+                    
+                    <li class="nav-item">
+                        <a class="nav-link" href="https://mail.google.com/mail/?view=cm&amp;fs=1&amp;to=roni.kobrosly@gmail.com&amp;su=Hi! Reaching out from your personal website...&amp;body=blah blah blah" rel="">
+                            Contact Me</a>
+                    </li>
+                    
+                </ul>
+            </nav>
+        </div>
+
+    </div>
+</body>

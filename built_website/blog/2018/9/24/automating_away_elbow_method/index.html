@@ -1,0 +1,310 @@
+<!doctype html>
+
+<head>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-TT9MYHW754"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'G-TT9MYHW754');
+    </script>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta charset="utf-8">
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="../../../../../static/favicon.png">
+
+    <!-- Open Graph Image -->
+    <meta property="og:image" content="../../../../../static/og-image.png">
+    <meta property="og:image:type" content="image/png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+
+    
+<!-- Syntax Highlighter. Use pygments. -->
+<link rel="stylesheet" href="../../../../../static/pygments.css">
+
+
+    
+
+<meta property="og:title" content="Automating away the &#34;elbow method&#34;">
+<meta property='og:url' content='http://ronikobrosly.github.io/blog//blog/automating_away_elbow_method' />
+
+
+
+
+    <link rel="stylesheet" href="../../../../../static/css/terminal.css" />
+    <link rel="stylesheet" href="../../../../../static/css/custom.css" />
+    <!-- Mathjax -->
+    <!-- <script type="text/javascript" async
+        src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-MML-AM_CHTML">
+        </script>
+
+    <script type="text/x-mathjax-config">
+        MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}});
+    </script> -->
+
+    <script>
+        MathJax = {
+            tex: {
+                inlineMath: [['$', '$'], ['\\(', '\\)']]
+            },
+            svg: {
+                fontCache: 'global'
+            }
+        };
+    </script>
+    <script type="text/javascript" id="MathJax-script" async
+        src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js">
+        </script>
+
+</head>
+
+<title>Automating away the &#34;elbow method&#34; - Roni Kobrosly's Personal Site</title>
+
+<body>
+    <div class="container">
+        <h1 class="logo">
+            <a style="color:black" href="/">
+                Roni Kobrosly Ph.D.'s Website
+            </a>
+        </h1>
+        <!-- Top Navigation (local links) -->
+
+        <div class="terminal-nav">
+            <nav class="terminal-menu" id="local-links">
+                <ul>
+                    
+                    <li class="menu-item">
+                        <!-- Set blinking cursor correctly on navigation -->
+                        
+                        
+                        
+                        
+                        
+                        <a href="/" rel="">Home</a>
+                        
+                    </li>
+                    
+                    <li class="menu-item">
+                        <!-- Set blinking cursor correctly on navigation -->
+                        
+                        
+                        
+                        
+                        
+                        <a class="terminal-prompt" href="/blog" rel="">Blog</a>
+                        
+                    </li>
+                    
+                    <li class="menu-item">
+                        <!-- Set blinking cursor correctly on navigation -->
+                        
+                        
+                        
+                        
+                        
+                        <a href="/open-source" rel="">Open Source</a>
+                        
+                    </li>
+                    
+                    <li class="menu-item">
+                        <!-- Set blinking cursor correctly on navigation -->
+                        
+                        
+                        
+                        
+                        
+                        <a href="/talks" rel="">Talks</a>
+                        
+                    </li>
+                    
+                    <li class="menu-item">
+                        <!-- Set blinking cursor correctly on navigation -->
+                        
+                        
+                        
+                        
+                        
+                        <a href="/art" rel="">Art</a>
+                        
+                    </li>
+                    
+                    <li class="menu-item">
+                        <!-- Set blinking cursor correctly on navigation -->
+                        
+                        
+                        
+                        
+                        
+                        <a href="/bio" rel="">Bio</a>
+                        
+                    </li>
+                    
+                </ul>
+            </nav>
+        </div>
+
+        <!-- Body -->
+        <div id="body">
+            
+
+
+<div class="terminal-card">
+  <header id="post_title" name="post_title">
+<!-- Set title style -->
+<span name="title" id="title">Automating away the &#34;elbow method&#34;</span>
+</header>
+  <div class="card-body">
+    
+<!-- Append author -->
+<small>
+  <p>
+    written by
+    
+    Roni Kobrosly
+    
+    on
+    <span id="pub_date" name="pub_date">2018-09-24</span>
+
+    
+    | tags:
+    <!-- Append tags after author -->
+    <span class="boxed" id="tags" name="tags">
+      <a class="tags" href="../../../../tag/machine learning/">
+        machine learning
+      </a>
+    </span>
+    <span class="boxed" id="tags" name="tags">
+      <a class="tags" href="../../../../tag/open source/">
+        open source
+      </a>
+    </span>
+    
+  </p>
+  
+</small>
+
+    <hr>
+    
+    
+    <img src="logo.webp" style="padding: 10px;" >
+    
+
+    <span id="post_body" name="post_body">
+      <p>For some types of unsupervised learning analyses, machine learning practitioners have typically needed to examine a plot and make a somewhat subjective judgement call to tune the model (the so-called "elbow method"). I can think of two examples of this but others certainly exist:</p>
+<p>1) In any sort of clustering analysis: finding the appropriate number of clusters by plotting the within-cluster sum of squares against the number of clusters.</p>
+<p>2) When reducing feature space via PCA or a Factor Analysis: using a Scree plot to determine the number of components/factors to extract.</p>
+<p>For one-off analyses, using your eyeballs and some subjectivity might be fine, but what if you are using these methods as part of a pipeline in an automated process? I came across a very simple and elegant solution to this, which is described by Mu Zhu <a href="http://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.90.3768&amp;rep=rep1&amp;type=pdf">in this paper</a>. Lots of heuristics exist to solve this but I've found this method to be particularly robust.</p>
+<p>Zhu's idea is to generate the data you would typically generate to identify the elbow/kink. Then, he treats this data as a composite of two different samples, separated by the cutoff he is trying to identify. He loops through all possible cutoffs, in an attempt to find the cutoff that maximizes the profile log-likelihood (using sample means and a pooled SD in the calculations). Here's my stab at implementing Zhu's method:</p>
+<div style="background: #ffffff; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%">
+
+<span style="color: #DD4422">&quot;&quot;&quot;</span>
+<span style="color: #DD4422">Automagical elbow finder</span>
+<span style="color: #DD4422">&quot;&quot;&quot;</span>
+
+<span style="color: #008800; font-weight: bold">import</span> <span style="color: #0e84b5; font-weight: bold">numpy</span> <span style="color: #008800; font-weight: bold">as</span> <span style="color: #0e84b5; font-weight: bold">np</span>
+<span style="color: #008800; font-weight: bold">from</span> <span style="color: #0e84b5; font-weight: bold">scipy.stats</span> <span style="color: #008800; font-weight: bold">import</span> norm
+
+
+<span style="color: #008800; font-weight: bold">def</span> <span style="color: #0066BB; font-weight: bold">find_optimal_k</span>(data):
+    <span style="color: #DD4422">&quot;&quot;&quot;</span>
+<span style="color: #DD4422">    Provide a numpy array, returns index of that array to serve as elbow cut-off point</span>
+<span style="color: #DD4422">    &quot;&quot;&quot;</span>
+
+    <span style="color: #008800; font-weight: bold">def</span> <span style="color: #0066BB; font-weight: bold">__calc_logl</span>(series, mu, sd):
+        <span style="color: #DD4422">&quot;&quot;&quot;</span>
+<span style="color: #DD4422">        Helper function to calculate log-likelihood</span>
+<span style="color: #DD4422">        &quot;&quot;&quot;</span>
+        logl <span style="color: #333333">=</span> <span style="color: #0000DD; font-weight: bold">0</span>
+        <span style="color: #008800; font-weight: bold">for</span> i <span style="color: #000000; font-weight: bold">in</span> series:
+            logl <span style="color: #333333">+=</span> np<span style="color: #333333">.</span>log(norm<span style="color: #333333">.</span>pdf(i, mu, sd))
+
+        <span style="color: #008800; font-weight: bold">return</span> logl
+
+    profile_logl <span style="color: #333333">=</span> []
+
+    <span style="color: #888888"># Loop through all possible pairs of series within the array</span>
+    <span style="color: #008800; font-weight: bold">for</span> q <span style="color: #000000; font-weight: bold">in</span> <span style="color: #007020">range</span>(<span style="color: #0000DD; font-weight: bold">1</span>, <span style="color: #007020">len</span>(data)):
+        n <span style="color: #333333">=</span> <span style="color: #007020">len</span>(data)
+        s1 <span style="color: #333333">=</span> data[<span style="color: #0000DD; font-weight: bold">0</span>:q]
+        s2 <span style="color: #333333">=</span> data[q:]
+
+        <span style="color: #888888"># Calculate means and standard deviations of both series</span>
+        mu1 <span style="color: #333333">=</span> s1<span style="color: #333333">.</span>mean()
+        mu2 <span style="color: #333333">=</span> s2<span style="color: #333333">.</span>mean()
+        sd1 <span style="color: #333333">=</span> s1<span style="color: #333333">.</span>std()
+        sd2 <span style="color: #333333">=</span> s2<span style="color: #333333">.</span>std()
+        sd_pooled <span style="color: #333333">=</span> np<span style="color: #333333">.</span>sqrt((((q<span style="color: #333333">-</span><span style="color: #0000DD; font-weight: bold">1</span>)<span style="color: #333333">*</span>(sd1<span style="color: #333333">**</span><span style="color: #0000DD; font-weight: bold">2</span>)<span style="color: #333333">+</span>(n<span style="color: #333333">-</span>q<span style="color: #333333">-</span><span style="color: #0000DD; font-weight: bold">1</span>)<span style="color: #333333">*</span>(sd2<span style="color: #333333">**</span><span style="color: #0000DD; font-weight: bold">2</span>)) <span style="color: #333333">/</span> (n<span style="color: #333333">-</span><span style="color: #0000DD; font-weight: bold">2</span>)))
+
+        <span style="color: #888888"># Calculate profile log-likelihood</span>
+        profile_logl<span style="color: #333333">.</span>append(calc_logl(s1, mu1, sd_pooled) <span style="color: #333333">+</span> calc_logl(s2, mu2, sd_pooled))
+
+    <span style="color: #008800; font-weight: bold">return</span> np<span style="color: #333333">.</span>argmax(profile_logl) <span style="color: #333333">+</span> <span style="color: #0000DD; font-weight: bold">1</span>
+</pre>
+</div>
+    </span>
+
+    
+    
+    
+    
+    
+
+  </div>
+
+</div>
+
+
+
+
+        </div>
+
+        <!-- Bottom Navigation (external links) -->
+        <div class="terminal-nav">
+            <nav class="terminal-menu" id="local-links">
+                <ul>
+                    
+                    <li class="nav-item">
+                        <a class="nav-link" href="https://drive.google.com/file/d/1kk1d_7rJ0ILEU59e8hDQ7WQbN6TtyNKe/view?usp=sharing" rel="">
+                            Resume</a>
+                    </li>
+                    
+                    <li class="nav-item">
+                        <a class="nav-link" href="https://www.linkedin.com/in/ronikobrosly" rel="">
+                            LinkedIn</a>
+                    </li>
+                    
+                    <li class="nav-item">
+                        <a class="nav-link" href="http://github.com/ronikobrosly" rel="">
+                            GitHub</a>
+                    </li>
+                    
+                    <li class="nav-item">
+                        <a class="nav-link" href="https://stackoverflow.com/users/2831487/slyron" rel="">
+                            Stack Overflow</a>
+                    </li>
+                    
+                    <li class="nav-item">
+                        <a class="nav-link" href="https://bsky.app/profile/slykoby.bsky.social" rel="">
+                            Bluesky</a>
+                    </li>
+                    
+                    <li class="nav-item">
+                        <a class="nav-link" href="https://scholar.google.com/scholar?hl=en&amp;as_sdt=0%2C21&amp;q=rw+kobrosly&amp;btnG=" rel="">
+                            Publications</a>
+                    </li>
+                    
+                    <li class="nav-item">
+                        <a class="nav-link" href="https://mail.google.com/mail/?view=cm&amp;fs=1&amp;to=roni.kobrosly@gmail.com&amp;su=Hi! Reaching out from your personal website...&amp;body=blah blah blah" rel="">
+                            Contact Me</a>
+                    </li>
+                    
+                </ul>
+            </nav>
+        </div>
+
+    </div>
+</body>

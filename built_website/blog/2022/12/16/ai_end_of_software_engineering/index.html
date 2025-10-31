@@ -1,0 +1,319 @@
+<!doctype html>
+
+<head>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-TT9MYHW754"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'G-TT9MYHW754');
+    </script>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta charset="utf-8">
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="../../../../../static/favicon.png">
+
+    <!-- Open Graph Image -->
+    <meta property="og:image" content="../../../../../static/og-image.png">
+    <meta property="og:image:type" content="image/png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+
+    
+<!-- Syntax Highlighter. Use pygments. -->
+<link rel="stylesheet" href="../../../../../static/pygments.css">
+
+
+    
+
+<meta property="og:title" content="Generative AI and the end of software engineering?">
+<meta property='og:url' content='http://ronikobrosly.github.io/blog//blog/ai_end_of_software_engineering' />
+
+
+
+
+    <link rel="stylesheet" href="../../../../../static/css/terminal.css" />
+    <link rel="stylesheet" href="../../../../../static/css/custom.css" />
+    <!-- Mathjax -->
+    <!-- <script type="text/javascript" async
+        src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-MML-AM_CHTML">
+        </script>
+
+    <script type="text/x-mathjax-config">
+        MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}});
+    </script> -->
+
+    <script>
+        MathJax = {
+            tex: {
+                inlineMath: [['$', '$'], ['\\(', '\\)']]
+            },
+            svg: {
+                fontCache: 'global'
+            }
+        };
+    </script>
+    <script type="text/javascript" id="MathJax-script" async
+        src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js">
+        </script>
+
+</head>
+
+<title>Generative AI and the end of software engineering? - Roni Kobrosly's Personal Site</title>
+
+<body>
+    <div class="container">
+        <h1 class="logo">
+            <a style="color:black" href="/">
+                Roni Kobrosly Ph.D.'s Website
+            </a>
+        </h1>
+        <!-- Top Navigation (local links) -->
+
+        <div class="terminal-nav">
+            <nav class="terminal-menu" id="local-links">
+                <ul>
+                    
+                    <li class="menu-item">
+                        <!-- Set blinking cursor correctly on navigation -->
+                        
+                        
+                        
+                        
+                        
+                        <a href="/" rel="">Home</a>
+                        
+                    </li>
+                    
+                    <li class="menu-item">
+                        <!-- Set blinking cursor correctly on navigation -->
+                        
+                        
+                        
+                        
+                        
+                        <a class="terminal-prompt" href="/blog" rel="">Blog</a>
+                        
+                    </li>
+                    
+                    <li class="menu-item">
+                        <!-- Set blinking cursor correctly on navigation -->
+                        
+                        
+                        
+                        
+                        
+                        <a href="/open-source" rel="">Open Source</a>
+                        
+                    </li>
+                    
+                    <li class="menu-item">
+                        <!-- Set blinking cursor correctly on navigation -->
+                        
+                        
+                        
+                        
+                        
+                        <a href="/talks" rel="">Talks</a>
+                        
+                    </li>
+                    
+                    <li class="menu-item">
+                        <!-- Set blinking cursor correctly on navigation -->
+                        
+                        
+                        
+                        
+                        
+                        <a href="/art" rel="">Art</a>
+                        
+                    </li>
+                    
+                    <li class="menu-item">
+                        <!-- Set blinking cursor correctly on navigation -->
+                        
+                        
+                        
+                        
+                        
+                        <a href="/bio" rel="">Bio</a>
+                        
+                    </li>
+                    
+                </ul>
+            </nav>
+        </div>
+
+        <!-- Body -->
+        <div id="body">
+            
+
+
+<div class="terminal-card">
+  <header id="post_title" name="post_title">
+<!-- Set title style -->
+<span name="title" id="title">Generative AI and the end of software engineering?</span>
+</header>
+  <div class="card-body">
+    
+<!-- Append author -->
+<small>
+  <p>
+    written by
+    
+    Roni Kobrosly
+    
+    on
+    <span id="pub_date" name="pub_date">2022-12-16</span>
+
+    
+    | tags:
+    <!-- Append tags after author -->
+    <span class="boxed" id="tags" name="tags">
+      <a class="tags" href="../../../../tag/generative ai/">
+        generative ai
+      </a>
+    </span>
+    <span class="boxed" id="tags" name="tags">
+      <a class="tags" href="../../../../tag/machine learning/">
+        machine learning
+      </a>
+    </span>
+    <span class="boxed" id="tags" name="tags">
+      <a class="tags" href="../../../../tag/career/">
+        career
+      </a>
+    </span>
+    <span class="boxed" id="tags" name="tags">
+      <a class="tags" href="../../../../tag/engineering/">
+        engineering
+      </a>
+    </span>
+    
+  </p>
+  
+</small>
+
+    <hr>
+    
+    
+    <img src="logo.webp" style="padding: 10px;" >
+    
+
+    <span id="post_body" name="post_body">
+      <p>ChatGPT has clearly broken through into pop-culture when my non-technical family members have all independently learned about it. Okay, that's pretty qualitative, but we do know that less than a week after the November 30th release of ChatGPT, over a million new users registered on openAI to test it out themselves . I can't blame them; interacting with the model is a <b>magical experience</b>!</p>
+<p>One of the hottest ChatGPT takes I've heard from mostly non-technical, tech-enthusiast folks (I'm not throwing shade at the non-technical. To be fair, I've heard this take from one or two solid technical folks I know too) is that ChatGPT, or one of it's near-term successors, will effectively put software engineers into the dustpan of history, that machine learning engineers will go the way of the dodo, that data engineers will be the cowboy to ChatGPT's barbed wire fencing. AI/ML-code generation is certainly not new (See OpenAI's Codex, GitHub Copilot, Tabnine, Polycoder, etc. etc.), but for whatever reason this particular model has really popularized this idea among the public. Maybe because this particular AI model is more easily accesible to the average internet user than prior ones?</p>
+<p>I can give some arguments why ChatGPT and it's successors in the short and medium-term are not going to take down software engineering as a field. <b>I do think in the long-term most programming will be automated, but I wouldn't let this discourage someone young who interested in pursuing a career involving software engineering</b>. Below is my attempt to collect my thoughts around this and present my case to a lay audience. Some of these arguments I'm about to list aren't novel, as I've been digesting a ton of articles and blog posts about ChatGPT, but I'll do my best to cite sources. For simplicity sake, I'm going to refer to all technical, coding professionals (software engineers, site reliability engineers, ML engineers, etc.) as "engineers."</p>
+<p>I truly don't have a dog in this fight; I'm no longer a technical IC that spends most of the work day coding, so I don't feel particularly threatened by the thought of programming being automated away. Also, please don't take this as me bashing GPTChat or the ML/AI field (I'm a data practitioner by trade!). It's just when I make predictions about the future, I error on the conservative side rather than the optimistic one.</p>
+<hr>
+<h1 id="1-writing-code-is-only-part-of-what-experienced-engineers-do">1: Writing code is only part of what experienced engineers do</h1><hr>
+<p>Maybe I'm saying this because I've tended to work hand-in-hand with mostly senior engineers in my career, but I've rarely encountered the so-called "<a href="https://medium.com/creativesoftware/how-not-to-be-a-code-monkey-605b6190ed01">coding monkey</a>". This is a developer that passively takes on programming tasks, which usually come with full specs, to build something in isolation in a corner of the room.</p>
+<p>Instead, an experience engineer:</p>
+<ul>
+<li>Uses business sense, empathy, and interpersonal skills to influence product direction and to set the expectations of business leadership.</li>
+<li>Carefully chooses a combination of approachs and tools to balance getting that MVP out the door while allowing for scalability down the road.</li>
+<li>Collaborates closely with other engineers to make sure they're building towards a common goal.</li>
+<li>Uses logic, experience, and intuition to debug complex technical problems.</li>
+<li>Employs creativity when up against technical or business constraints (see this <a href="https://en.wikipedia.org/wiki/Adaptive_tile_refresh">beautiful example</a>).</li>
+</ul>
+<p>In short, there are tons of "soft skills" that successful engineers rely on. These are the types of skills many say can't easily be replaced by AI.</p>
+<hr>
+<h1 id="2-for-the-near-and-medium-term-these-models-can-be-incorrect-and-aren-t-easily-able-to-communicate-their-uncertainty">2: For the near and medium term, these models can be incorrect and aren't easily able to communicate their uncertainty</h1><hr>
+<p>I'll admit, this feels like one of the weaker arguments. This technology will certainly improve over time. That said, for every 100 social media posts showing ChatGPT nailing it with an incredible response, there are a handful of examples where it completely flops. There is no shortage of examples on the internet of ChatGPT giving objectively incorrect responses to basic questions.</p>
+<p>This wouldn't be so bad if these large language models could color their responses with some measure of uncertainty. While there are very recent research papers exploring this topic, it's still a relatively new area of research.</p>
+<p>This all isn't a huge deal if you're casually playing with ChatGPT in the browser, but this can quickly become catastrophic if you farm out to ChatGPT all of the development work on that new application you're cooking up. Common applications can be staggering in size (measured in terms of number of lines of code)6, and even if one were to build out that application in a careful piecemeal fashion with ChatGPT, you're going to need some professional to take stock of what you have and systematically hunt out the silent bugs and issues that arise. Though we'll probably get there someday, we're just truly no where close to automatic code generation at scale.</p>
+<hr>
+<h1 id="3-language-and-code-generating-models-will-increasingly-be-using-model-outputs-as-part-of-their-training-data">3: Language and code generating models will increasingly be using model outputs as part of their training data</h1><hr>
+<p>GPT-3, the model that ChatGPT was made from, <a href="https://www.sciencefocus.com/future-technology/gpt-3/">was trained on almost 600GB of data obtained from books, articles, Wikipedia, other pieces of writing on the internet</a>. Part of that includes public code repositories, which explains how ChatGPT it is able to both write code and explain code you provide to it.</p>
+<p>Quick aside: there is zero guarantee that this public code is well-written or free of bugs. All the same, these language models happily lap them up at training time. This isn't the main point of this argument, but still, important to point out.</p>
+<p><a href="https://www.stackoverflow.com/">Stack Overflow</a> is almost certainly the most commonly googled website when it comes to getting coding syntax questions answered. Over the last few years, there have been an increasing number users that have supplied AI-generated answers to public questions (<a href="https://meta.stackoverflow.com/questions/421831/temporary-policy-chatgpt-is-banned">so much so, that Stack Overflow recently banned the use of ChatGPT answers from their forum</a>). This isn't happening just in programming world. There is a growing amount of AI-generated text, art, etc on the internet, across all forums and in all languages.</p>
+<p>And therein lies the problem. Any amateur scientist can tell you what happens when you train a model on it's own outputs, produce new output, train on that output, and rinse and repeat. <b>You eventually get incoherent garbage</b>. Think about the explosion of AI-generated art on the web. Imagine them getting less precise, more glitchy, and more abstract over time, as the models get noisier and noisier...</p>
+<p>All of GPT-3 and ChatGPT's successors in the short and medium term will continue training off of publicly-available text on the internet, and it's not hard for me to imagine how the growth of AI output on the internet could outpace incremental improvements in model architecture and the scaling of the models themselves. <a href="https://www.forbes.com/sites/bernardmarr/2018/05/21/how-much-data-do-we-create-every-day-the-mind-blowing-stats-everyone-should-read/?sh=218d253e60ba">Don't forget</a>:, "Over the last two years alone 90 percent of the data in the world was generated".</p>
+<hr>
+<h1 id="4-this-isn-t-extinction-this-is-another-tool-in-the-toolbox">4: This isn't extinction, this is another tool in the toolbox</h1><hr>
+<p>This is less of an argument and more of a concluding prediction. The computer spreadsheet didn't make accountants obselete, instead, all accountants these days are expert users of Excel.</p>
+<p>I do think that some years from now engineers will increasingly work more in the planning/architecting headspace and most of their day will involve code review of machine-generated code. I can see a future where kicking off a new application project could involve describing the users and goals, a diagram of the app's architecture, and sets of well-thought out prompts for the code-generating AI to build out modules. In this scenario, the best engineers will be experts at finely-specifying their prompts for code-generating AI services (think about how some folks are great at googling while others aren't).</p>
+<hr>
+<p>I'll stop writing now. I don't want to be rude and not give ChatGPT a chance to defend itself. So I asked it:</p>
+<p>Me:
+<code>Can you please give me some arguments for why generative AI models like ChatGPT are not going to make software engineers obsolete? List your arguments, and make them understandable to a non-technical audience.</code></p>
+<p>ChatGPT:</p>
+<pre><code>There are several reasons why generative AI models like ChatGPT are not going to make software engineers obsolete:
+
+1) Generative AI models are still limited in their capabilities: While these models can generate human-like text, they do not have the same level of understanding and reasoning abilities as humans. They cannot design, develop, or debug software in the same way that a human software engineer can.
+
+2) Generative AI models require human oversight and guidance: These models are not capable of working independently and require human input and guidance to function effectively. They also require human supervision to ensure that the output they generate is accurate and appropriate.
+
+3) Generative AI models are only one tool in the software engineer's toolkit: Software engineers use a variety of tools and techniques to develop software, and generative AI models are just one of these tools. They are not a replacement for the skills, knowledge, and expertise of a human software engineer.
+
+4) Generative AI models do not have the same level of creativity and innovation as humans: While these models can generate text and code that may seem creative or innovative, they do not have the same level of creativity and innovation as a human software engineer. They are not capable of coming up with new ideas or solving complex problems in the same way that humans can.
+
+Overall, while generative AI models like ChatGPT can be useful tools in the software development process, they are not a replacement for human software engineers and the skills and expertise that they bring to the table.
+</code></pre>
+
+    </span>
+
+    
+    
+    
+    
+    
+
+  </div>
+
+</div>
+
+
+
+
+        </div>
+
+        <!-- Bottom Navigation (external links) -->
+        <div class="terminal-nav">
+            <nav class="terminal-menu" id="local-links">
+                <ul>
+                    
+                    <li class="nav-item">
+                        <a class="nav-link" href="https://drive.google.com/file/d/1kk1d_7rJ0ILEU59e8hDQ7WQbN6TtyNKe/view?usp=sharing" rel="">
+                            Resume</a>
+                    </li>
+                    
+                    <li class="nav-item">
+                        <a class="nav-link" href="https://www.linkedin.com/in/ronikobrosly" rel="">
+                            LinkedIn</a>
+                    </li>
+                    
+                    <li class="nav-item">
+                        <a class="nav-link" href="http://github.com/ronikobrosly" rel="">
+                            GitHub</a>
+                    </li>
+                    
+                    <li class="nav-item">
+                        <a class="nav-link" href="https://stackoverflow.com/users/2831487/slyron" rel="">
+                            Stack Overflow</a>
+                    </li>
+                    
+                    <li class="nav-item">
+                        <a class="nav-link" href="https://bsky.app/profile/slykoby.bsky.social" rel="">
+                            Bluesky</a>
+                    </li>
+                    
+                    <li class="nav-item">
+                        <a class="nav-link" href="https://scholar.google.com/scholar?hl=en&amp;as_sdt=0%2C21&amp;q=rw+kobrosly&amp;btnG=" rel="">
+                            Publications</a>
+                    </li>
+                    
+                    <li class="nav-item">
+                        <a class="nav-link" href="https://mail.google.com/mail/?view=cm&amp;fs=1&amp;to=roni.kobrosly@gmail.com&amp;su=Hi! Reaching out from your personal website...&amp;body=blah blah blah" rel="">
+                            Contact Me</a>
+                    </li>
+                    
+                </ul>
+            </nav>
+        </div>
+
+    </div>
+</body>

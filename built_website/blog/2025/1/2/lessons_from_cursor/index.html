@@ -1,0 +1,287 @@
+<!doctype html>
+
+<head>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-TT9MYHW754"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'G-TT9MYHW754');
+    </script>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta charset="utf-8">
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="../../../../../static/favicon.png">
+
+    <!-- Open Graph Image -->
+    <meta property="og:image" content="../../../../../static/og-image.png">
+    <meta property="og:image:type" content="image/png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+
+    
+<!-- Syntax Highlighter. Use pygments. -->
+<link rel="stylesheet" href="../../../../../static/pygments.css">
+
+
+    
+
+<meta property="og:title" content="Some initial lessons from using Cursor to build a production web app">
+<meta property='og:url' content='http://ronikobrosly.github.io/blog//blog/lessons_from_cursor' />
+
+
+
+
+    <link rel="stylesheet" href="../../../../../static/css/terminal.css" />
+    <link rel="stylesheet" href="../../../../../static/css/custom.css" />
+    <!-- Mathjax -->
+    <!-- <script type="text/javascript" async
+        src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-MML-AM_CHTML">
+        </script>
+
+    <script type="text/x-mathjax-config">
+        MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}});
+    </script> -->
+
+    <script>
+        MathJax = {
+            tex: {
+                inlineMath: [['$', '$'], ['\\(', '\\)']]
+            },
+            svg: {
+                fontCache: 'global'
+            }
+        };
+    </script>
+    <script type="text/javascript" id="MathJax-script" async
+        src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js">
+        </script>
+
+</head>
+
+<title>Some initial lessons from using Cursor to build a production web app - Roni Kobrosly's Personal Site</title>
+
+<body>
+    <div class="container">
+        <h1 class="logo">
+            <a style="color:black" href="/">
+                Roni Kobrosly Ph.D.'s Website
+            </a>
+        </h1>
+        <!-- Top Navigation (local links) -->
+
+        <div class="terminal-nav">
+            <nav class="terminal-menu" id="local-links">
+                <ul>
+                    
+                    <li class="menu-item">
+                        <!-- Set blinking cursor correctly on navigation -->
+                        
+                        
+                        
+                        
+                        
+                        <a href="/" rel="">Home</a>
+                        
+                    </li>
+                    
+                    <li class="menu-item">
+                        <!-- Set blinking cursor correctly on navigation -->
+                        
+                        
+                        
+                        
+                        
+                        <a class="terminal-prompt" href="/blog" rel="">Blog</a>
+                        
+                    </li>
+                    
+                    <li class="menu-item">
+                        <!-- Set blinking cursor correctly on navigation -->
+                        
+                        
+                        
+                        
+                        
+                        <a href="/open-source" rel="">Open Source</a>
+                        
+                    </li>
+                    
+                    <li class="menu-item">
+                        <!-- Set blinking cursor correctly on navigation -->
+                        
+                        
+                        
+                        
+                        
+                        <a href="/talks" rel="">Talks</a>
+                        
+                    </li>
+                    
+                    <li class="menu-item">
+                        <!-- Set blinking cursor correctly on navigation -->
+                        
+                        
+                        
+                        
+                        
+                        <a href="/art" rel="">Art</a>
+                        
+                    </li>
+                    
+                    <li class="menu-item">
+                        <!-- Set blinking cursor correctly on navigation -->
+                        
+                        
+                        
+                        
+                        
+                        <a href="/bio" rel="">Bio</a>
+                        
+                    </li>
+                    
+                </ul>
+            </nav>
+        </div>
+
+        <!-- Body -->
+        <div id="body">
+            
+
+
+<div class="terminal-card">
+  <header id="post_title" name="post_title">
+<!-- Set title style -->
+<span name="title" id="title">Some initial lessons from using Cursor to build a production web app</span>
+</header>
+  <div class="card-body">
+    
+<!-- Append author -->
+<small>
+  <p>
+    written by
+    
+    Roni Kobrosly
+    
+    on
+    <span id="pub_date" name="pub_date">2025-01-02</span>
+
+    
+    | tags:
+    <!-- Append tags after author -->
+    <span class="boxed" id="tags" name="tags">
+      <a class="tags" href="../../../../tag/generative ai/">
+        generative ai
+      </a>
+    </span>
+    <span class="boxed" id="tags" name="tags">
+      <a class="tags" href="../../../../tag/engineering/">
+        engineering
+      </a>
+    </span>
+    
+  </p>
+  
+</small>
+
+    <hr>
+    
+    
+    <img src="logo.webp" style="padding: 10px;" >
+    
+
+    <span id="post_body" name="post_body">
+      <p>Happy New Year!</p>
+<p>Over the holiday break, I had the opportunity to try out the <a href="https://www.cursor.com/">Cursor Pro</a>, one of the newer and more discussed GenAI coding assistants and IDE. It is meant to be like GitHub CoPilot, but the idea is it is its own IDE and AI is infused into each aspect of it:</p>
+<ul>
+<li>It auto-completes lines</li>
+<li>It auto-corrects syntax errors</li>
+<li>You can discuss the entire codebase or just a specific line (by selecting it via cursor)</li>
+<li>It will automatically compose files based on your description</li>
+<li>It is multi-modal so it will happily ingest images as well as your text descriptions or package documentation</li>
+<li>You can select which premium, foundation model to use (in the Pro addition) </li>
+</ul>
+<p>What use I put it toward? I have been slowly working on a side-project named Data Compass AI for some time (eventually it'll live at <a href="http://www.datacompass.ai/">datacompass.ai</a>). The purpose of Data Compass AI is to make the data maturity of organizations more transparent and to help rate their data journey. Think Glassdoor or Charity Navigator but focused on "data maturity" (is data centralized and clean? Are data team members first-class citizens in the tech org? Are ML models or dashboards making a quantifiable impact?). I'll describe more about the idea in a future blog post once it's up in production at <a href="http://www.datacompass.ai/">datacompass.ai</a>.</p>
+<p>While the domain the app focuses on is around data engineering and science, building Data Compass AI is essentially a straight up software engineering task. I've primarily relied on simple small python frameworks like <a href="https://flask.palletsprojects.com/en/stable/">Flask</a> for creating APIs and simple demo web apps, but a proper dynamic, production web app would need something beefier with a ORM, easy to install authentication features, security measures like rate-limiting logins, etc. I was somewhat familiar with the <a href="https://www.djangoproject.com/">Django</a> python framework but I was hoping to learn more about it through Cursor (and better understand Cursor workflows in the process).</p>
+<p>There are so many places to begin w.r.t. Cursor. At PyData NYC 2024 a Microsoft CoPilot product owner gave a keynote talk on how the shift from the current developer workflow to a AI-enhanced developer workflow would mean shifts from:</p>
+<pre><code>
+* Coding --> Exploring
+* Building --> Evaluating
+* Testing --> Optimizing
+</code></pre><p>I fully agree with this sentiment now. I see Cursor and other AI coding assistants as force multipliers rather than something that will replace engineers (at least in the short and medium-term future). By which, I mean this: if a junior developer has weak skills and intuitions around coding, design, and architecture of, say, level <b>1</b>, it results in 5x improvement in speed of development, resulting in an outcome of <b>5</b>. A seasoned senior engineer, of skill 10, could produce an outcome of <b>50</b>. In other words, I feel like I was able to learn the Django framework and produce a near-production ready app at 5x speed.</p>
+<p><img src="robot.webp" alt=""></p>
+<p>Here are some of the lessons I learned from the experience, which I think are partly specific to Cursor and partly general around AI-assisted software development:</p>
+<ul>
+<li>It helps to periodically remind the agent the purpose of what it is doing. Particularly if you step away from the laptop for a while or open a new chat. Cursor with <code>claude sonnet 3.5</code> running under the hood did a good job of retaining holistic context of the project work in chunks of a few hours, but if a significantly new task was asked of it, </li>
+<li>Good foundational engineering skills are still a must. I found that it would occasionally forget that certain files already existed and try to re-create them with slightly new names. That's an obvious example. On the more subtle side, the Cursor-claude combo would occasionally re-create functions and build off of them, resulting in subtley messy code. The data models it produced (even after a few iterations of back and forth in chat) needed to be tweaked to be more elegant and for the foreign keys to make more sense.</li>
+<li>A sort of continuation of the prior bullet: I found that each major suggestion (creation of a big class, etc) required about 5% reworking to make things more elegant/cleaner or to clean up bugs.</li>
+<li>Complex integration tests are no longer daughting. I think it's been known for some time that these agents are great at writing simple-ish unit tests (which is great!), but I've always found integration tests to be extremely daughting. With relative ease, the Cursor-claude combo was able to create a temporary test database, spin up a browser via Selenium, mocking various things, and literally step through the account-creation process with a headless browser. That's magic. A task like that might have taken me 5+ hours previously as there are so many little details / complexity involved. </li>
+<li>The Cursor-claude combo was incredibly helpful at debugging in cases where neither I or it could figure out an issue. Yes, I would be able to write <code>print</code> statements to the terminal or check on the database to see if an intermediate processing step worked, but I found the agent was particularly great at creating temporary debugging lines and then removing them afterwards. It could even help me interpret these issues well. I employ D3 in the app on the results page and I'm only weakly-to-moderately experienced with JS. The agent was a godsend in those instances.</li>
+</ul>
+
+    </span>
+
+    
+    
+    
+    
+    
+
+  </div>
+
+</div>
+
+
+
+
+        </div>
+
+        <!-- Bottom Navigation (external links) -->
+        <div class="terminal-nav">
+            <nav class="terminal-menu" id="local-links">
+                <ul>
+                    
+                    <li class="nav-item">
+                        <a class="nav-link" href="https://drive.google.com/file/d/1kk1d_7rJ0ILEU59e8hDQ7WQbN6TtyNKe/view?usp=sharing" rel="">
+                            Resume</a>
+                    </li>
+                    
+                    <li class="nav-item">
+                        <a class="nav-link" href="https://www.linkedin.com/in/ronikobrosly" rel="">
+                            LinkedIn</a>
+                    </li>
+                    
+                    <li class="nav-item">
+                        <a class="nav-link" href="http://github.com/ronikobrosly" rel="">
+                            GitHub</a>
+                    </li>
+                    
+                    <li class="nav-item">
+                        <a class="nav-link" href="https://stackoverflow.com/users/2831487/slyron" rel="">
+                            Stack Overflow</a>
+                    </li>
+                    
+                    <li class="nav-item">
+                        <a class="nav-link" href="https://bsky.app/profile/slykoby.bsky.social" rel="">
+                            Bluesky</a>
+                    </li>
+                    
+                    <li class="nav-item">
+                        <a class="nav-link" href="https://scholar.google.com/scholar?hl=en&amp;as_sdt=0%2C21&amp;q=rw+kobrosly&amp;btnG=" rel="">
+                            Publications</a>
+                    </li>
+                    
+                    <li class="nav-item">
+                        <a class="nav-link" href="https://mail.google.com/mail/?view=cm&amp;fs=1&amp;to=roni.kobrosly@gmail.com&amp;su=Hi! Reaching out from your personal website...&amp;body=blah blah blah" rel="">
+                            Contact Me</a>
+                    </li>
+                    
+                </ul>
+            </nav>
+        </div>
+
+    </div>
+</body>

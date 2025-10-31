@@ -1,0 +1,292 @@
+<!doctype html>
+
+<head>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-TT9MYHW754"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'G-TT9MYHW754');
+    </script>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta charset="utf-8">
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="../../../../../static/favicon.png">
+
+    <!-- Open Graph Image -->
+    <meta property="og:image" content="../../../../../static/og-image.png">
+    <meta property="og:image:type" content="image/png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+
+    
+<!-- Syntax Highlighter. Use pygments. -->
+<link rel="stylesheet" href="../../../../../static/pygments.css">
+
+
+    
+
+<meta property="og:title" content="How do baby names come and go?">
+<meta property='og:url' content='http://ronikobrosly.github.io/blog//blog/baby_names' />
+
+
+
+
+    <link rel="stylesheet" href="../../../../../static/css/terminal.css" />
+    <link rel="stylesheet" href="../../../../../static/css/custom.css" />
+    <!-- Mathjax -->
+    <!-- <script type="text/javascript" async
+        src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-MML-AM_CHTML">
+        </script>
+
+    <script type="text/x-mathjax-config">
+        MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}});
+    </script> -->
+
+    <script>
+        MathJax = {
+            tex: {
+                inlineMath: [['$', '$'], ['\\(', '\\)']]
+            },
+            svg: {
+                fontCache: 'global'
+            }
+        };
+    </script>
+    <script type="text/javascript" id="MathJax-script" async
+        src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js">
+        </script>
+
+</head>
+
+<title>How do baby names come and go? - Roni Kobrosly's Personal Site</title>
+
+<body>
+    <div class="container">
+        <h1 class="logo">
+            <a style="color:black" href="/">
+                Roni Kobrosly Ph.D.'s Website
+            </a>
+        </h1>
+        <!-- Top Navigation (local links) -->
+
+        <div class="terminal-nav">
+            <nav class="terminal-menu" id="local-links">
+                <ul>
+                    
+                    <li class="menu-item">
+                        <!-- Set blinking cursor correctly on navigation -->
+                        
+                        
+                        
+                        
+                        
+                        <a href="/" rel="">Home</a>
+                        
+                    </li>
+                    
+                    <li class="menu-item">
+                        <!-- Set blinking cursor correctly on navigation -->
+                        
+                        
+                        
+                        
+                        
+                        <a class="terminal-prompt" href="/blog" rel="">Blog</a>
+                        
+                    </li>
+                    
+                    <li class="menu-item">
+                        <!-- Set blinking cursor correctly on navigation -->
+                        
+                        
+                        
+                        
+                        
+                        <a href="/open-source" rel="">Open Source</a>
+                        
+                    </li>
+                    
+                    <li class="menu-item">
+                        <!-- Set blinking cursor correctly on navigation -->
+                        
+                        
+                        
+                        
+                        
+                        <a href="/talks" rel="">Talks</a>
+                        
+                    </li>
+                    
+                    <li class="menu-item">
+                        <!-- Set blinking cursor correctly on navigation -->
+                        
+                        
+                        
+                        
+                        
+                        <a href="/art" rel="">Art</a>
+                        
+                    </li>
+                    
+                    <li class="menu-item">
+                        <!-- Set blinking cursor correctly on navigation -->
+                        
+                        
+                        
+                        
+                        
+                        <a href="/bio" rel="">Bio</a>
+                        
+                    </li>
+                    
+                </ul>
+            </nav>
+        </div>
+
+        <!-- Body -->
+        <div id="body">
+            
+
+
+<div class="terminal-card">
+  <header id="post_title" name="post_title">
+<!-- Set title style -->
+<span name="title" id="title">How do baby names come and go?</span>
+</header>
+  <div class="card-body">
+    
+<!-- Append author -->
+<small>
+  <p>
+    written by
+    
+    Roni Kobrosly
+    
+    on
+    <span id="pub_date" name="pub_date">2019-07-19</span>
+
+    
+    | tags:
+    <!-- Append tags after author -->
+    <span class="boxed" id="tags" name="tags">
+      <a class="tags" href="../../../../tag/machine learning/">
+        machine learning
+      </a>
+    </span>
+    <span class="boxed" id="tags" name="tags">
+      <a class="tags" href="../../../../tag/human data/">
+        human data
+      </a>
+    </span>
+    
+  </p>
+  
+</small>
+
+    <hr>
+    
+    
+    <img src="logo.webp" style="padding: 10px;" >
+    
+
+    <span id="post_body" name="post_body">
+      <p><b>Quick caveat: In this analysis I used government data that assumed binary biological sex. That's why I only use terms like "boy" and "girl".</b></p>
+<p><b>Another note: If you're reading this and curious about a name, shoot me an email and I'll make a plot for you 🐣</b></p>
+<p>I’m in my mid-thirties and as many of my friends are starting to make their own families, I'm having to learn lots of baby names. I’ve heard lots of people say that “older” names are becoming popular and in hearing these baby names I feel like there is something to this.</p>
+<p>One of my good friends has a sweet, one-year old baby named Vera. It’s a beautiful, old-fashioned name for sure, but is it becoming popular again?</p>
+<p><img src="Vera.webp" alt=""></p>
+<p>After plotting some data from the Social Security Administration, it does look to be making a comeback. Funny aside: It turns out the name Ariel spiked in popularity after Disney's 1989 release of <a href="https://en.wikipedia.org/wiki/The_Little_Mermaid_(1989_film">The Little Mermaid</a>).</p>
+<p><img src="Ariel.webp" alt=""></p>
+<p>This made me wonder more generally about names and their trends. Are there complicated dynamics at play with the popularity of names, or does their popularity come and go in waves, or do most names peak in popularity for a bit and fade into history? I recently attended SciPy 2019 and attended a great session on time series clustering. This question seemed like a great problem to try out some of the methods I had learned there, such as the concept of <a href="https://pdfs.semanticscholar.org/05a2/0cde15e172fc82f32774dd0cf4fe5827cad2.pdf">dynamic time warping (DTW)</a>.</p>
+<p>I ran an analysis and found the following:</p>
+<ul>
+<li>While there are some definite, clear clusters in name popularity over time, there is tons of heterogeneity here. Bottom line: you won't be able to neatly categorize the rise and fall of names with a few simple rules.</li>
+<li>Although I pulled out more clusters for boys, it seems like there is more complexity in girl naming trends. See the final girl name cluster, for example, which the algorithm couldn't disentangle.</li>
+</ul>
+<p>Here are the name trend clusters I was able to pull out. Click on the links below to see the full plots for each (each line in a plot represents a unique name's popularity over time). I also shared a few exemplars for each (names with the closest DTW distance to the center of their cluster). Note: to simplify things I excluded names if there were less than 10,000 instances of them in the last 100 years. See this notebook for more details on the analysis.</p>
+<hr>
+<h2 id="boy-name-clusters">Boy name clusters:</h2><p><b>Cluster #1</b>: Not popular before but exploding in popularity over the last decade (e.g. Owen, Cruz, Carter)</p>
+<p><img src="boys_0.webp" alt=""></p>
+<p><b>Cluster #2</b>: A sharp peak in the mid-20th century but that’s it (e.g. Dale, Roger, Tony)</p>
+<p><img src="boys_1.webp" alt=""></p>
+<p><b>Cluster #3</b>: Peaked in the late 90s / early aughts but dying out (e.g. Jacob, Trenton, Brennan)</p>
+<p><img src="boys_2.webp" alt=""></p>
+<p><b>Cluster #4</b>: Very old names that have died out (e.g. Archie, Walter, Louis)</p>
+<p><img src="boys_3.webp" alt=""></p>
+<p><b>Cluster #5</b>: Popular towards the end of the 20th century but dying out (e.g. Timothy, Brian, Eric)</p>
+<p><img src="boys_4.webp" alt=""></p>
+<hr>
+<h2 id="girl-name-clusters">Girl name clusters:</h2><p><b>Cluster #1</b>: Super popular the last two decades but mostly dropping off (e.g. Arianna, Sophia, Makenzie)</p>
+<p><img src="girls_0.webp" alt=""></p>
+<p><b>Cluster #2</b>: Old-timey names that have died out (e.g. Flora, Maxine, Lillie)</p>
+<p><img src="girls_1.webp" alt=""></p>
+<p><b>Cluster #3</b>: Wildcards / difficult to cluster! (e.g. Melissa, Amy, Erin)</p>
+<p><img src="girls_2.webp" alt=""></p>
+
+    </span>
+
+    
+    
+    
+    
+    
+
+  </div>
+
+</div>
+
+
+
+
+        </div>
+
+        <!-- Bottom Navigation (external links) -->
+        <div class="terminal-nav">
+            <nav class="terminal-menu" id="local-links">
+                <ul>
+                    
+                    <li class="nav-item">
+                        <a class="nav-link" href="https://drive.google.com/file/d/1kk1d_7rJ0ILEU59e8hDQ7WQbN6TtyNKe/view?usp=sharing" rel="">
+                            Resume</a>
+                    </li>
+                    
+                    <li class="nav-item">
+                        <a class="nav-link" href="https://www.linkedin.com/in/ronikobrosly" rel="">
+                            LinkedIn</a>
+                    </li>
+                    
+                    <li class="nav-item">
+                        <a class="nav-link" href="http://github.com/ronikobrosly" rel="">
+                            GitHub</a>
+                    </li>
+                    
+                    <li class="nav-item">
+                        <a class="nav-link" href="https://stackoverflow.com/users/2831487/slyron" rel="">
+                            Stack Overflow</a>
+                    </li>
+                    
+                    <li class="nav-item">
+                        <a class="nav-link" href="https://bsky.app/profile/slykoby.bsky.social" rel="">
+                            Bluesky</a>
+                    </li>
+                    
+                    <li class="nav-item">
+                        <a class="nav-link" href="https://scholar.google.com/scholar?hl=en&amp;as_sdt=0%2C21&amp;q=rw+kobrosly&amp;btnG=" rel="">
+                            Publications</a>
+                    </li>
+                    
+                    <li class="nav-item">
+                        <a class="nav-link" href="https://mail.google.com/mail/?view=cm&amp;fs=1&amp;to=roni.kobrosly@gmail.com&amp;su=Hi! Reaching out from your personal website...&amp;body=blah blah blah" rel="">
+                            Contact Me</a>
+                    </li>
+                    
+                </ul>
+            </nav>
+        </div>
+
+    </div>
+</body>
