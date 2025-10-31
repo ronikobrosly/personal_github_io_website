@@ -55,6 +55,27 @@ This is useful for:
 - Verifying your inputs
 - Understanding the workflow
 
+### Just Rebuild Mode
+
+Rebuild and deploy the site without creating a new post (useful for CSS/template changes):
+
+```bash
+python publish_post.py --just-rebuild
+```
+
+This mode:
+- Skips all post creation prompts
+- Only asks for the deployed repo path and commit messages
+- Rebuilds the site with current content
+- Deploys to GitHub Pages
+- Commits and pushes both repos
+
+**Use cases:**
+- CSS/styling changes
+- Template modifications
+- Configuration updates
+- Any website changes that don't involve new content
+
 ## Interactive Prompts
 
 The script will prompt you for the following information:
@@ -116,7 +137,7 @@ Tags (comma-separated): python, data science, tutorial
 Post slug (URL-friendly name) [my-amazing-new-blog-post]:
 Path to logo.webp file: ~/images/python-logo.webp
 Additional image paths (comma-separated, optional):
-Path to ronikobrosly.github.io repo [~/Desktop/ronikobrosly.github.io]:
+Path to ronikobrosly.github.io repo [~/ronikobrosly.github.io]:
 Git commit message for source repo: Add new Python blog post
 Git commit message for deployed site repo [Add new Python blog post]:
 
@@ -147,14 +168,14 @@ Proceed with publication? (yes/no): yes
   Site built successfully!
 
 ✓ Deploying to GitHub Pages repo...
-  Deployed to: /home/ronik/Desktop/ronikobrosly.github.io
+  Deployed to: /home/ronik/ronikobrosly.github.io
   ✓ Verified google4e956285588bb55a.html is preserved
 
 ✓ Committing and pushing changes...
   Committing source repo...
     ✓ Pushed to /home/ronik/personal_github_io_website
   Committing deployed site repo...
-    ✓ Pushed to /home/ronik/Desktop/ronikobrosly.github.io
+    ✓ Pushed to /home/ronik/ronikobrosly.github.io
   ✓ All changes pushed successfully!
 
 ============================================================
@@ -163,6 +184,53 @@ Proceed with publication? (yes/no): yes
 
 Your post is live at:
 https://ronikobrosly.github.io/blog/2025/10/31/my-amazing-new-blog-post/
+```
+
+### Just Rebuild Mode Example
+
+```
+============================================================
+Automated Post Publishing Script
+============================================================
+
+[JUST REBUILD MODE - No new post will be created]
+
+--- Rebuild Configuration ---
+
+Path to ronikobrosly.github.io repo [~/ronikobrosly.github.io]:
+Git commit message for source repo: Updated CSS styling
+Git commit message for deployed site repo [Updated CSS styling]:
+
+============================================================
+REBUILD PREVIEW
+============================================================
+Deployed repo: /home/ronik/ronikobrosly.github.io
+Source commit: Updated CSS styling
+Deployed commit: Updated CSS styling
+============================================================
+
+Proceed with rebuild and deployment? (yes/no): yes
+
+✓ Building site...
+  Site built successfully!
+
+✓ Deploying to GitHub Pages repo...
+  Deployed to: /home/ronik/ronikobrosly.github.io
+  ✓ Verified google4e956285588bb55a.html is preserved
+
+✓ Committing and pushing changes...
+  Committing source repo...
+    ✓ Pushed to /home/ronik/personal_github_io_website
+  Committing deployed site repo...
+    ✓ Pushed to /home/ronik/ronikobrosly.github.io
+  ✓ All changes pushed successfully!
+
+============================================================
+✓ SUCCESS! Website rebuilt and deployed!
+============================================================
+
+Your changes are live at:
+https://ronikobrosly.github.io/
 ```
 
 ## Features
@@ -181,6 +249,7 @@ https://ronikobrosly.github.io/blog/2025/10/31/my-amazing-new-blog-post/
 - **External editor** - Opens your preferred editor for body text
 - **Relative/absolute paths** - Supports both path formats for images
 - **Batch image copying** - Copy multiple images at once
+- **Just rebuild mode** - Quick rebuild/deploy for CSS/template changes without creating new posts
 
 ### Error Handling
 - Clear error messages for each step

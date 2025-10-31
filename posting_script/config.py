@@ -13,7 +13,7 @@ VENV_ACTIVATE = PROJECT_ROOT / "website" / "bin" / "activate"
 
 # Deployed site repo (user should configure this)
 # Default location - can be overridden via prompt
-DEPLOYED_SITE_REPO = Path.home() / "Desktop" / "ronikobrosly.github.io"
+DEPLOYED_SITE_REPO = Path.home() / "ronikobrosly.github.io"
 
 # Google verification file (critical - must be preserved)
 GOOGLE_VERIFICATION_FILE = "google4e956285588bb55a.html"

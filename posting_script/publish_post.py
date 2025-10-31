@@ -6,10 +6,12 @@ This script automates the process of creating and publishing blog posts and art 
 to the Lektor-based static website.
 
 Usage:
-    python publish_post.py [--dry-run]
+    python publish_post.py [--dry-run] [--just-rebuild]
 
 Options:
-    --dry-run    Preview what would happen without making any changes
+    --dry-run        Preview what would happen without making any changes
+    --just-rebuild   Rebuild and deploy the site without creating a new post
+                     (useful for CSS/template changes)
 """
 
 import argparse
@@ -29,8 +31,9 @@ import config
 class PostPublisher:
     """Main class for handling post creation and publication."""
 
-    def __init__(self, dry_run=False):
+    def __init__(self, dry_run=False, just_rebuild=False):
         self.dry_run = dry_run
+        self.just_rebuild = just_rebuild
         self.post_data = {}
         self.post_type = None
         self.post_slug = None
@@ -44,6 +47,10 @@ class PostPublisher:
 
         if self.dry_run:
             print("\n[DRY RUN MODE - No changes will be made]\n")
+
+        if self.just_rebuild:
+            print("\n[JUST REBUILD MODE - No new post will be created]\n")
+            return self.run_just_rebuild()
 
         try:
             # Step 1: Gather post information
@@ -85,6 +92,78 @@ class PostPublisher:
             print(f"\n\n❌ Error: {e}")
             print("\nRolling back changes...")
             self.rollback()
+            return False
+
+    def run_just_rebuild(self):
+        """Rebuild and deploy the site without creating a new post."""
+        try:
+            print("\n--- Rebuild Configuration ---\n")
+
+            # Get deployed repo path (and clone if needed)
+            default_repo = str(config.DEPLOYED_SITE_REPO)
+            repo_path = self.get_input(
+                "Path to ronikobrosly.github.io repo",
+                default=default_repo
+            )
+            repo_path = Path(repo_path).expanduser()
+
+            # Clone repo if it doesn't exist
+            if not repo_path.exists():
+                print(f"\n📦 Repository not found at {repo_path}")
+                print("Cloning ronikobrosly/ronikobrosly.github.io...")
+                self.clone_deployed_repo(repo_path)
+
+            self.post_data['deployed_repo'] = repo_path
+
+            # Get git commit messages
+            self.post_data['commit_msg_source'] = self.get_input(
+                "Git commit message for source repo",
+                required=True
+            )
+
+            default_commit_deployed = self.post_data['commit_msg_source']
+            self.post_data['commit_msg_deployed'] = self.get_input(
+                "Git commit message for deployed site repo",
+                default=default_commit_deployed
+            )
+
+            # Confirm before proceeding
+            print("\n" + "=" * 60)
+            print("REBUILD PREVIEW")
+            print("=" * 60)
+            print(f"Deployed repo: {self.post_data['deployed_repo']}")
+            print(f"Source commit: {self.post_data['commit_msg_source']}")
+            print(f"Deployed commit: {self.post_data['commit_msg_deployed']}")
+            print("=" * 60)
+
+            if not self.dry_run:
+                response = input("\nProceed with rebuild and deployment? (yes/no): ").strip().lower()
+                if response not in ['yes', 'y']:
+                    print("\n❌ Rebuild cancelled.")
+                    return False
+
+            # Build site
+            self.build_site()
+
+            # Deploy to GitHub Pages repo
+            self.deploy_site()
+
+            # Git operations
+            self.commit_and_push()
+
+            # Success!
+            print("\n" + "=" * 60)
+            print("✓ SUCCESS! Website rebuilt and deployed!")
+            print("=" * 60)
+            print("\nYour changes are live at:\nhttps://ronikobrosly.github.io/")
+
+            return True
+
+        except KeyboardInterrupt:
+            print("\n\n❌ Operation cancelled by user.")
+            return False
+        except Exception as e:
+            print(f"\n\n❌ Error: {e}")
             return False
 
     def gather_post_info(self):
@@ -498,10 +577,15 @@ def main():
         action='store_true',
         help='Preview what would happen without making changes'
     )
+    parser.add_argument(
+        '--just-rebuild',
+        action='store_true',
+        help='Rebuild and deploy the site without creating a new post (for CSS/template changes)'
+    )
 
     args = parser.parse_args()
 
-    publisher = PostPublisher(dry_run=args.dry_run)
+    publisher = PostPublisher(dry_run=args.dry_run, just_rebuild=args.just_rebuild)
     success = publisher.run()
 
     sys.exit(0 if success else 1)
