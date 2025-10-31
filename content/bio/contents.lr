@@ -6,7 +6,7 @@ body:
 
 ## Professional Bio
 
-<img class="headshot" src="./profile_pic.jpg" style="border-radius: 50%; width: 50%; max-width: 200px; margin-left: auto; margin-right: 20px; float: left">
+<img class="headshot" src="./profile_pic.jpg" style="width: 50%; max-width: 200px; margin-left: auto; margin-right: 20px; float: left">
 
 Before working in the tech industry, I spent several years in academia trying to better understand the complicated relationships between environmental exposures, stress, and population health.
 
@@ -14,10 +14,12 @@ Outside of my work, I enjoy bicycling, digital art and art generally, climbing, 
 
 Not satisfied? Here are some random fun facts about me:
 
+
+
 * I make a very good scrambled eggs and hash brown breakfast. I mean really, really good.
 * I'm probably the only person on earth with the name Roni Kobrosly (it's my bicultural background).
 * My all-time favorite book is Don DeLillo's [White Noise](https://en.wikipedia.org/wiki/White_Noise_(novel).
 * I have a well-seasoned wok that I'm obsessed with.
 * I'm a [skeptic](https://en.wikipedia.org/wiki/Skepticism).
 
-In case you're curious this website was made with [Terminal.css](https://terminalcss.xyz/), which in their words is a "modern and minimal CSS framework for terminal lovers."
+In case you're curious this website was made with [hugo-theme-terminal](https://github.com/panr/hugo-theme-terminal).
