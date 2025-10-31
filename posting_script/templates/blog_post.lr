@@ -1,0 +1,17 @@
+title: {title}
+---
+author: {author}
+---
+twitter_handle: {twitter_handle}
+---
+pub_date: {pub_date}
+---
+summary: {summary}
+---
+tags:
+
+{tags}
+---
+body:
+
+{body}

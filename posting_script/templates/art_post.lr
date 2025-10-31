@@ -1,0 +1,15 @@
+title: {title}
+---
+author: {author}
+---
+pub_date: {pub_date}
+---
+summary: {summary}
+---
+tags:
+
+{tags}
+---
+body:
+
+{body}

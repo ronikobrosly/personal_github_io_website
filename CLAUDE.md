@@ -416,3 +416,296 @@ article:not(:last-child) {
 - **Terminal.css Generator**: https://panr.github.io/terminal-css/
 - **Lektor Documentation**: https://www.getlektor.com/docs/
 - **Hugo Terminal Theme Demo** (for design inspiration): https://panr.github.io/hugo-theme-terminal-demo/
+
+
+---
+
+## Automated Post Publishing Script
+
+### Overview
+
+This plan outlines an automation script to streamline the process of creating and publishing blog posts and art posts to the website. The script will handle content creation, building, deployment, and git operations.
+
+### Current Manual Workflow
+
+1. Clone `ronikobrosly/ronikobrosly.github.io` repo to desktop (contains deployed static site + `google4e956285588bb55a.html` verification file)
+2. Create new folder in `content/blog/` or `content/art/` with post slug
+3. Create `contents.lr` file with structured metadata (title, author, body, pub_date, summary, tags)
+4. Add `logo.webp` file (required) and optionally additional `.webp` images
+5. Run `lektor build --output-path ./built_website` from `personal_github_io_website` root
+6. Copy all contents from `./built_website/` to `ronikobrosly.github.io/` folder
+7. Git commit and push both repos:
+   - `personal_github_io_website` (source repo)
+   - `ronikobrosly.github.io` (deployed site repo)
+8. Site deploys to `ronikobrosly.github.io`
+
+### Proposed Solution
+
+**Location:** `posting_script/` directory in `personal_github_io_website` root
+
+**Script Name:** `publish_post.py`
+
+**Technology:** Python 3.12+ (already used by Lektor)
+
+### Script Architecture
+
+#### Directory Structure
+```
+personal_github_io_website/
+├── posting_script/
+│   ├── publish_post.py          # Main script
+│   ├── config.py                # Configuration (repo paths, defaults)
+│   ├── templates/
+│   │   ├── blog_post.lr         # Template for blog post contents.lr
+│   │   └── art_post.lr          # Template for art post contents.lr
+│   └── README.md                # Usage documentation
+```
+
+#### Core Functionality
+
+**1. Interactive Prompts**
+
+The script should prompt the user for:
+
+**Post Type Selection:**
+- "What type of post? (blog/art)"
+
+**For Blog Posts:**
+- "Post title:" (required)
+- "Author:" (default: "Roni Kobrosly")
+- "Twitter handle:" (default: "ronikobrosly")
+- "Publication date (YYYY-MM-DD):" (default: today's date)
+- "Summary:" (required)
+- "Tags (comma-separated):" (optional)
+- "Body text (opens editor):" (opens default editor like vim/nano for multi-line input)
+- "Post slug (URL-friendly name):" (default: auto-generated from title)
+- "Path to logo.webp file:" (required, validates file exists)
+- "Additional image paths (comma-separated, optional):"
+
+**For Art Posts:**
+- Same prompts as blog posts (art-post model has similar fields)
+
+**Git Operations:**
+- "Git commit message for source repo:" (required)
+- "Git commit message for deployed site repo:" (default: same as source)
+
+**Deployment Verification:**
+- "Path to ronikobrosly.github.io repo:" (required, validates directory exists)
+
+**2. Content Generation**
+
+- Create folder: `content/blog/{slug}/` or `content/art/{slug}/`
+- Generate `contents.lr` file with proper formatting:
+  ```
+  title: {title}
+  ---
+  author: {author}
+  ---
+  twitter_handle: {twitter_handle}
+  ---
+  pub_date: {pub_date}
+  ---
+  summary: {summary}
+  ---
+  tags:
+
+  {tag1}
+  {tag2}
+  ---
+  body:
+
+  {body_content}
+  ```
+- Copy `logo.webp` and any additional images to post folder
+- Validate all required files exist
+
+**3. Build Process**
+
+- Activate virtual environment: `source website/bin/activate`
+- Run: `lektor build --output-path ./built_website`
+- Capture and display build output
+- Check for build errors and halt if any occur
+
+**4. Deployment**
+
+- Validate `ronikobrosly.github.io` repo path exists
+- Check for `google4e956285588bb55a.html` file (critical verification file)
+- Copy all contents from `./built_website/*` to `ronikobrosly.github.io/`
+- Preserve `google4e956285588bb55a.html` file (verify it's not overwritten)
+
+**5. Git Operations**
+
+Execute in `personal_github_io_website`:
+```bash
+git add .
+git commit -m "{commit_message_source}"
+git push
+```
+
+Execute in `ronikobrosly.github.io`:
+```bash
+cd {path_to_ronikobrosly_github_io}
+git add .
+git commit -m "{commit_message_deployed}"
+git push
+```
+
+**6. Validation & Error Handling**
+
+- Validate SSH key access before git operations
+- Check if repos are on correct branch (main)
+- Verify no uncommitted changes exist (warn user)
+- Validate file paths and image formats (.webp)
+- Confirm `google4e956285588bb55a.html` is preserved
+- Rollback changes if any step fails
+
+### Configuration File (config.py)
+
+```python
+import os
+from pathlib import Path
+
+# Project paths
+PROJECT_ROOT = Path(__file__).parent.parent
+CONTENT_DIR = PROJECT_ROOT / "content"
+BUILD_OUTPUT = PROJECT_ROOT / "built_website"
+VENV_ACTIVATE = PROJECT_ROOT / "website" / "bin" / "activate"
+
+# Deployed site repo (user should configure this)
+DEPLOYED_SITE_REPO = Path.home() / "Desktop" / "ronikobrosly.github.io"
+
+# Google verification file (critical - must be preserved)
+GOOGLE_VERIFICATION_FILE = "google4e956285588bb55a.html"
+
+# Defaults
+DEFAULT_AUTHOR = "Roni Kobrosly"
+DEFAULT_TWITTER_HANDLE = "ronikobrosly"
+
+# Post types
+POST_TYPES = {
+    "blog": {
+        "content_dir": CONTENT_DIR / "blog",
+        "model": "blog-post",
+        "required_fields": ["title", "author", "twitter_handle", "pub_date", "summary", "body"],
+        "optional_fields": ["tags"]
+    },
+    "art": {
+        "content_dir": CONTENT_DIR / "art",
+        "model": "art-post",
+        "required_fields": ["title", "author", "pub_date", "body"],
+        "optional_fields": ["tags", "summary"]
+    }
+}
+```
+
+### Usage Example
+
+```bash
+# Navigate to posting_script directory
+cd personal_github_io_website/posting_script
+
+# Run the script
+python publish_post.py
+
+# Follow interactive prompts:
+# >>> What type of post? (blog/art): blog
+# >>> Post title: My New Blog Post About Python
+# >>> Author [Roni Kobrosly]:
+# >>> Twitter handle [ronikobrosly]:
+# >>> Publication date (YYYY-MM-DD) [2025-10-31]:
+# >>> Summary: This is a summary of my post about Python...
+# >>> Tags (comma-separated): python, programming, tutorial
+# >>> Opening editor for body text... (press Ctrl+X to save and exit)
+# >>> Post slug [my-new-blog-post-about-python]:
+# >>> Path to logo.webp file: /home/ronik/images/python-logo.webp
+# >>> Additional image paths (comma-separated, optional):
+# >>> Path to ronikobrosly.github.io repo [~/Desktop/ronikobrosly.github.io]:
+# >>> Git commit message for source repo: Add new Python blog post
+# >>> Git commit message for deployed site [Add new Python blog post]:
+#
+# ✓ Creating post directory...
+# ✓ Generating contents.lr...
+# ✓ Copying images...
+# ✓ Building site...
+# ✓ Deploying to ronikobrosly.github.io...
+# ✓ Committing source repo...
+# ✓ Committing deployed site...
+# ✓ Pushing changes...
+#
+# ✓ SUCCESS! Your post is now live at https://ronikobrosly.github.io/blog/2025/10/31/my-new-blog-post-about-python/
+```
+
+### Features
+
+**Safety Features:**
+- Dry-run mode: `python publish_post.py --dry-run` (shows what would happen without executing)
+- Confirmation prompt before git push operations
+- Backup of existing post if slug already exists
+- Validation of all inputs before execution
+- Rollback capability if deployment fails
+
+**Convenience Features:**
+- Auto-generate slug from title (converts to lowercase, replaces spaces with hyphens)
+- Auto-detect today's date for pub_date
+- Use default editor (from $EDITOR env variable) for body text
+- Preview generated `contents.lr` before proceeding
+- Option to edit multi-line fields in external editor
+- Support for relative and absolute image paths
+
+**Error Handling:**
+- Clear error messages for each failure point
+- Validation of SSH key access before attempting push
+- Check for git conflicts before committing
+- Verify Lektor build succeeds before deployment
+- Ensure `google4e956285588bb55a.html` is preserved
+
+### Future Enhancements
+
+1. **Draft Mode:** Create post without deploying (skip git operations)
+2. **Edit Existing Post:** Update an existing post's content or metadata
+3. **Preview Mode:** Generate local preview URL with `lektor server`
+4. **Batch Operations:** Create multiple posts from a CSV or JSON file
+5. **Image Optimization:** Automatically compress/resize images to .webp format
+6. **Template Selection:** Support for different post templates (long-form, short-form, link post)
+7. **Tag Autocomplete:** Suggest existing tags based on content
+8. **Undo Last Post:** Rollback the most recent publication
+
+### Implementation Notes for Claude
+
+When implementing this script:
+
+1. Start with `config.py` to establish configuration management
+2. Create template files for `contents.lr` structure
+3. Implement core prompting logic with input validation
+4. Add file operations (create directories, copy files)
+5. Integrate Lektor build command
+6. Implement deployment logic with safety checks
+7. Add git operations with proper error handling
+8. Create comprehensive README with usage examples
+9. Add dry-run mode for testing
+10. Implement rollback functionality
+
+**Key Dependencies:**
+- Standard library only (pathlib, shutil, subprocess, os, datetime, re)
+- No additional pip packages required
+- Leverages existing Lektor installation
+
+**Testing Strategy:**
+- Test with dry-run mode first
+- Verify file creation in content directory
+- Check Lektor build succeeds
+- Confirm file copying to deployed repo
+- Validate git operations without pushing
+- Test rollback functionality
+
+### Success Criteria
+
+The script is successful when:
+1. User can create a blog/art post interactively in < 2 minutes
+2. All manual steps are automated (content creation → deployment)
+3. Zero manual file editing required
+4. Git operations happen automatically with proper commit messages
+5. Google verification file is always preserved
+6. Clear error messages guide user if something fails
+7. User can preview before publishing
+8. Rollback works if deployment fails

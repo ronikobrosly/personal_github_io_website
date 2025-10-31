@@ -58,7 +58,7 @@
   top: 20px;
   width: 38px;
   height: 38px;
-  background: var(--background, #fff7f1);
+  background: var(--background, #ffffff);
   border: 2px solid var(--accent, #ff6347);
 }
 
@@ -113,6 +113,7 @@
   height: 1em;
   width: 3px;
   margin-left: 3px;
+  vertical-align: -0.1em;
 }
 
 /* Blog card layout */
