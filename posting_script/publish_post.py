@@ -167,18 +167,21 @@ class PostPublisher:
         else:
             self.post_data['additional_images'] = []
 
-        # Deployed site repo path
+        # Deployed site repo path - clone if needed
         default_repo = str(config.DEPLOYED_SITE_REPO)
-        while True:
-            repo_path = self.get_input(
-                "Path to ronikobrosly.github.io repo",
-                default=default_repo
-            )
-            repo_path = Path(repo_path).expanduser()
-            if repo_path.exists() and repo_path.is_dir():
-                self.post_data['deployed_repo'] = repo_path
-                break
-            print(f"Directory not found: {repo_path}")
+        repo_path = self.get_input(
+            "Path to ronikobrosly.github.io repo",
+            default=default_repo
+        )
+        repo_path = Path(repo_path).expanduser()
+
+        # Clone repo if it doesn't exist
+        if not repo_path.exists():
+            print(f"\n📦 Repository not found at {repo_path}")
+            print("Cloning ronikobrosly/ronikobrosly.github.io...")
+            self.clone_deployed_repo(repo_path)
+
+        self.post_data['deployed_repo'] = repo_path
 
         # Git commit messages
         self.post_data['commit_msg_source'] = self.get_input(
@@ -345,6 +348,34 @@ class PostPublisher:
         )
 
         print("  ✓ All changes pushed successfully!")
+
+    def clone_deployed_repo(self, repo_path):
+        """Clone the deployed GitHub Pages repository."""
+        if self.dry_run:
+            print(f"  [DRY RUN] Would clone ronikobrosly/ronikobrosly.github.io to {repo_path}")
+            return
+
+        # Create parent directory if needed
+        repo_path.parent.mkdir(parents=True, exist_ok=True)
+
+        # Clone the repository
+        repo_url = "git@github.com:ronikobrosly/ronikobrosly.github.io.git"
+
+        result = subprocess.run(
+            ['git', 'clone', repo_url, str(repo_path)],
+            capture_output=True,
+            text=True
+        )
+
+        if result.returncode != 0:
+            raise Exception(f"Git clone failed:\n{result.stderr}")
+
+        print(f"  ✓ Repository cloned to {repo_path}")
+
+        # Verify Google verification file exists
+        verification_file = repo_path / config.GOOGLE_VERIFICATION_FILE
+        if not verification_file.exists():
+            print(f"  ⚠️  Warning: {config.GOOGLE_VERIFICATION_FILE} not found in cloned repo!")
 
     def git_commit_push(self, repo_path, commit_message):
         """Execute git add, commit, and push in the specified repo."""

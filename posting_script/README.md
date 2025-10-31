@@ -18,7 +18,7 @@ The script automates the following workflow:
 - Lektor installed and configured
 - Virtual environment activated at `website/bin/activate`
 - SSH key configured for GitHub access
-- `ronikobrosly.github.io` repository cloned to your Desktop (or configured path)
+- **Note:** The script will automatically clone `ronikobrosly.github.io` if it doesn't exist
 
 ## Installation
 
@@ -173,6 +173,7 @@ https://ronikobrosly.github.io/blog/2025/10/31/my-amazing-new-blog-post/
 - **Confirmation prompt** - Preview post before publishing
 - **Rollback capability** - Automatically rolls back if an error occurs
 - **Google verification file preservation** - Ensures critical file is not lost
+- **Auto-clone deployed repo** - Automatically clones the GitHub Pages repo if not found
 
 ### Convenience Features
 - **Auto-generated slug** - Creates URL-friendly slug from title
@@ -261,9 +262,10 @@ Your markdown content here...
 - Try running `lektor build` manually to debug
 
 ### "Directory not found" error for deployed repo
-- Verify the path to `ronikobrosly.github.io` is correct
-- Update `DEPLOYED_SITE_REPO` in `config.py` if needed
-- You can also provide the path when prompted
+- The script will automatically clone the repo if it doesn't exist at the specified path
+- Ensure your SSH key is configured for GitHub access
+- If you want to use an existing clone, provide the correct path when prompted
+- Update `DEPLOYED_SITE_REPO` in `config.py` to change the default location
 
 ### "google4e956285588bb55a.html was lost" error
 - This critical file is needed for Google site verification
