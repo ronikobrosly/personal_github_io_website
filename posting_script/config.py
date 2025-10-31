@@ -39,7 +39,7 @@ POST_TYPES = {
 }
 
 # Supported image formats
-SUPPORTED_IMAGE_FORMATS = [".webp", ".jpg", ".jpeg", ".png", ".gif"]
+SUPPORTED_IMAGE_FORMATS = [".webp"]
 
 # Git configuration
 GIT_BRANCH = "main"
