@@ -82,7 +82,7 @@
 {% macro render_blog_card(post) %}
 <div class="terminal-card">
   <header>
-    <a href="{{ post|url }}" style="color: white">{{ render_blog_header(post, from_index=True) }}</a>
+    <a href="{{ post|url }}" class="card-title-link">{{ render_blog_header(post, from_index=True) }}</a>
   </header>
   <div class="card-body blog-card-container">
     <div>
